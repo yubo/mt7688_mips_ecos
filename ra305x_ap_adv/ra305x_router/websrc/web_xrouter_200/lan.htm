@@ -1,0 +1,290 @@
+<HTML>
+<HEAD>
+<META http-equiv="Pragma" content="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=big5">
+<TITLE>Ralink Wireless Access Point</TITLE>
+	<link REL=stylesheet TYPE="text/css" HREF="style.css">
+
+<SCRIPT language=JavaScript src=utils.js></SCRIPT>
+<SCRIPT language=JavaScript src=spec.js></SCRIPT>
+<SCRIPT language=JavaScript>
+
+/*DEMO*/
+addCfg("LANIP",0,"192.168.0.1");
+addCfg("LANMSK",0,"255.255.255.0");
+addCfg("dns",6,1);
+addCfg("domain",7,'');
+addCfg("lanspeed",8,1);
+addCfg("opmode",100,"1");
+addCfg("iptv_en",11,0);
+addCfg("iptv_port",12,9);
+addCfg("LANIP6",101,"3ffe:501:ffff:101:20c:43FF:FE56:5223");
+addCfg("LANMSK6",102,"ffff:ffff:ffff:ffff:0000:0000:0000:0000");
+/*END_DEMO*/
+/*REAL
+<%
+CGI_MAP(LANIP, CFG_LAN_IP);
+CGI_MAP(LANMSK, CFG_LAN_MSK);
+CGI_MAP(dns, CFG_DNS_EN);
+CGI_MAP(domain, CFG_SYS_DOMAIN);
+CGI_MAP(lanspeed, CFG_LAN_PHY);
+CGI_MAP(wanspeed, CFG_WAN_PHY);
+CGI_MAP(opmode, CFG_SYS_OPMODE);
+ #if  defined (CONFIG_IPTV)
+CGI_MAP(iptv_en, CFG_IPTV_EN);
+ #ifndef CONFIG_IPTV_FIX_PORT
+CGI_MAP(iptv_port, CFG_IPTV_PORT);
+ #endif // (CONFIG_IPTV_FIX_PORT)
+ #endif // (CONFIG_IPTV)
+CGI_MAP(LANIP6, CFG_LAN_IP_v6);
+CGI_MAP(LANMSK6, CFG_LAN_MSK_v6);
+%>
+REAL*/
+
+var __opmode = 1*getCfg("opmode");
+function init()
+{
+	var f=document.LAN;
+	var whichEI=document.getElementById("iptv_portmask");
+	cfg2Form(f);
+
+	if (__opmode == 3) {
+		document.getElementById("div_dns_title").style.visibility = "hidden";
+		document.getElementById("div_dns_title").style.display = "none";
+		document.getElementById("div_dns_value").style.visibility = "hidden";
+		document.getElementById("div_dns_value").style.display = "none";
+	}
+    /*REAL<% 
+      #if  defined (CONFIG_IPTV)	
+      #ifndef CONFIG_IPTV_FIX_PORT
+      %>REAL*/
+	tmp=f.iptv_port.value;
+	f.type1.checked=((tmp&1) > 0);
+	f.type2.checked=((tmp&2) > 0);
+	f.type3.checked=((tmp&4) > 0);
+	f.type4.checked=((tmp&8) > 0);
+
+	if (f.iptv_en[1].checked)
+		{
+		whichEI.style.display="none";
+		}
+	if (__opmode==2  ||__opmode==3)
+	{
+	var whichEI=document.getElementById("iptv_portmask");	
+	whichEI.style.display="none";
+	 whichEI=document.getElementById("iptv_en");	
+	whichEI.style.display="none";	
+
+	}
+    /*REAL<% 
+      #endif // (CONFIG_IPTV_FIX_PORT)
+      #endif //(CONFIG_IPTV)
+      %>REAL*/	
+}
+function Cancel() {
+	init();
+}
+function CheckIPClass_MASK(ipa,mn)
+{	
+	var ip_class='A';
+	ip = new Array();
+	if (ipa.length==4)
+	{
+		for (var i=0;i<4;i++)
+			ip[i]=ipa[i].value;
+	}
+	else
+		ip=ipa.value.split(".");
+	if (ip.length!=4)
+	{
+		alert("Invalid "+"IP Address"+"!");
+		return false;
+	}
+	var m=new Array();
+	if (mn.length==4)
+		for (i=0;i<4;i++) m[i]=mn[i].value;
+	else
+	{
+		m=mn.value.split('.');
+		if (m.length!=4) { alert("Invalid "+"netmask"+"!"); ; return 0; }
+	}
+
+	if (ip[0]<=127 && ip[0]>=0) ip_class = 'A';
+	else if (ip[0]<=191 && ip[0]>=128) ip_class = 'B';
+	else if (ip[0]<=223 && ip[0]>=192) ip_class = 'C';
+
+	if (ip_class == 'A' && m[0]!=255)
+	{
+		alert("Invalid "+"netmask"+"!"+",netmask of A-class IP address should be no less  than 255.0.0.0 ");
+		return false;
+	}
+	if (ip_class == 'B' &&( m[0]!=255 ||m[1]!=255))
+	{
+		alert("Invalid "+"netmask"+"!"+",netmask of B-class IP address should be no less  than 255.255.0.0 ");
+		return false;
+	}
+			
+	if (ip_class == 'C' &&( m[0]!=255 ||m[1]!=255||m[2]!=255))
+	{
+		alert("Invalid "+"netmask"+"!"+",netmask of C-class IP address should be no less  than 255.255.255.0 ");
+		return false;
+	}
+	return true;	
+
+}
+function Apply() {
+	var f=document.LAN;
+	var LIP = f.LANIP.value;
+	var WIP = "<%CGI_WAN_IP() ;%>";
+	var WanMSK = "<% CGI_WAN_MSK(); %>";
+	var LanMsk="<% CGI_CFG_GET(CFG_LAN_MSK); %>";
+
+	if (!verifyIP2(f.LANIP,"IP address")) return ;
+	if (!ipMskChk(f.LANMSK,"subnet mask")) return ;
+	if (!CheckIPClass_MASK(f.LANIP,f.LANMSK)) return ;
+
+	if(ByMask_IPrange(LIP, LanMsk, 0)==ByMask_IPrange(WIP, WanMSK, 0))
+	{
+			alert("Attention: LAN IP and WAN IP should not in the same subnet!!\nWAN IP:"+WIP+"\nLAN IP:"+LIP);
+			return;
+	}
+/*REAL<% 
+#if  defined (CONFIG_IPTV)	
+ #ifndef CONFIG_IPTV_FIX_PORT
+ %>REAL*/
+	f.iptv_port.value = (f.type1.checked)|(f.type2.checked<<1)|(f.type3.checked<<2)|(f.type4.checked<<3);
+	if (  f.iptv_port.value==0 && f.iptv_en[0].checked )
+		{ alert("Please Select IPTV Port"); return  ;}
+	if (  f.iptv_port.value==0xf && f.iptv_en[0].checked )
+		{ alert("Four Ports for IPTV is not allowed"); return  ;}
+/*REAL<% 
+#endif // (CONFIG_IPTV_FIX_PORT)
+#endif //(CONFIG_IPTV)
+ %>REAL*/		
+	form2Cfg(f);
+
+	subForm(f,'do_cmd.htm','LAN',cPage);
+}
+function Help(){
+	window.open("help_home.htm#lan","help");
+}
+function on_click(e){
+/*REAL<% 
+#if  defined (CONFIG_IPTV)	
+ #ifndef CONFIG_IPTV_FIX_PORT
+ %>REAL*/
+	var f=document.LAN;
+	var whichEI=document.getElementById("iptv_portmask");	
+
+	if (e>0)
+		whichEI.style.display="";
+	  else
+		 whichEI.style.display="none";
+/*REAL<% 
+#endif // (CONFIG_IPTV_FIX_PORT)
+#endif //(CONFIG_IPTV)
+ %>REAL*/
+}
+</SCRIPT>
+</HEAD>
+
+<BODY leftmargin=0 topmargin=0 onLoad=init()>
+<script>pageHead();</script>
+
+<FORM name=LAN>
+<table width=100% border=0 height=152>
+<tr>
+<td colspan=2 height=20><font face=Arial color=#8bacb1 size=2><b>LAN Settings</b></font></td>
+</tr>
+<tr>
+<td width=30%>IP Address</td>
+<td><input name=LANIP size=16 maxlength=15 ></td>
+</tr>
+<tr>
+<td>Subnet Mask</td>
+<td><input name=LANMSK size=16 maxlength=15 ></td>
+</tr>
+
+/*REAL<% #ifdef INET6 %>REAL*/
+<tr>
+<td width=30%>IPv6 Address</td>
+<td><input name=LANIP6 size=40 maxlength=40 ></td>
+</tr>
+<tr>
+<td>IPv6 Subnet Mask</td>
+<td><input name=LANMSK6 size=40 maxlength=40 ></td>
+</tr>
+/*REAL<% #endif //INET6 %>REAL*/
+
+<tr>
+<td>Domain Name</td>
+<td><input name=domain size=40 maxlength=31>(Optional)</td>
+</tr>
+<tr>
+	<td colspan=2 height=20>&nbsp;</td>
+	</tr>
+	<tr id="div_dns_title" name="div_dns_title" style="visibility:visible;display:;">
+		<td colspan=2 height=20><b><font face="Arial" color="#8bacb1" size=2>DNS Relay</b></font></td>
+	</tr>
+	<tr id="div_dns_value" name="div_dns_value" style="visibility:visible;display:;">
+		<td height=20 align=right></td>
+		<td height=20><input type=radio name=dns value=1>Enable<input type=radio name=dns value=0>Disable</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan=2 height=20><b><font face="Arial" color="#8bacb1" size=2>LAN SPEED</b></font></td>
+	</tr>
+	<tr>
+		<td height=20 align=right></td>
+		<td height=20>
+			<input name="lanspeed" type="radio" value="2">10M &nbsp;
+			<input name="lanspeed" type="radio" value="4">100M &nbsp;
+			<input name="lanspeed" type="radio" value="0">AUTO
+		</td>
+	</tr>	
+		<tr>
+		<td colspan=2 height=20><b><font face="Arial" color="#8bacb1" size=2>WAN SPEED</b></font></td>
+	</tr>
+	<tr>
+		<td height=20 align=right></td>
+		<td height=20>
+			<input name="wanspeed" type="radio" value="2">10M &nbsp;
+			<input name="wanspeed" type="radio" value="4">100M &nbsp;
+			<input name="wanspeed" type="radio" value="0">AUTO
+		</td>
+	</tr>	
+<tr>
+</table>
+<table  id="iptv_en" width=100% border=0 height=152>
+/*REAL<% #if  defined (CONFIG_IPTV)%>REAL*/
+	<tr ><td colspan=2 height=20><b><font face="Arial" color="#8bacb1" size=2>IPTV Config</b></font> </td></tr>
+	
+	<tr><td height=20 align=right></td>
+			<td height=20>	
+					<input type=radio name=iptv_en  value=1 onClick=on_click(1)>Enable
+					<input type=radio name=iptv_en  value=0 onClick=on_click(0)>Disable</td>
+	</tr>
+</table>
+/*REAL<%  #ifndef CONFIG_IPTV_FIX_PORT %>REAL*/
+<table  id="iptv_portmask"   width=100% border=0 height=100 >
+	<INPUT type=hidden name=iptv_port>
+	<tr><td colspan=3>IPTV Port</td></tr>
+	<tr><td colspan=1  align=center><input type=checkbox name=type1  value=1>Port 1</td></tr>
+	<tr>  <td colspan=1 align=center><input type=checkbox name=type2  value=2>Port 2</td></tr>
+	<tr><td colspan=1  align=center><input type=checkbox name=type3  value=4>Port 3</td></tr>
+	<tr><td colspan=1 align=center><input type=checkbox name=type4  value=8>Port 4</td></tr>
+</table>	
+	
+/*REAL<% 
+#endif // (CONFIG_IPTV_FIX_PORT)
+#endif //(CONFIG_IPTV)
+ %>REAL*/
+</form>
+
+<script>pageButton();</script>
+<script>pageTail();</script>
+</BODY>
+</HTML>

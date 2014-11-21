@@ -1,0 +1,264 @@
+#	XROUTER ECOS project
+#	Makefile
+#   $Log: Makefile.orig,v $
+#   Revision 1.1  2010/01/28 11:09:57  dennis
+#   *** empty log message ***
+#
+
+
+#.EXPORT_ALL_VARIABLES:
+export TOPDIR ENDIAN CROSS_PREFIX HPATH
+
+ifeq (.config,$(wildcard .config))
+include .config
+ifneq	"$(CONFIG_BSP_DIR)" "" 
+	INSTALL_DIR=$(shell cd $(CONFIG_BSP_DIR) ; pwd )
+else
+	INSTALL_DIR=$(shell cd ../ra305xbsp/ra305x_bsp_install ; pwd )
+endif
+
+
+APPS_DIR=$(shell pwd )
+PRJ_DIR=$(shell cat .prjname)
+
+include $(INSTALL_DIR)/include/pkgconf/ecos.mak
+
+do-it-all: xrouter xrouter.map xrouter.bin zxrouter zxrouter.bin cptftp
+
+else
+
+do-it-all:	initmake initconfig
+
+endif
+
+CROSS_PREFIX=$(ECOS_COMMAND_PREFIX)
+
+ENDIAN=$(shell echo $(ECOS_GLOBAL_CFLAGS) | sed -e "s/.*-EL.*/-EL/" )
+
+
+TOPDIR=$(shell pwd)
+
+CFLAGS        = -I$(shell pwd)/include -I$(shell pwd)/tcpip/include -I$(INSTALL_DIR)/include
+CXXFLAGS      = $(CFLAGS)
+LDFLAGS       = -nostartfiles -Ttarget.ld -L$(INSTALL_DIR)/lib
+
+CFLAGS += -D__ECOS $(ECOS_GLOBAL_CFLAGS) -include config.h
+
+include rules.mak
+
+ifeq ($(word 1,$(shell dos2unix -V 2>&1)),tofrodos)
+DOS2UNIX=dos2unix -p
+else
+DOS2UNIX=dos2unix -k
+endif
+
+
+all: do-it-all
+
+# LIBRARY
+
+SUBDIRS = init cli cfg lib tcpip
+DRVSUBDIRS = drivers
+
+ifdef	CONFIG_RA305X
+	DRVSUBDIRS += eth_ra305x
+endif
+
+
+ifdef	CONFIG_HTTPD
+	SUBDIRS += webpages
+	SUBDIRS += httpd
+	
+endif
+
+ifdef  CONFIG_DHCPC
+	SUBDIRS += dhcpc
+	ifdef	CONFIG_BPA
+		SUBDIRS += bpa_login
+	endif
+endif
+
+ifdef CONFIG_DHCPS
+	SUBDIRS += dhcpd
+endif
+
+
+#ifneq	"$(CONFIG_DHCPC)$(CONFIG_DHCPS)" ""
+#	SUBDIRS += dhcp
+#	ifdef	CONFIG_BPA
+#		SUBDIRS += bpa_login
+#	endif
+#endif
+
+ifdef	CONFIG_SYSLOG
+	SUBDIRS += eventlog
+endif
+
+ifneq	("$(CONFIG_NAT)$(CONFIG_FW)" , "")
+	SUBDIRS += ipfilter
+endif
+
+ifdef	CONFIG_PPPOE
+	SUBDIRS += pppoe
+	NEED_PPPD=y
+endif
+
+ifdef	CONFIG_PPTP
+	SUBDIRS += pptp
+endif
+
+ifdef	CONFIG_L2TP
+	SUBDIRS += l2tp
+endif
+
+ifneq	("$(CONFIG_PPPOE)$(CONFIG_PPTP)$(CONFIG_L2TP)" , "")
+	SUBDIRS += pppd
+endif
+
+ifdef	CONFIG_UPNP
+	SUBDIRS += upnpd
+endif
+
+ifdef	CONFIG_DDNS
+	SUBDIRS += ddns
+endif
+
+ifdef	CONFIG_NTP
+	SUBDIRS += ntp
+endif
+
+ifdef	CONFIG_DNS
+	SUBDIRS += dnsmasq
+endif
+
+
+xroutersubdirs: $(patsubst %, _dir_%, $(SUBDIRS))
+$(patsubst %, _dir_%, $(SUBDIRS)) :
+	$(MAKE) CFLAGS="$(CFLAGS)" ENDIAN=$(ENDIAN) -C $(patsubst _dir_%, %, $@)
+
+drvsubdirs: $(patsubst %, _dir_%, $(DRVSUBDIRS))
+$(patsubst %, _dir_%, $(DRVSUBDIRS)) :
+	$(MAKE) CFLAGS="$(CFLAGS)" ENDIAN=$(ENDIAN) -C $(patsubst _dir_%, %, $@)
+
+XROUTER_OBJS = $(join $(SUBDIRS), $(patsubst %, /%.o, $(SUBDIRS)))
+
+ifeq	"$(CONFIG_ZLOAD_BUF)" ""
+	CONFIG_ZLOAD_BUF = 0x80300000
+endif
+XROUTER_LIBS += $(INSTALL_DIR)/lib/libtarget.a
+
+
+DRV_OBJS =  $(join $(DRVSUBDIRS), $(patsubst %, /%.o, $(DRVSUBDIRS)))
+
+NOW=$(shell date -d "now +8 hour" +"%s")
+BT_H=./include/build_time.h
+$(BT_H): target.ld 
+	. scripts/mkversion.sh > .tmpversion
+	@mv -f .tmpversion .version
+	echo "#define SYS_BUILD_TIME $(NOW)"  > $(BT_H)
+	echo "#define SYS_BUILD_COUNT `cat .version`" >> $(BT_H)
+
+drivers.o: drvsubdirs $(DRV_OBJS)
+	$(XLD) -r $(ENDIAN) -o drivers.o $(DRV_OBJS)
+
+xrouter: $(BT_H)  xroutersubdirs $(XROUTER_LIBS) $(XROUTER_OBJS) drivers.o target.ld
+	$(XCC) $(LDFLAGS) $(ECOS_GLOBAL_LDFLAGS) -o $@ $(XROUTER_OBJS) 
+	
+zxrouter:  xrouter.bin zload/zwebmap.h
+	$(MAKE) CFLAGS="$(CFLAGS)" ENDIAN=$(ENDIAN) -C zload
+#	gzip -v9 -c xrouter.bin > bin.gz
+	lzma -v9 -c -f xrouter.bin > bin.gz                                    
+ifdef	CONFIG_ZWEB
+	$(XLD) $(ENDIAN) $(LD_EXTRA) -Ttext=$(CONFIG_ZLOAD_BUF) -Tzload/zload.ld -o zxrouter zload/zload.o -\( -bbinary bin.gz -bbinary webdata.bin -\)
+else
+	$(XLD) $(ENDIAN) $(LD_EXTRA) -Ttext=$(CONFIG_ZLOAD_BUF) -Tzload/zload.ld -o zxrouter zload/zload.o -\( -bbinary bin.gz -\)
+endif
+#	rm bin.gz webdata.bin
+	$(XNM) $@ | grep -v '\(compiled\)\|\(\.o$$\)\|\( [aUw] \)\|\(\.\.ng$$\)\|\(LASH[RL]DI\)' | sort > $@.map
+
+zxrouter.bin: zxrouter
+	$(XOC) -O binary $(@:.bin=) $@
+	scripts/imghdr/imghdr zxrouter.bin t.bin 0x`$(XOD) -s init/version.o | grep "data.sys_sw_version" -A 1 | tail -n 1 | cut -b7-14` $(NOW) "$(FWM_DESC)" ; rm zxrouter.bin ; mv t.bin zxrouter.bin
+#	cat zxrouter.bin scripts/zero.bin > zxrouter.pad.bin
+#	scripts/mkimage -A mips -T standalone -C none -a 80300000 -e 80300000 -n "zxrouter" -d zxrouter.pad.bin zxrouter.img
+	scripts/mkimage -A mips -T standalone -C none -a $(CONFIG_ZLOAD_BUF) -e $(CONFIG_ZLOAD_BUF) -n "zxrouter" -d zxrouter.bin zxrouter.img
+
+zload/zwebmap.h: xrouter.map
+	grep "zweb_location" xrouter.map | sed -e 's/^\(.*\) \(.*\) \(.*\)$\/\#define ZWEB_LOC 0x\1/' > zload/zwebmap.h
+
+target.ld: .config
+	sh ./arch/init_arch.sh $(APPS_DIR)
+
+#FWM_DESC += $(shell whoami)
+#FWM_DESC += $(shell uname -n)
+FWM_DESC += $(shell date -d "1970/01/01 +$(NOW) sec" +"%T %x")
+
+cptftp:	xrouter.bin zxrouter.bin
+	cp xrouter.bin $(CONFIG_DL_IMAGE)
+	cp zxrouter.bin $(CONFIG_DL_ZIMAGE)
+	cp zxrouter.img /tftpboot
+
+zip: clean
+	@echo "tar source & install dir"
+	cd .. ; tar zcvf apps.tmp $(notdir $(APPS_DIR)) ; mv -f apps.tmp $(notdir $(APPS_DIR))_`date +%D | sed "s/\///" | sed "s/\///"`.tgz
+
+zipbsp:
+	cd .. ; tar zcvf bsp.tmp $(notdir $(shell cd $(INSTALL_DIR)/.. ; pwd)) ; mv -f bsp.tmp $(notdir $(shell cd $(INSTALL_DIR)/.. ; pwd))_`date +%D | sed "s/\///" | sed "s/\///"`.tgz
+
+bsp:
+	make -C $(INSTALL_DIR)/../ecos_build
+
+.PHONY: all clean webpages $(BT_H)
+
+clean:	cleanpages
+	@echo "clean all.."
+	-rm -f xrouter xrouter.bin xrouter.map xrouter.dis zxrouter zxrouter.bin zxrouter.map bin.gz xrouter.bin.lzma
+	find . \( -name '*.[oasd]' -o -name core -o -name '.*.flags' \) -type f -print | xargs rm -f
+	-rm -f zxrouter.pad.bin zxrouter.img
+	
+cleanpages:
+	@echo "clean webpages.."
+	-rm -f webdata.bin
+	-rm -rf webpages/web_c
+	-rm -f ./webpages/web_list ./webpages/webpage.c ./webpages/webpage.h
+	find webpages \( -name '*.[oasd]' -o -name '.*.flags' \) -type f -print | xargs rm -f
+	
+webpages:
+	if [ -e ./.prjname ] ; then make webpages -C config/$(PRJ_DIR) ; fi
+	
+initmake:
+	@echo "Init make environment"
+	$(DOS2UNIX) `find -name \*.sh`
+	$(DOS2UNIX) defconfig config.in ./scripts/Menuconfig
+	chmod u+rx scripts/lxdialog/lxdialog
+	chmod u+rx scripts/imghdr/imghdr
+	chmod u+rx scripts/imghdr/imghdr_bn
+	chmod u+rx scripts/imghdr/cookie
+	touch $(BT_H)
+	
+cookie:
+	@echo make download signature
+ifdef	CONFIG_DL_COOKIE
+	./scripts/imghdr/cookie $(CONFIG_DL_COOKIE_STR)
+endif
+	
+initconfig:
+	bash scripts/Menuconfig config.in save
+	
+menuconfig:
+	bash scripts/Menuconfig config.in
+	make cookie
+
+checkin: clean
+	-rm -rf webpages
+	@echo "clean configuration"
+	-rm -f .config .config.old .menuconfig.log .version .prjname
+	-rm -f defconfig profile.txt target.ld
+	-rm -f ./include/dl_cookie.h ./include/autoconf.h ./include/build_time.h
+	-rm -f ./include/cgi_aux.h
+	-rm -f ./init/start.S ./init/board_spec.c
+	-rm -f ./zload/load.S ./zload/zload.ld ./zload/zwebmap.h
+	-rm -f ./upnpd/device/xml_InternetGatewayDevice.c
+	find . -name '*~' -type f -print | xargs rm -f
+
+

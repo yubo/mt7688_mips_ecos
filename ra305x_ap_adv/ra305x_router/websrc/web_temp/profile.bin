@@ -1,0 +1,36 @@
+<%
+#include <cfg_def.h>
+
+#if 0 //old
+	FILE *fp;
+	char line[255];
+    
+ 	fp = fopen(CFG_PROFILE, "r");
+
+	if(fp < 0){
+		WEB_printf(req, "error open profile!\n");
+		return ;
+	}
+
+	while(fgets(line, sizeof(line), fp))
+	{
+        WEB_write_blk( req, line, 0, strlen(line));
+	}
+	
+	fclose(fp);
+	return ;
+#else
+	char *fb;
+	int size;
+    
+ 	if ((fb = malloc(CFG_PROFILE_LEN_MAX))<=0)
+	{
+		WEB_printf(req, "error alloc buf!\n");
+		return -1;
+	}
+	if ((size=CFG_write_prof(fb, CFG_PROFILE_LEN_MAX))>0)
+		WEB_write_blk( req, fb, 0, size);
+	free(fb);
+	return 0;
+#endif
+%>

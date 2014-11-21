@@ -1,0 +1,51 @@
+<%
+#include <cfg_def.h>
+#include <eventlog.h> 
+#include <time.h>
+
+	char time_info[32];
+    EventLogEntry *ev, evbuf;
+	char *p;
+	int i, index, count,total_entry;
+	char tmp_buf[1024];
+	int  *len_table;
+	UINT32	ev_dateTime;
+	int	diff = ntp_time() - time(0);
+
+	index = 1;
+	count = 65535;
+	
+	syslog_mutex_lock();
+	
+	p = FindEvent(0);
+	for (i=0; (p != 0) && (i < count); i++, p = NextEvent(p,0));
+		total_entry = i-1;
+		
+	len_table = malloc(sizeof(int)*(total_entry+10));
+	
+	if(!len_table)
+	{
+		syslog_mutex_unlock();
+		return;
+	}	
+	
+	p = FindEvent(0);
+	for (i=0; (p != 0) && (i < count); i++, p = NextEvent(p,0))
+		len_table[i] = p;
+		
+	
+	for (i=total_entry;i>=0; i--)
+	{
+		p = len_table[i];
+		//diag_printf("i=%d,total_entry=%d,len_table=%x,p=%x\n",i,total_entry,len_table[i],p);
+		ev = (EventLogEntry *)p;
+		ev_dateTime = gmt_translate2localtime(diff + ev->unix_dateTime);
+		ctime_r(&ev_dateTime, time_info);
+		time_info[strlen(time_info)-1] = 0;  // Strip \n
+		sprintf(tmp_buf,"[%s]:%s %s \n", time_info,EventModule(ev), p+sizeof(EventLogEntry));
+		WEB_write_blk (req, tmp_buf, 0, strlen(tmp_buf));
+	}
+	free(len_table);
+	syslog_mutex_unlock();
+	return ;
+%>

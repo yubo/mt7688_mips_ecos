@@ -1,0 +1,526 @@
+
+Discarded input sections
+
+ .reginfo       0x0000000000000000        0x0 uncompress.o
+ .reginfo       0x0000000000000000        0x0 LzmaDec.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD load.o
+LOAD uncompress.o
+LOAD LzmaDec.o
+
+.interp
+ *(.interp)
+
+.reginfo        0x0000000000000000       0x18
+ *(.reginfo)
+ .reginfo       0x0000000000000000       0x18 load.o
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.dynamic
+ *(.dynamic)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+
+.rela.text
+ *(.rela.text)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+
+.rela.rodata
+ *(.rela.rodata)
+
+.rel.data.rel.ro
+ *(.rel.data.rel.ro)
+
+.rela.data.rel.ro
+ *(.rela.data.rel.ro)
+
+.rel.data
+ *(.rel.data)
+
+.rela.data
+ *(.rela.data)
+
+.rel.tdata
+ *(.rel.tdata)
+
+.rela.tdata
+ *(.rela.tdata)
+
+.rel.tbss
+ *(.rel.tbss)
+
+.rela.tbss
+ *(.rela.tbss)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.dyn
+ *(.rel.dyn)
+
+.rel.sdata
+ *(.rel.sdata)
+
+.rela.sdata
+ *(.rela.sdata)
+
+.rel.sbss
+ *(.rel.sbss)
+
+.rela.sbss
+ *(.rela.sbss)
+
+.rel.sdata2
+ *(.rel.sdata2)
+
+.rela.sdata2
+ *(.rela.sdata2)
+
+.rel.sbss2
+ *(.rel.sbss2)
+
+.rela.sbss2
+ *(.rela.sbss2)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(.init)
+
+.plt
+ *(.plt)
+
+.text           0x0000000000000000      0x138
+ *(.text .stub)
+ .text          0x0000000000000000      0x138 load.o
+                0x0000000000000118                putchar
+                0x00000000000000d8                cache_sync_all
+ .text          0x0000000000000138        0x0 uncompress.o
+ .text          0x0000000000000138        0x0 LzmaDec.o
+ *(.gnu.warning)
+
+.text.SzAlloc   0x0000000000000000       0x20
+ .text.SzAlloc  0x0000000000000000       0x20 uncompress.o
+
+.text.SzFree    0x0000000000000000        0x8
+ .text.SzFree   0x0000000000000000        0x8 uncompress.o
+
+.text.memcpy    0x0000000000000000       0x30
+ .text.memcpy   0x0000000000000000       0x30 uncompress.o
+                0x0000000000000000                memcpy
+
+.text.uncompress
+                0x0000000000000000       0x7c
+ .text.uncompress
+                0x0000000000000000       0x7c uncompress.o
+                0x0000000000000000                uncompress
+
+.text.load_image
+                0x0000000000000000       0xd0
+ .text.load_image
+                0x0000000000000000       0xd0 uncompress.o
+                0x0000000000000000                load_image
+
+.text.LzmaDec_WriteRem
+                0x0000000000000000       0xc0
+ .text.LzmaDec_WriteRem
+                0x0000000000000000       0xc0 LzmaDec.o
+
+.text.LzmaDec_DecodeReal2
+                0x0000000000000000     0x109c
+ .text.LzmaDec_DecodeReal2
+                0x0000000000000000     0x109c LzmaDec.o
+
+.text.LzmaDec_TryDummy
+                0x0000000000000000      0x760
+ .text.LzmaDec_TryDummy
+                0x0000000000000000      0x760 LzmaDec.o
+
+.text.LzmaDec_InitDicAndState
+                0x0000000000000000       0x34
+ .text.LzmaDec_InitDicAndState
+                0x0000000000000000       0x34 LzmaDec.o
+                0x0000000000000000                LzmaDec_InitDicAndState
+
+.text.LzmaDec_Init
+                0x0000000000000000       0x24
+ .text.LzmaDec_Init
+                0x0000000000000000       0x24 LzmaDec.o
+                0x0000000000000000                LzmaDec_Init
+
+.text.LzmaDec_FreeProbs
+                0x0000000000000000       0x38
+ .text.LzmaDec_FreeProbs
+                0x0000000000000000       0x38 LzmaDec.o
+                0x0000000000000000                LzmaDec_FreeProbs
+
+.text.LzmaProps_Decode
+                0x0000000000000000       0xbc
+ .text.LzmaProps_Decode
+                0x0000000000000000       0xbc LzmaDec.o
+                0x0000000000000000                LzmaProps_Decode
+
+.text.LzmaDec_AllocateProbs
+                0x0000000000000000       0xcc
+ .text.LzmaDec_AllocateProbs
+                0x0000000000000000       0xcc LzmaDec.o
+                0x0000000000000000                LzmaDec_AllocateProbs
+
+.text.LzmaDec_DecodeToDic
+                0x0000000000000000      0x500
+ .text.LzmaDec_DecodeToDic
+                0x0000000000000000      0x500 LzmaDec.o
+                0x0000000000000000                LzmaDec_DecodeToDic
+
+.text.LzmaDecode
+                0x0000000000000000      0x160
+ .text.LzmaDecode
+                0x0000000000000000      0x160 LzmaDec.o
+                0x0000000000000000                LzmaDecode
+
+.fini
+ *(.fini)
+
+.rodata
+ *(.rodata)
+
+.rodata.kLiteralNextStates
+                0x0000000000000000       0x18
+ .rodata.kLiteralNextStates
+                0x0000000000000000       0x18 LzmaDec.o
+
+.rodata1
+ *(.rodata1)
+
+.sdata2
+ *(.sdata2)
+
+.sbss2
+ *(.sbss2)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.tdata
+ *(.tdata)
+
+.tbss
+ *(.tbss)
+
+.preinit_array
+ *(.preinit_array)
+
+.init_array
+ *(SORT(.init_array.*))
+ *(.init_array)
+
+.fini_array
+ *(.fini_array)
+ *(SORT(.fini_array.*))
+
+.jcr
+ *(.jcr)
+
+.data           0x0000000000000000        0x0
+ *(.data)
+ .data          0x0000000000000000        0x0 load.o
+ .data          0x0000000000000000        0x0 uncompress.o
+ .data          0x0000000000000000        0x0 LzmaDec.o
+
+.data.fh        0x0000000000000000        0x4
+ .data.fh       0x0000000000000000        0x4 uncompress.o
+                0x0000000000000000                fh
+
+.data.g_Alloc   0x0000000000000000        0x8
+ .data.g_Alloc  0x0000000000000000        0x8 uncompress.o
+
+.data1
+ *(.data1)
+
+.got
+ *(.got.plt)
+ *(.got)
+
+.sdata
+ *(.sdata)
+
+.lit8
+ *(.lit8)
+
+.lit4
+ *(.lit4)
+
+.sbss
+ *(.dynsbss)
+ *(.sbss)
+ *(.scommon)
+
+.bss            0x0000000000000000        0x0
+ *(.dynbss)
+ *(.bss)
+ .bss           0x0000000000000000        0x0 load.o
+ .bss           0x0000000000000000        0x0 uncompress.o
+ .bss           0x0000000000000000        0x0 LzmaDec.o
+ *(COMMON)
+
+.bss.free_mem_ptr
+                0x0000000000000000        0x4
+ .bss.free_mem_ptr
+                0x0000000000000000        0x4 uncompress.o
+
+.bss.free_mem_ptr_end
+                0x0000000000000000        0x4
+ .bss.free_mem_ptr_end
+                0x0000000000000000        0x4 uncompress.o
+
+.stab           0x0000000000000000     0x49d4
+ *(.stab)
+ .stab          0x0000000000000000      0x27c load.o
+ .stab          0x000000000000027c      0x8dc uncompress.o
+                                        0x8e8 (size before relaxing)
+ .stab          0x0000000000000b58     0x3e7c LzmaDec.o
+                                       0x3e88 (size before relaxing)
+
+.stabstr        0x0000000000000000     0x1b3d
+ *(.stabstr)
+ .stabstr       0x0000000000000000     0x1b3d load.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x5a
+ *(.comment)
+ .comment       0x0000000000000000       0x2d uncompress.o
+ .comment       0x000000000000002d       0x2d LzmaDec.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges
+ *(.debug_ranges)
+
+.gnu.attributes
+                0x0000000000000000       0x10
+ *(.gnu.attributes)
+ .gnu.attributes
+                0x0000000000000000       0x10 uncompress.o
+ .gnu.attributes
+                0x0000000000000010       0x10 LzmaDec.o
+
+.gptab.sdata
+ *(.gptab.data)
+ *(.gptab.sdata)
+
+.gptab.sbss
+ *(.gptab.bss)
+ *(.gptab.sbss)
+
+.mdebug.abi32
+ *(.mdebug.abi32)
+
+.mdebug.abiN32
+ *(.mdebug.abiN32)
+
+.mdebug.abi64
+ *(.mdebug.abi64)
+
+.mdebug.abiO64
+ *(.mdebug.abiO64)
+
+.mdebug.eabi32  0x0000000000000020        0x0
+ *(.mdebug.eabi32)
+ .mdebug.eabi32
+                0x0000000000000020        0x0 uncompress.o
+ .mdebug.eabi32
+                0x0000000000000020        0x0 LzmaDec.o
+
+.mdebug.eabi64
+ *(.mdebug.eabi64)
+
+.gcc_compiled_long32
+                0x0000000000000020        0x0
+ *(.gcc_compiled_long32)
+ .gcc_compiled_long32
+                0x0000000000000020        0x0 uncompress.o
+ .gcc_compiled_long32
+                0x0000000000000020        0x0 LzmaDec.o
+
+.gcc_compiled_long64
+ *(.gcc_compiled_long64)
+OUTPUT(zload.o elf32-littlemips)
+
+.pdr            0x0000000000000000      0x240
+ .pdr           0x0000000000000000       0x60 load.o
+ .pdr           0x0000000000000060       0xa0 uncompress.o
+ .pdr           0x0000000000000100      0x140 LzmaDec.o
+
+Cross Reference Table
+
+Symbol                                            File
+LzmaDec_AllocateProbs                             LzmaDec.o
+LzmaDec_DecodeToDic                               LzmaDec.o
+LzmaDec_FreeProbs                                 LzmaDec.o
+LzmaDec_Init                                      LzmaDec.o
+LzmaDec_InitDicAndState                           LzmaDec.o
+LzmaDecode                                        LzmaDec.o
+                                                  uncompress.o
+LzmaProps_Decode                                  LzmaDec.o
+__bss_end                                         load.o
+__heap1                                           load.o
+_binary_bin_gz_end                                uncompress.o
+_binary_bin_gz_start                              uncompress.o
+_fbss                                             load.o
+_ftext                                            uncompress.o
+_gp                                               load.o
+cache_sync_all                                    load.o
+                                                  uncompress.o
+fh                                                uncompress.o
+load_image                                        uncompress.o
+                                                  load.o
+memcpy                                            uncompress.o
+                                                  LzmaDec.o
+putchar                                           load.o
+                                                  uncompress.o
+uncompress                                        uncompress.o
