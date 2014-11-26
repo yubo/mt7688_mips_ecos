@@ -21,6 +21,7 @@
 #include <libubox/blob.h>
 #include <libubox/blobmsg.h>
 
+#include "trafficd.h"
 #include "libubus.h"
 #include "libubus-internal.h"
 #include "ubusmsg.h"
@@ -365,7 +366,7 @@ static void ubus_auto_connect_cb(struct uloop_timeout *timeout)
 
 	if (_ubus_connect(&conn->ctx, conn->path)) {
 		uloop_timeout_set(timeout, 1000);
-		fprintf(stderr, "failed to connect to ubus\n");
+		D(BUS, "failed to connect to ubus\n");
 		return;
 	}
 	conn->ctx.connection_lost = ubus_auto_disconnect_cb;
@@ -380,7 +381,7 @@ static void tbus_auto_connect_cb(struct uloop_timeout *timeout)
 
 	if (_tbus_connect(&conn->ctx, conn->a)) {
 		uloop_timeout_set(timeout, 1000);
-		fprintf(stderr, "failed to connect to ubus\n");
+		D(BUS, "failed to connect to ubus\n");
 		return;
 	}
 	conn->ctx.connection_lost = tbus_auto_disconnect_cb;

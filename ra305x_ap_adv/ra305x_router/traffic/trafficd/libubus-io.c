@@ -20,19 +20,26 @@
 
 #include <unistd.h>
 #include <fcntl.h>
+
+#ifdef __ECOS
+#include <sys/select.h>
+#else
 #include <poll.h>
+#endif
 
 #include <libubox/usock.h>
 #include <libubox/blob.h>
 #include <libubox/blobmsg.h>
 
+#include "trafficd.h"
 #include "libubus.h"
 #include "libubus-internal.h"
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#include "trafficd.h"
+
+
 
 #define STATIC_IOV(_var) { .iov_base = (char *) &(_var), .iov_len = sizeof(_var) }
 
@@ -58,10 +65,23 @@ __hidden struct blob_attr **ubus_parse_msg(struct blob_attr *msg)
 
 static void wait_data(int fd, bool write)
 {
+#ifdef __ECOS
+	fd_set fds;
+	struct timeval tv = {.tv_sec = 0, .tv_usec = 10};
+	FD_ZERO(&fds);
+	FD_SET(fd, &fds);
+	if(write){
+		select(fd + 1, NULL, &fds, NULL, &tv);
+	}else{
+		select(fd + 1, &fds, NULL, NULL, &tv);
+	}
+	return;
+#else
 	struct pollfd pfd = { .fd = fd };
 
 	pfd.events = write ? POLLOUT : POLLIN;
 	poll(&pfd, 1, 0);
+#endif
 }
 
 static int writev_retry(struct ubus_context * ctx, struct iovec *iov, int iov_len, int sock_fd)
@@ -124,7 +144,7 @@ static int writev_retry(struct ubus_context * ctx, struct iovec *iov, int iov_le
 			if (!iov_len)
 				return len;
 		}
-		iov->iov_base += cur_len;
+		iov->iov_base = (char *)iov->iov_base + cur_len;
 		iov->iov_len -= cur_len;
 		msghdr.msg_iov = iov;
 		msghdr.msg_iovlen = iov_len;
@@ -228,7 +248,7 @@ static int recv_retry(struct ubus_context * ctx, struct iovec *iov, bool wait, i
 
 		wait = true;
 		iov->iov_len -= bytes;
-		iov->iov_base += bytes;
+		iov->iov_base = (char *)iov->iov_base + bytes;
 		total += bytes;
 	}
 
@@ -322,6 +342,21 @@ void __hidden ubus_handle_data(struct uloop_fd *u, unsigned int events)
 
 void __hidden ubus_poll_data(struct ubus_context *ctx, int timeout)
 {
+#ifdef __ECOS
+	fd_set fds;
+	struct timeval tv;
+
+	if (timeout >= 0) {
+		tv.tv_sec = timeout / 1000;
+		tv.tv_usec = (timeout % 1000) * 1000;
+	}
+
+	FD_ZERO(&fds);
+	FD_SET(ctx->sock.fd, &fds);
+	select(ctx->sock.fd + 1, &fds, NULL, NULL, timeout >= 0 ? &tv : NULL);
+	ubus_handle_data(&ctx->sock, ULOOP_READ);
+
+#else
 	struct pollfd pfd = {
 		.fd = ctx->sock.fd,
 		.events = POLLIN | POLLERR,
@@ -329,6 +364,7 @@ void __hidden ubus_poll_data(struct ubus_context *ctx, int timeout)
 
 	poll(&pfd, 1, timeout);
 	ubus_handle_data(&ctx->sock, ULOOP_READ);
+#endif
 }
 
 static void
@@ -344,7 +380,7 @@ ubus_refresh_state(struct ubus_context *ctx)
 			obj->type->id = 0;
 
 	/* push out all objects again */
-	objs = alloca(ctx->objects.count * sizeof(*objs));
+	objs = malloc(ctx->objects.count * sizeof(*objs));
 	avl_remove_all_elements(&ctx->objects, obj, avl, tmp) {
 		objs[i++] = obj;
 		obj->id = 0;
@@ -352,6 +388,7 @@ ubus_refresh_state(struct ubus_context *ctx)
 
 	for (n = i, i = 0; i < n; i++)
 		ubus_add_object(ctx, objs[i]);
+	free(objs);
 }
 
 int ubus_reconnect(struct ubus_context *ctx, const char *path)

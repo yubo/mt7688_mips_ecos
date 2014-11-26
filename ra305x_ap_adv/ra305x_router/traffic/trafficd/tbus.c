@@ -27,13 +27,15 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-#include "blob.h"
-#include "uloop.h"
-#include "usock.h"
-#include "list.h"
-#include "libubus.h"
-#include "blobmsg_json.h"
 #include "trafficd.h"
+#include "libubox/blob.h"
+#include "libubox/uloop.h"
+#include "libubox/usock.h"
+#include "libubox/list.h"
+#include "libubox/blobmsg_json.h"
+#include "libubus.h"
+
+
 
 static struct sockaddr_in ubus_addr;
 static struct ubus_context *ctx = NULL;

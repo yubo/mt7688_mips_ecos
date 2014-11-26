@@ -16,10 +16,10 @@
 #ifndef __JSON_SCRIPT_H
 #define __JSON_SCRIPT_H
 
-#include "avl.h"
-#include "blob.h"
-#include "blobmsg.h"
-#include "utils.h"
+#include "libubox/avl.h"
+#include "libubox/blob.h"
+#include "libubox/blobmsg.h"
+#include "libubox/utils.h"
 
 struct json_script_file;
 
@@ -69,7 +69,7 @@ struct json_script_ctx {
 	/*
 	 * handle_error - handle a processing error in a command or expression
 	 * (optional)
-	 * 
+	 *
 	 * @msg: error message
 	 * @context: source file context of the error (blobmsg container)
 	 */

@@ -20,7 +20,7 @@
 #include "int.h"
 #endif
 
-#include "blob.h"
+#include "libubox/blob.h"
 
 #define __packetdata __attribute__((packed)) __attribute__((__aligned__(4)))
 

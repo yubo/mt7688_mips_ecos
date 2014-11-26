@@ -11,8 +11,8 @@
 #include <arpa/inet.h>
 
 #include "trafficd.h"
-#include "avl.h"
-#include "safe_list.h"
+#include "libubox/avl.h"
+#include "libubox/safe_list.h"
 #include "system.h"
 
 

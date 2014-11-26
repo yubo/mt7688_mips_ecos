@@ -10,6 +10,7 @@
 
 
 int system_init(void);
+int system_done(void);
 void system_assoclist_update(void);
 
 struct trafficd_iwevent

@@ -249,10 +249,10 @@ void trafficd_hw_update_ap(struct hw_node *hw_node, struct ip_node *ip_node)
 		list_add_tail(&ip_node->list, &hw_node->ip_list);
 	}
 	hw_node->is_ap = 1;
-	hw_node->br_seq = sys->bd->seq;
-	hw_node->br_uptime = sys->bd->uptime;
-	hw_node->ageing_timer_value.tv_sec = 0;
-	if(!hw_node->uptime) hw_node->uptime = sys->bd->uptime;
+//	hw_node->br_seq = sys->bd->seq;
+//	hw_node->br_uptime = sys->bd->uptime;
+//	hw_node->ageing_timer_value.tv_sec = 0;
+//	if(!hw_node->uptime) hw_node->uptime = sys->bd->uptime;
 	return;
 }
 
@@ -280,9 +280,9 @@ void trafficd_hw_update_ap_sta(struct ip_node *speaker_ip, char *hw, char *ip)
 	if(hw_node->is_ap)
 		return;
 
-	hw_node->br_seq = sys->bd->seq;
-	hw_node->br_uptime = sys->bd->uptime;
-	if(!hw_node->uptime) hw_node->uptime = sys->bd->uptime;
+//	hw_node->br_seq = sys->bd->seq;
+//	hw_node->br_uptime = sys->bd->uptime;
+//	if(!hw_node->uptime) hw_node->uptime = sys->bd->uptime;
 
 	if(!(ip_node = trafficd_ip_get(ip, true)))
 		return;
@@ -332,6 +332,7 @@ void trafficd_hw_update_assoclist()
 	D(HW, "leave\n");
 }
 
+#if 0
 void trafficd_hw_update_br(struct fdb_entry *f)
 {
 	/* like brctl */
@@ -384,6 +385,7 @@ void trafficd_hw_update_br(struct fdb_entry *f)
 		}
 	}
 }
+#endif
 
 void trafficd_hw_iwevent(struct trafficd_iwevent *ev, struct hw_node *speaker)
 {

@@ -23,9 +23,6 @@ int config_init_all(void)
 	cfg = &sys->cfg;
 
 	cfg->version = TRAFFICD_VERSION;
-	cfg->hw_looptime = TRAFFICD_HW_LOOP_TIME;
-	cfg->ip_looptime = TRAFFICD_IP_LOOP_TIME;
-	cfg->br_looptime = TRAFFICD_BR_LOOP_TIME;
 	sys->assoc_pending = true;
 	cfg->is_wifiap = true;
 	cfg->hw_sizelimit = TRAFFICD_HW_SIZELIMIT;

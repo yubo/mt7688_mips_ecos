@@ -5,8 +5,8 @@
 #ifndef __TRAFFICD_UBUS_H
 #define __TRAFFICD_UBUS_H
 
-#include "blob.h"
-#include "blobmsg_json.h"
+#include "libubox/blob.h"
+#include "libubox/blobmsg_json.h"
 #include "libubus.h"
 
 

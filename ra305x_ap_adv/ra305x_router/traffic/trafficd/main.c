@@ -11,24 +11,33 @@
 #include <sys/socket.h>
 #include <time.h>
 
+#ifdef __ECOS
+#include <cfg_def.h>
+#else
+#include <syslog.h>
+#endif
+
 #include "trafficd.h"
 #include "ubus.h"
 #include "system.h"
 
-
+#ifdef __ECOS
 unsigned int debug_mask = 0x0;
 
 #define TRAFFIC_SIGHUP      1
 #define TRAFFIC_SHUTDOWN    2
 
 #define TRAFFIC_PRIORITY    9
-#define TRAFFIC_STACKSIZE 1024
+#define TRAFFIC_STACKSIZE 102400
+
 static char traffic_stack[TRAFFIC_STACKSIZE];
 
 cyg_handle_t traffic_handle;
 cyg_thread traffic_thread;
+static cyg_mbox traffic_mbox_obj;
+static cyg_handle_t traffic_mbox_id;
 
-
+struct uloop_timeout sig_timeout;
 
 
 static int log_level = DEFAULT_LOG_LEVEL;
@@ -56,26 +65,58 @@ void trafficd_log_message(int priority, const char *format, ...)
 }
 
 
-static void
-trafficd_handle_signal_cb(int signo)
+static void trafficstop()
 {
 	uloop_end();
 }
 
-
-
-static int traffic_main(void)
+static void sig_cb(struct uloop_timeout *timeout)
 {
-	int ch, ret;
-	ret = 0;
+	int cmd;
+
+	if ((cmd = (int )cyg_mbox_tryget(traffic_mbox_id)) != 0) {
+		switch(cmd) {
+			case TRAFFIC_SIGHUP:
+				D(SYSTEM, "start up , ignore\n");
+#if 0
+				ret = trafficMasqstart(port);
+				if (ret < 0) {
+					D(TRAFFIC_DEBUG_OFF, "%s(): Line%d failed to start up\n", __FUNCTION__, __LINE__);
+					traffic_running = 0;
+					return;
+				}
+				traffic_sleep = 0;
+#endif
+				break;
+
+			case TRAFFIC_SHUTDOWN: // do we need to return ??
+				D(SYSTEM, "shutdown\n");
+				trafficstop();
+				return;
+				//traffic_sleep = 1;
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	D(BUS, "send msg and wait %d(s)\n", TRAFFICD_WIFIAP_LOOP_TIME / 1000);
+	uloop_timeout_set(timeout, TRAFFICD_SIGNAL_LOOP_TIME);
+
+}
+
+void TRAFFIC_daemon(void)
+{
+	int ret = 0;
 
 	if(sys){
 		elog("sys already malloc\n");
-		return 1;
+		return;
 	}
 	if(!(sys = calloc(1, sizeof(*sys)))){
 		elog("Failed to initialize sys\n");
-		return 1;
+		return;
 	}
 	TR_REFRESH_TIME();
 
@@ -89,7 +130,9 @@ static int traffic_main(void)
 
 	if(config_init_all()){
 		elog("failed to config_init_all\n");
-		return 1;
+		free(sys);
+		sys = NULL;
+		return;
 	}
 
 	D(BUS, "hello\n");
@@ -110,7 +153,6 @@ static int traffic_main(void)
 
 	sys->id = trafficd_ip_init();
 	sys->hd = trafficd_hw_init();
-	sys->bd = trafficd_br_init();
 	if (!(sys->id && sys->hd &&
 			sys->bd)){
 		ret = -1;
@@ -118,11 +160,14 @@ static int traffic_main(void)
 	}
 
 	config_init_alive();
-	trafficd_setup_signals();
+
+	memset(&sig_timeout, 0 , sizeof(sig_timeout));
+	sig_timeout.cb = sig_cb;
+	uloop_timeout_set(&sig_timeout, TRAFFICD_SIGNAL_LOOP_TIME);
+
 	uloop_run();
 	uloop_done();
 
-	trafficd_br_done();
 	trafficd_hw_done();
 	trafficd_ip_done();
 	trafficd_tbus_done();
@@ -131,183 +176,12 @@ static int traffic_main(void)
 	free(sys);
 	sys = NULL;
 
-	return ret;
+	return;
 
 out:
-
 	uloop_done();
-
 	free(sys);
 	sys = NULL;
-	return ret;
-}
-
-
-
-
-
-static cyg_mbox traffic_mbox_obj;
-static cyg_handle_t traffic_mbox_id;
-
-static int recv_infaces_num = 0;
-
-//TRAFFICSERVER ubus_servers[3];
-static int traffic_servers_num = 0;
-
-//static TRAFFICSERVER *activeserver;
-static int traffic_running = 0;
-static int traffic_seq = 0;
-
-
-void TRAFFIC_daemon(cyg_addrword_t data)
-{
-	//TRAFFICSERVER *new_active_srv;
-	//int port = NAMESERVER_PORT;
-	int first_loop	= 1;
-	int recv_len	= 0;
-	int i, cmd, traffic_sleep, ret;
-	struct timeval	tv = {1, 0};
-	time_t	now;
-	//char	packet[PACKETSZ+MAXDNAME+RRFIXEDSZ];
-
-	TRAFFIC_DBGPRINT(TRAFFIC_DEBUG_OFF, "%s\n", __FUNCTION__);
-#if 0
-	ret = trafficMasqstart(port);
-	if (ret < 0)
-	{
-		TRAFFIC_DBGPRINT(TRAFFIC_DEBUG_OFF, "%s(): Line%d failed to start up\n", __FUNCTION__, __LINE__);
-		return;
-	}
-	activeserver = &traffic_servers[0];
-#endif
-	traffic_running = 1;
-	traffic_sleep = 0;
-	while (traffic_running)
-	{
-		int ready, maxfd = 0;
-		//fd_set rset;
-		//TRAFFICHEADER *header;
-
-		if ((cmd = (int )cyg_mbox_tryget(traffic_mbox_id)) != 0) {
-			switch(cmd) {
-				case TRAFFIC_SIGHUP:
-					D(SYSTEM, "start up\n");
-#if 0
-					ret = trafficMasqstart(port);
-					if (ret < 0) {
-						D(TRAFFIC_DEBUG_OFF, "%s(): Line%d failed to start up\n", __FUNCTION__, __LINE__);
-						traffic_running = 0;
-						return;
-					}
-					traffic_sleep = 0;
-#endif
-					break;
-
-				case TRAFFIC_SHUTDOWN: // do we need to return ??
-					D(SYSTEM, "shutdown\n");
-					//trafficstop();
-					//traffic_sleep = 1;
-					break;
-
-				default:
-					break;
-			}
-		}
-
-		if (traffic_sleep) {
-			cyg_thread_delay(100);
-			continue;
-		}
-
-		cyg_thread_delay(100);
-		traffic_seq++;
-		/* do init stuff only first time round. */
-#if 0
-		if (first_loop) {
-			first_loop = 0;
-			ready = 0;
-		} else {
-			FD_ZERO(&rset);
-			maxfd = 0;
-			for (i=0; i<traffic_servers_num; i++)
-			{
-				if (traffic_servers[i].fd > 0)
-				{
-					FD_SET(traffic_servers[i].fd, &rset);
-					if (traffic_servers[i].fd > maxfd)
-						maxfd = traffic_servers[i].fd;
-				}
-			}
-
-			for (i=0; i<recv_infaces_num; i++)
-			{
-				if (recv_infaces[i].fd > 0)
-				{
-					FD_SET(recv_infaces[i].fd, &rset);
-					if (recv_infaces[i].fd > maxfd)
-						maxfd = recv_infaces[i].fd;
-				}
-			}
-
-			ready = select(maxfd+1, &rset, NULL, NULL, &tv); /* NONBLOCKING */
-			if(ready <= 0)
-			{
-				if (TRAFFICDebugLevel > TRAFFIC_DEBUG_OFF) {
-					TRAFFIC_DBGPRINT(TRAFFIC_DEBUG_ERROR, "%s(): select() return %d\n", __FUNCTION__, ready);
-					cyg_thread_delay(100);
-				} else
-					cyg_thread_delay(2);
-
-				continue;
-			}
-		}
-
-		now = time(NULL);
-		if (ready == 0)
-			continue; /* no sockets ready */
-
-
-		// check traffic query from querist
-		for (i=0; i<recv_infaces_num; i++)
-		{
-			if (recv_infaces[i].fd > 0)
-			{
-				if (FD_ISSET(recv_infaces[i].fd, &rset))
-				{
-					// request packet, deal with query
-					MYSOCKADDR queryaddr;
-					size_t queryaddrlen = sizeof(queryaddr);
-
-					FD_CLR(recv_infaces[i].fd, &rset);
-					recv_len = recvfrom(recv_infaces[i].fd, packet, PACKETSZ, 0, &queryaddr.sa, &queryaddrlen);
-					queryaddr.sa.sa_family = recv_infaces[i].addr.sa.sa_family;
-					header = (TRAFFICHEADER *)packet;
-					if (recv_len >= (int)sizeof(TRAFFICHEADER) && !header->qr)
-					{
-						activeserver = trafficMasqprocessquery(recv_infaces[i].fd, &queryaddr, header, recv_len,
-								activeserver, now);
-					}
-				}
-			}
-		}
-
-		// check traffic reply from traffic server
-		for (i=0; i<traffic_servers_num; i++)
-		{
-			if (traffic_servers[i].fd > 0)
-			{
-				if (FD_ISSET(traffic_servers[i].fd, &rset))
-				{
-					FD_CLR(traffic_servers[i].fd, &rset);
-					recv_len = recvfrom(traffic_servers[i].fd, packet, PACKETSZ, 0, NULL, NULL);
-					new_active_srv = trafficMasqprocessreply(traffic_servers[i].fd, packet, recv_len, now);
-					if (new_active_srv != NULL)
-						activeserver = new_active_srv;
-				}
-			}
-		}
-#endif
-	}
 }
 
 void TRAFFIC_init(void)
@@ -327,21 +201,6 @@ void TRAFFIC_init(void)
 }
 
 
-
-//------------------------------------------------------------------------------
-// FUNCTION
-//
-//
-// DESCRIPTION
-//
-//
-// PARAMETERS
-//
-//
-// RETURN
-//
-//
-//------------------------------------------------------------------------------
 #ifdef CONFIG_CLI_NET_CMD
 int traffic_cmd(int argc, char* argv[])
 {
@@ -424,11 +283,219 @@ int traffic_cmd(int argc, char* argv[])
 	return 0;
 #endif
 
-err1:
-	printf("traffic hello world! set[%d]\n", traffic_seq);
+//err1:
+	printf("traffic hello world! set\n");
 	return 0;
 }
 
 #endif
+
+
+#else
+// for x86
+
+
+unsigned int debug_mask = 0x0;
+
+
+static char **global_argv;
+
+
+static int log_level = DEFAULT_LOG_LEVEL;
+static const int log_class[] = {
+	[L_CRIT] = LOG_CRIT,
+	[L_ERR] = LOG_ERR,
+	[L_WARNING] = LOG_WARNING,
+	[L_NOTICE] = LOG_NOTICE,
+	[L_INFO] = LOG_INFO,
+	[L_DEBUG] = LOG_DEBUG
+};
+
+struct trafficd_sys *sys;
+
+void trafficd_log_message(int priority, const char *format, ...)
+{
+	va_list vl;
+
+	if (priority > log_level)
+		return;
+
+	va_start(vl, format);
+	if (sys->cfg.use_syslog)
+		vsyslog(log_class[priority], format, vl);
+	else
+		vfprintf(stderr, format, vl);
+	va_end(vl);
+}
+
+void log_points(int instant, const char *format, ...)
+{
+	va_list vl;
+	char buff[POINTSMAXLEN];
+
+	va_start(vl, format);
+	vsnprintf(buff, POINTSMAXLEN, format, vl);
+	va_end(vl);
+
+	if (sys->cfg.use_syslog){
+		if (instant){
+			syslog(LOG_NOTICE, "stat_points_instant %s", buff);
+		}else{
+			syslog(LOG_NOTICE, "stat_points_none %s", buff);
+		}
+	}else{
+		if (debug_mask & (1 << (DEBUG_POINT))){
+			if (instant){
+				fprintf(stderr, "stat_points_instant %s\n", buff);
+			}else{
+				fprintf(stderr, "stat_points_none %s\n", buff);
+			}
+		}
+	}
+
+}
+
+
+static struct uloop_timeout main_timer;
+
+
+
+static int usage(const char *progname)
+{
+	fprintf(stderr, "Usage: %s [options]\n"
+		"Options:\n"
+		" -d <mask>:		Mask for debug messages\n"
+		" -s <path>:		Path to the ubus socket\n"
+		" -r <path>:		Path to resolv.conf\n"
+		" -l <level>:		Log output level (default: %d)\n"
+		" -S:			Use stderr instead of syslog for log messages\n"
+		"\n", progname, DEFAULT_LOG_LEVEL);
+
+	return 1;
+}
+
+static void
+trafficd_handle_signal(int signo)
+{
+	uloop_end();
+}
+
+static void
+trafficd_setup_signals(void)
+{
+	struct sigaction s;
+
+	memset(&s, 0, sizeof(s));
+	s.sa_handler = trafficd_handle_signal;
+	s.sa_flags = 0;
+	sigaction(SIGINT, &s, NULL);
+	sigaction(SIGTERM, &s, NULL);
+	sigaction(SIGUSR1, &s, NULL);
+	sigaction(SIGUSR2, &s, NULL);
+
+	s.sa_handler = SIG_IGN;
+	sigaction(SIGPIPE, &s, NULL);
+}
+
+
+int main(int argc, char **argv)
+{
+	int ch, ret;
+	ret = 0;
+
+	if(!(sys = calloc(1, sizeof(*sys)))){
+		elog("Failed to initialize sys\n");
+		return 1;
+	}
+	TR_REFRESH_TIME();
+
+	sys->bd = NULL;
+	sys->id = NULL;
+
+	sys->cfg.use_syslog = true;
+	global_argv = argv;
+	while ((ch = getopt(argc, argv, "d:h:l:S")) != -1) {
+		switch(ch) {
+		case 'd':
+			debug_mask = strtoul(optarg, NULL, 0);
+			break;
+		case 'l':
+			log_level = atoi(optarg);
+			if (log_level >= ARRAY_SIZE(log_class))
+				log_level = ARRAY_SIZE(log_class) - 1;
+			break;
+		case 'S':
+			sys->cfg.use_syslog = false;
+			break;
+		default:
+			return usage(argv[0]);
+		}
+	}
+
+	if (sys->cfg.use_syslog)
+		openlog("trafficd", 0, LOG_DAEMON);
+
+	if(config_init_all()){
+		elog("failed to config_init_all\n");
+		return 1;
+	}
+
+	uloop_init();
+
+
+
+	if (trafficd_tbus_init()) {
+		elog("Failed to trafficd_tbus_init\n");
+		ret = -1;
+		goto out;
+	}
+
+	if (system_init()) {
+		elog("Failed to initialize system control\n");
+		ret = -1;
+		goto out;
+	}
+
+	sys->id = trafficd_ip_init();
+	sys->hd = trafficd_hw_init();
+	if (!(sys->id && sys->hd )){
+		ret = -1;
+		goto out;
+	}
+
+	config_init_alive();
+	trafficd_setup_signals();
+	uloop_run();
+	uloop_done();
+
+	trafficd_hw_done();
+	trafficd_ip_done();
+	trafficd_tbus_done();
+	system_done();
+
+	if (sys->cfg.use_syslog)
+		closelog();
+
+	free(sys);
+
+	return ret;
+
+out:
+
+	uloop_done();
+
+	if (sys->cfg.use_syslog)
+		closelog();
+
+	free(sys);
+
+	return ret;
+}
+
+
+#endif
+
+
+
 
 

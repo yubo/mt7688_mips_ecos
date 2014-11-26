@@ -4,24 +4,29 @@
  */
 #ifndef __trafficd_H
 #define __trafficd_H
-#define __TRAFFICD__
-
-#include <sys/socket.h>
-#include <net/if.h>
-#include <stdbool.h>
-#include <stdio.h>
-#include <net/if.h>
 
 #ifndef __ECOS
 #include <stdint.h>
+#else
 #include <cyg/infra/diag.h>
 #endif
 
-#include "uloop.h"
-#include "ustream.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/socket.h>
+#include <net/if.h>
+#include <stdbool.h>
+#include <net/if.h>
+#include <sys/time.h>
+
+
+
+#include "libubox/uloop.h"
+#include "libubox/ustream.h"
+#include "libubox/blobmsg.h"
 #include "utils.h"
 #include "libubus.h"
-#include "blobmsg.h"
+
 
 #define TRAFFICD_VERSION 1
 #define DEFAULT_LOG_LEVEL L_NOTICE
@@ -46,11 +51,11 @@
 #define TRAFFICD_IF_5G			"wl0"
 #define TRAFFICD_GUEST_2G		"wl1.2"
 
-
-#define TRAFFICD_IP_LOOP_TIME			2000	/* ipaccount */
-#define TRAFFICD_HW_LOOP_TIME			5000	/* arp */
-#define TRAFFICD_BR_LOOP_TIME			5000	/* brctl */
+#define TRAFFICD_HW_LOOP_TIME           2000
+#define TRAFFICD_IP_LOOP_TIME           2000
 #define TRAFFICD_WIFIAP_LOOP_TIME		10000
+#define TRAFFICD_SIGNAL_LOOP_TIME		1000
+
 
 #define TRAFFICD_CLI_TIMEOUT1			(TRAFFICD_WIFIAP_LOOP_TIME * 3 / 1000)
 #define TRAFFICD_CLI_TIMEOUT2			(TRAFFICD_WIFIAP_LOOP_TIME * 6 / 1000)
@@ -127,7 +132,6 @@ int config_init_alive(void);
 
 #include "ip.h"
 #include "hw.h"
-#include "bridge.h"
 
 extern const char *resolv_conf;
 extern char *hotplug_cmd_path;

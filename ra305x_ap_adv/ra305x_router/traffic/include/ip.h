@@ -8,8 +8,8 @@
 #include <netinet/in.h>
 #include <sys/time.h>
 
-#include "avl.h"
-#include "safe_list.h"
+#include "libubox/avl.h"
+#include "libubox/safe_list.h"
 #include "trafficd.h"
 
 

@@ -17,7 +17,7 @@
 #ifndef __LIBUBOX_VLIST_H
 #define __LIBUBOX_VLIST_H
 
-#include "avl.h"
+#include "libubox/avl.h"
 
 struct vlist_tree;
 struct vlist_node;

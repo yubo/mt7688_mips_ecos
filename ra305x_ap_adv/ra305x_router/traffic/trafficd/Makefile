@@ -34,7 +34,6 @@ UBOX_OBJS = \
 	../libubox-2014-03-18/vlist.o
 
 OBJS = \
-	bridge.o \
 	config.o \
 	hw.o \
 	ip.o \

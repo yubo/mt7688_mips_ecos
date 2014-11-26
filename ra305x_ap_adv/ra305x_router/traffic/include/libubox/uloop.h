@@ -24,6 +24,7 @@
 
 #ifndef __ECOS
 #include <stdint.h>
+#include <signal.h>
 #else
 #include "int.h"
 #endif

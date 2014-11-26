@@ -1,6 +1,6 @@
 all: main
 
-CFLAGS = -I../include -D__ECOS__
+CFLAGS = -I../include -I../include/libubox 
 LDFLAGS = -lrt -g -O0 #for clock_gettime
 
 JSON_OBJS = \

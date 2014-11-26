@@ -21,13 +21,14 @@
 #include "int.h"
 #endif
 
+#include "libubox/avl.h"
+#include "libubox/list.h"
+#include "libubox/blobmsg.h"
+#include "libubox/uloop.h"
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include "avl.h"
-#include "list.h"
-#include "blobmsg.h"
-#include "uloop.h"
+
 #include "ubusmsg.h"
 #include "ubus_common.h"
 
@@ -339,5 +340,6 @@ static inline int ubus_unregister_event_handler(struct ubus_context *ctx,
     return ubus_remove_object(ctx, &ev->obj);
 }
 
-
+int trafficd_tbus_init(void);
+int trafficd_tbus_done(void);
 #endif

@@ -22,9 +22,8 @@
 
 #include <sys/socket.h>
 
-#include "ubus.h"
-
 #include "trafficd.h"
+#include "ubus.h"
 #include "hw.h"
 #include "system.h"
 
@@ -83,8 +82,8 @@ static void mat_loop_cb(struct uloop_timeout *timeout)
 	blobmsg_add_string(&b1, "hw", sys->ap_hw);
 	c = blobmsg_open_array(&b1, "mat");
 	avl_for_each_element(sys->hd->hws, hw_node, avl) {
-		if(hw_is_local(hw_node) || sys->bd->seq != hw_node->br_seq)
-			continue;
+//		if(hw_is_local(hw_node) || sys->bd->seq != hw_node->br_seq)
+//			continue;
 
 		if(strncmp(hw_node->ifname,"wl", 2))
 			continue;
@@ -135,3 +134,6 @@ int system_init()
 	return 0;
 }
 
+int system_done(void){
+	return 0;
+}

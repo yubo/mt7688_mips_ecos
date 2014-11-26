@@ -22,11 +22,12 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
+
 #include <errno.h>
 
 #ifndef __ECOS
 #include <stdint.h>
+#include <stdio.h>
 #else
 #include "int.h"
 #endif
