@@ -177,6 +177,7 @@ bool 'Support DHCP Server'  CONFIG_DHCPS
 	
 bool 'Support MAC Clone in all WAN mode' WAN_ALL_MODE_DO_MACCLONE 
 bool 'Support UPnP'  CONFIG_UPNP
+bool 'Support traffic/xiaomi'  CONFIG_TRAFFIC
 bool 'Support LLTD'  CONFIG_LLTD_DAEMON
 
 comment	'Routing'

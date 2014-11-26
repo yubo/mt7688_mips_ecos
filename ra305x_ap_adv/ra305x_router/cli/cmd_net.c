@@ -69,6 +69,9 @@ static int net_route_cmd(int argc, char* argv[]);
 #if	MODULE_UPNP
 extern int upp_cmd(int argc, char* argv[]);
 #endif
+#if	MODULE_TRAFFIC
+extern int traffic_cmd(int argc, char* argv[]);
+#endif
 static int net_http_cmd(int argc, char* argv[]);
 static int ifconfig_cmd(int argc, char* argv[]);
 static int net_timer_cmd(int argc, char* argv[]);
@@ -236,6 +239,9 @@ stCLI_cmd net_cmds[] =
 	{ "route" , &net_route_cmd, "route config",0,0,0},
 #if	MODULE_UPNP
 	{ "upnp" , &upp_cmd, "upnp show\nupnp debug <value>\n", 0, 0, 0 },
+#endif
+#if	MODULE_TRAFFIC
+	{ "traffic" , &traffic_cmd, "traffic show\ntraffic debug <value>\n", 0, 0, 0 },
 #endif
 	{ "timer" , &net_timer_cmd, "show timer obj", CLI_NETCMD_FLAG, 0, 0 },
 #ifdef	CONFIG_HTTPD

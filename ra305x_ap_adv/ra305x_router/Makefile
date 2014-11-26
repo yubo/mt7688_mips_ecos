@@ -165,6 +165,10 @@ ifdef CONFIG_UPNP
 	APPSUBDIRS += upnpd
 endif # CONFIG_UPNP
 
+ifdef CONFIG_TRAFFIC
+	APPSUBDIRS += traffic
+endif # CONFIG_TRAFFIC
+
 ifdef CONFIG_DDNS
 	APPSUBDIRS += ddns
 endif # CONFIG_DDNS

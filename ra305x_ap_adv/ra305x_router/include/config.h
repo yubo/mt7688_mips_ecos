@@ -75,6 +75,12 @@
 	#define MODULE_UPNP		0
 #endif
 
+#ifdef	CONFIG_TRAFFIC
+	#define MODULE_TRAFFIC		1
+#else
+	#define MODULE_TRAFFIC		0
+#endif
+
 #ifdef	CONFIG_RIP
 	#define MODULE_RIP		1
 #else

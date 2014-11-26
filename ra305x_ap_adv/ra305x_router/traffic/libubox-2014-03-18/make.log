@@ -1,0 +1,131 @@
+cc blob.c -I../include -c -o blob.o
+In file included from ../include/utils.h:18:0,
+                 from ../include/blob.h:29,
+                 from blob.c:19:
+../include/blobmsg.h:54:53: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h:54:53: warning: its scope is only this definition or declaration, which is probably not what you want [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_name':
+../include/blobmsg.h:56:28: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:60:45: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h:65:47: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_data':
+../include/blobmsg.h:67:28: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+../include/blobmsg.h:68:15: warning: initialization makes pointer from integer without a cast [enabled by default]
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:76:49: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_data_len':
+../include/blobmsg.h:80:10: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+../include/blobmsg.h:81:2: warning: passing argument 1 of 'blobmsg_data' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:65:21: note: expected 'const struct blob_attr *' but argument is of type 'const struct blob_attr *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:86:44: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_len':
+../include/blobmsg.h:88:2: warning: passing argument 1 of 'blobmsg_data_len' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:76:19: note: expected 'const struct blob_attr *' but argument is of type 'const struct blob_attr *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:91:38: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h:92:43: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h:94:26: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h:96:11: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h:99:23: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:102:23: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_add_u8':
+../include/blobmsg.h:104:2: warning: passing argument 1 of 'blobmsg_add_field' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:98:5: note: expected 'struct blob_buf *' but argument is of type 'struct blob_buf *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:108:24: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_add_u16':
+../include/blobmsg.h:111:2: warning: passing argument 1 of 'blobmsg_add_field' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:98:5: note: expected 'struct blob_buf *' but argument is of type 'struct blob_buf *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:115:24: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_add_u32':
+../include/blobmsg.h:118:2: warning: passing argument 1 of 'blobmsg_add_field' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:98:5: note: expected 'struct blob_buf *' but argument is of type 'struct blob_buf *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:122:24: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_add_u64':
+../include/blobmsg.h:125:2: warning: passing argument 1 of 'blobmsg_add_field' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:98:5: note: expected 'struct blob_buf *' but argument is of type 'struct blob_buf *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:129:27: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_add_string':
+../include/blobmsg.h:131:2: warning: passing argument 1 of 'blobmsg_add_field' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:98:5: note: expected 'struct blob_buf *' but argument is of type 'struct blob_buf *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:135:47: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h:135:47: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_add_blob':
+../include/blobmsg.h:137:2: warning: passing argument 1 of 'blobmsg_type' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:60:19: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h:137:2: warning: passing argument 1 of 'blobmsg_name' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:54:27: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h:138:6: warning: passing argument 1 of 'blobmsg_data' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:65:21: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h:138:6: warning: passing argument 1 of 'blobmsg_data_len' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:76:19: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h:138:6: warning: passing argument 1 of 'blobmsg_add_field' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:98:5: note: expected 'struct blob_buf *' but argument is of type 'struct blob_buf *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:141:34: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:144:27: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_open_array':
+../include/blobmsg.h:146:2: warning: passing argument 1 of 'blobmsg_open_nested' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:141:7: note: expected 'struct blob_buf *' but argument is of type 'struct blob_buf *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:150:27: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_open_table':
+../include/blobmsg.h:152:2: warning: passing argument 1 of 'blobmsg_open_nested' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:141:7: note: expected 'struct blob_buf *' but argument is of type 'struct blob_buf *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:156:28: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:162:28: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:167:43: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:172:45: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_get_u8':
+../include/blobmsg.h:174:2: warning: passing argument 1 of 'blobmsg_data' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:65:21: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:177:44: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_get_bool':
+../include/blobmsg.h:179:2: warning: passing argument 1 of 'blobmsg_data' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:65:21: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:182:47: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_get_u16':
+../include/blobmsg.h:184:2: warning: passing argument 1 of 'blobmsg_data' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:65:21: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:187:47: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_get_u32':
+../include/blobmsg.h:189:2: warning: passing argument 1 of 'blobmsg_data' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:65:21: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:192:47: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_get_u64':
+../include/blobmsg.h:194:2: warning: passing argument 1 of 'blobmsg_data' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:65:21: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:200:47: warning: 'struct blob_attr' declared inside parameter list [enabled by default]
+../include/blobmsg.h: In function 'blobmsg_get_string':
+../include/blobmsg.h:202:2: warning: passing argument 1 of 'blobmsg_data' from incompatible pointer type [enabled by default]
+../include/blobmsg.h:65:21: note: expected 'const struct blob_attr *' but argument is of type 'struct blob_attr *'
+../include/blobmsg.h: At top level:
+../include/blobmsg.h:205:42: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:206:44: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:207:39: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:209:29: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+../include/blobmsg.h:210:28: warning: 'struct blob_buf' declared inside parameter list [enabled by default]
+In file included from blob.c:19:0:
+../include/blob.h:74:1: error: conflicting types for 'blob_data'
+../include/blobmsg.h:56:51: note: previous implicit declaration of 'blob_data' was here
+../include/blob.h:83:1: error: conflicting types for 'blob_id'
+../include/blobmsg.h:62:9: note: previous implicit declaration of 'blob_id' was here
+../include/blob.h:90:1: error: conflicting types for 'blob_is_extended'
+../include/blobmsg.h:70:6: note: previous implicit declaration of 'blob_is_extended' was here
+../include/blob.h:99:1: error: conflicting types for 'blob_len'
+../include/blobmsg.h:83:9: note: previous implicit declaration of 'blob_len' was here
+../include/blob.h:197:13: warning: conflicting types for 'blob_nest_end' [enabled by default]
+../include/blobmsg.h:158:2: note: previous implicit declaration of 'blob_nest_end' was here
+make: *** [blob.o] Error 1

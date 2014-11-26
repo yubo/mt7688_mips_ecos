@@ -1,0 +1,1797 @@
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+ALL_OBJS	Makefile	/^ALL_OBJS = $(TRAFFICD_OBJS) $(JSON_OBJS) $(LIBUBOX_OBJS)$/;"	m
+CURR_DIR	Makefile	/^CURR_DIR=$(shell pwd)$/;"	m
+EXTRA_CFLAGS	Makefile	/^EXTRA_CFLAGS = -I$(CURR_DIR)\/include -DUBUS_MAX_MSGLEN=1048576$/;"	m
+JSONDIR	Makefile	/^JSONDIR = json-c-0.11$/;"	m
+JSON_OBJS	Makefile	/^JSON_OBJS = \\$/;"	m
+LIBUBOXDIR	Makefile	/^LIBUBOXDIR = libubox-2014-03-18$/;"	m
+LIBUBOX_OBJS	Makefile	/^LIBUBOX_OBJS = \\$/;"	m
+MODULE	Makefile	/^MODULE = $(shell pwd | sed "s\/.*\\\/\/\/" ).o$/;"	m
+TRAFFICDDIR	Makefile	/^TRAFFICDDIR = trafficd$/;"	m
+TRAFFICD_OBJS	Makefile	/^TRAFFICD_OBJS = \\$/;"	m
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+ARRAY_LIST_DEFAULT_SIZE	include/arraylist.h	19;"	d
+_arraylist_h_	include/arraylist.h	13;"	d
+array	include/arraylist.h	/^  void **array;$/;"	m	struct:array_list
+array_list	include/arraylist.h	/^struct array_list$/;"	s
+array_list_free_fn	include/arraylist.h	/^typedef void (array_list_free_fn) (void *data);$/;"	t
+free_fn	include/arraylist.h	/^  array_list_free_fn *free_fn;$/;"	m	struct:array_list
+length	include/arraylist.h	/^  int length;$/;"	m	struct:array_list
+size	include/arraylist.h	/^  int size;$/;"	m	struct:array_list
+__AVL_CMP_H	include/avl-cmp.h	17;"	d
+AVL_FIND_EQUAL	include/avl.h	/^  AVL_FIND_EQUAL,$/;"	e	enum:avl_find_mode
+AVL_FIND_GREATEREQUAL	include/avl.h	/^  AVL_FIND_GREATEREQUAL$/;"	e	enum:avl_find_mode
+AVL_FIND_LESSEQUAL	include/avl.h	/^  AVL_FIND_LESSEQUAL,$/;"	e	enum:avl_find_mode
+EXPORT	include/avl.h	51;"	d
+_AVL_H	include/avl.h	42;"	d
+__avl_find_element	include/avl.h	/^__avl_find_element(const struct avl_tree *tree, const void *key, size_t offset, enum avl_find_mode mode) {$/;"	f
+allow_dups	include/avl.h	/^  bool allow_dups;$/;"	m	struct:avl_tree
+avl_find_element	include/avl.h	229;"	d
+avl_find_ge_element	include/avl.h	255;"	d
+avl_find_le_element	include/avl.h	242;"	d
+avl_find_mode	include/avl.h	/^enum avl_find_mode {$/;"	g
+avl_first_element	include/avl.h	269;"	d
+avl_for_each_element	include/avl.h	355;"	d
+avl_for_each_element_reverse	include/avl.h	371;"	d
+avl_for_each_element_reverse_safe	include/avl.h	511;"	d
+avl_for_each_element_safe	include/avl.h	492;"	d
+avl_for_element_range	include/avl.h	322;"	d
+avl_for_element_range_reverse	include/avl.h	339;"	d
+avl_for_element_range_reverse_safe	include/avl.h	473;"	d
+avl_for_element_range_safe	include/avl.h	455;"	d
+avl_for_element_to_last	include/avl.h	389;"	d
+avl_for_element_to_last_reverse	include/avl.h	406;"	d
+avl_for_first_to_element	include/avl.h	422;"	d
+avl_for_first_to_element_reverse	include/avl.h	439;"	d
+avl_is_empty	include/avl.h	/^avl_is_empty(struct avl_tree *tree) {$/;"	f
+avl_is_first	include/avl.h	/^avl_is_first(struct avl_tree *tree, struct avl_node *node) {$/;"	f
+avl_is_last	include/avl.h	/^avl_is_last(struct avl_tree *tree, struct avl_node *node) {$/;"	f
+avl_last_element	include/avl.h	281;"	d
+avl_next_element	include/avl.h	294;"	d
+avl_node	include/avl.h	/^struct avl_node {$/;"	s
+avl_prev_element	include/avl.h	307;"	d
+avl_remove_all_elements	include/avl.h	534;"	d
+avl_tree	include/avl.h	/^struct avl_tree {$/;"	s
+avl_tree_comp	include/avl.h	/^typedef int (*avl_tree_comp) (const void *k1, const void *k2, void *ptr);$/;"	t
+balance	include/avl.h	/^  signed char balance;$/;"	m	struct:avl_node
+cmp_ptr	include/avl.h	/^  void *cmp_ptr;$/;"	m	struct:avl_tree
+comp	include/avl.h	/^  avl_tree_comp comp;$/;"	m	struct:avl_tree
+count	include/avl.h	/^  unsigned int count;$/;"	m	struct:avl_tree
+key	include/avl.h	/^  const void *key;$/;"	m	struct:avl_node
+leader	include/avl.h	/^  bool leader;$/;"	m	struct:avl_node
+left	include/avl.h	/^  struct avl_node *left;$/;"	m	struct:avl_node	typeref:struct:avl_node::avl_node
+list	include/avl.h	/^  struct list_entity list;$/;"	m	struct:avl_node	typeref:struct:avl_node::list_entity
+list_head	include/avl.h	/^  struct list_entity list_head;$/;"	m	struct:avl_tree	typeref:struct:avl_tree::list_entity
+parent	include/avl.h	/^  struct avl_node *parent;$/;"	m	struct:avl_node	typeref:struct:avl_node::avl_node
+right	include/avl.h	/^  struct avl_node *right;$/;"	m	struct:avl_node	typeref:struct:avl_node::avl_node
+root	include/avl.h	/^  struct avl_node *root;$/;"	m	struct:avl_tree	typeref:struct:avl_tree::avl_node
+_bits_h_	include/bits.h	13;"	d
+error_description	include/bits.h	25;"	d
+error_ptr	include/bits.h	24;"	d
+hexdigit	include/bits.h	23;"	d
+is_error	include/bits.h	26;"	d
+json_max	include/bits.h	20;"	d
+json_min	include/bits.h	16;"	d
+BLOB_ATTR_ALIGN	include/blob.h	53;"	d
+BLOB_ATTR_BINARY	include/blob.h	/^	BLOB_ATTR_BINARY,$/;"	e	enum:__anon4
+BLOB_ATTR_EXTENDED	include/blob.h	54;"	d
+BLOB_ATTR_ID_MASK	include/blob.h	50;"	d
+BLOB_ATTR_ID_SHIFT	include/blob.h	51;"	d
+BLOB_ATTR_INT16	include/blob.h	/^	BLOB_ATTR_INT16,$/;"	e	enum:__anon4
+BLOB_ATTR_INT32	include/blob.h	/^	BLOB_ATTR_INT32,$/;"	e	enum:__anon4
+BLOB_ATTR_INT64	include/blob.h	/^	BLOB_ATTR_INT64,$/;"	e	enum:__anon4
+BLOB_ATTR_INT8	include/blob.h	/^	BLOB_ATTR_INT8,$/;"	e	enum:__anon4
+BLOB_ATTR_LAST	include/blob.h	/^	BLOB_ATTR_LAST$/;"	e	enum:__anon4
+BLOB_ATTR_LEN_MASK	include/blob.h	52;"	d
+BLOB_ATTR_NESTED	include/blob.h	/^	BLOB_ATTR_NESTED,$/;"	e	enum:__anon4
+BLOB_ATTR_STRING	include/blob.h	/^	BLOB_ATTR_STRING,$/;"	e	enum:__anon4
+BLOB_ATTR_UNSPEC	include/blob.h	/^	BLOB_ATTR_UNSPEC,$/;"	e	enum:__anon4
+BLOB_COOKIE	include/blob.h	36;"	d
+_BLOB_H__	include/blob.h	20;"	d
+__blob_for_each_attr	include/blob.h	247;"	d
+__packed	include/blob.h	/^} __packed;$/;"	v	typeref:struct:blob_attr
+blob_attr	include/blob.h	/^struct blob_attr {$/;"	s
+blob_attr_info	include/blob.h	/^struct blob_attr_info {$/;"	s
+blob_buf	include/blob.h	/^struct blob_buf {$/;"	s
+blob_data	include/blob.h	/^blob_data(const struct blob_attr *attr)$/;"	f
+blob_for_each_attr	include/blob.h	254;"	d
+blob_get_int16	include/blob.h	/^blob_get_int16(const struct blob_attr *attr)$/;"	f
+blob_get_int32	include/blob.h	/^blob_get_int32(const struct blob_attr *attr)$/;"	f
+blob_get_int64	include/blob.h	/^blob_get_int64(const struct blob_attr *attr)$/;"	f
+blob_get_int8	include/blob.h	/^blob_get_int8(const struct blob_attr *attr)$/;"	f
+blob_get_string	include/blob.h	/^blob_get_string(const struct blob_attr *attr)$/;"	f
+blob_get_u16	include/blob.h	/^blob_get_u16(const struct blob_attr *attr)$/;"	f
+blob_get_u32	include/blob.h	/^blob_get_u32(const struct blob_attr *attr)$/;"	f
+blob_get_u64	include/blob.h	/^blob_get_u64(const struct blob_attr *attr)$/;"	f
+blob_get_u8	include/blob.h	/^blob_get_u8(const struct blob_attr *attr)$/;"	f
+blob_id	include/blob.h	/^blob_id(const struct blob_attr *attr)$/;"	f
+blob_is_extended	include/blob.h	/^blob_is_extended(const struct blob_attr *attr)$/;"	f
+blob_len	include/blob.h	/^blob_len(const struct blob_attr *attr)$/;"	f
+blob_next	include/blob.h	/^blob_next(const struct blob_attr *attr)$/;"	f
+blob_pad_len	include/blob.h	/^blob_pad_len(const struct blob_attr *attr)$/;"	f
+blob_put_int16	include/blob.h	243;"	d
+blob_put_int32	include/blob.h	244;"	d
+blob_put_int64	include/blob.h	245;"	d
+blob_put_int8	include/blob.h	242;"	d
+blob_put_string	include/blob.h	/^blob_put_string(struct blob_buf *buf, int id, const char *str)$/;"	f
+blob_put_u16	include/blob.h	/^blob_put_u16(struct blob_buf *buf, int id, uint16_t val)$/;"	f
+blob_put_u32	include/blob.h	/^blob_put_u32(struct blob_buf *buf, int id, uint32_t val)$/;"	f
+blob_put_u64	include/blob.h	/^blob_put_u64(struct blob_buf *buf, int id, uint64_t val)$/;"	f
+blob_put_u8	include/blob.h	/^blob_put_u8(struct blob_buf *buf, int id, uint8_t val)$/;"	f
+blob_raw_len	include/blob.h	/^blob_raw_len(const struct blob_attr *attr)$/;"	f
+buf	include/blob.h	/^	void *buf;$/;"	m	struct:blob_buf
+buflen	include/blob.h	/^	int buflen;$/;"	m	struct:blob_buf
+data	include/blob.h	/^	char data[];$/;"	m	struct:blob_attr
+grow	include/blob.h	/^	bool (*grow)(struct blob_buf *buf, int minlen);$/;"	m	struct:blob_buf
+head	include/blob.h	/^	struct blob_attr *head;$/;"	m	struct:blob_buf	typeref:struct:blob_buf::blob_attr
+id_len	include/blob.h	/^	uint32_t id_len;$/;"	m	struct:blob_attr
+maxlen	include/blob.h	/^	unsigned int maxlen;$/;"	m	struct:blob_attr_info
+minlen	include/blob.h	/^	unsigned int minlen;$/;"	m	struct:blob_attr_info
+type	include/blob.h	/^	unsigned int type;$/;"	m	struct:blob_attr_info
+validate	include/blob.h	/^	bool (*validate)(const struct blob_attr_info *, struct blob_attr *);$/;"	m	struct:blob_attr_info
+BLOBMSG_ALIGN	include/blobmsg.h	22;"	d
+BLOBMSG_PADDING	include/blobmsg.h	23;"	d
+BLOBMSG_TYPE_ARRAY	include/blobmsg.h	/^	BLOBMSG_TYPE_ARRAY,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_BOOL	include/blobmsg.h	/^	BLOBMSG_TYPE_BOOL = BLOBMSG_TYPE_INT8,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_INT16	include/blobmsg.h	/^	BLOBMSG_TYPE_INT16,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_INT32	include/blobmsg.h	/^	BLOBMSG_TYPE_INT32,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_INT64	include/blobmsg.h	/^	BLOBMSG_TYPE_INT64,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_INT8	include/blobmsg.h	/^	BLOBMSG_TYPE_INT8,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_LAST	include/blobmsg.h	/^	BLOBMSG_TYPE_LAST = __BLOBMSG_TYPE_LAST - 1,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_STRING	include/blobmsg.h	/^	BLOBMSG_TYPE_STRING,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_TABLE	include/blobmsg.h	/^	BLOBMSG_TYPE_TABLE,$/;"	e	enum:blobmsg_type
+BLOBMSG_TYPE_UNSPEC	include/blobmsg.h	/^	BLOBMSG_TYPE_UNSPEC,$/;"	e	enum:blobmsg_type
+__BLOBMSG_H	include/blobmsg.h	17;"	d
+__BLOBMSG_TYPE_LAST	include/blobmsg.h	/^	__BLOBMSG_TYPE_LAST,$/;"	e	enum:blobmsg_type
+__packed	include/blobmsg.h	/^} __packed;$/;"	v	typeref:struct:blobmsg_hdr
+blobmsg_add_blob	include/blobmsg.h	/^blobmsg_add_blob(struct blob_buf *buf, struct blob_attr *attr)$/;"	f
+blobmsg_add_string	include/blobmsg.h	/^blobmsg_add_string(struct blob_buf *buf, const char *name, const char *string)$/;"	f
+blobmsg_add_u16	include/blobmsg.h	/^blobmsg_add_u16(struct blob_buf *buf, const char *name, uint16_t val)$/;"	f
+blobmsg_add_u32	include/blobmsg.h	/^blobmsg_add_u32(struct blob_buf *buf, const char *name, uint32_t val)$/;"	f
+blobmsg_add_u64	include/blobmsg.h	/^blobmsg_add_u64(struct blob_buf *buf, const char *name, uint64_t val)$/;"	f
+blobmsg_add_u8	include/blobmsg.h	/^blobmsg_add_u8(struct blob_buf *buf, const char *name, uint8_t val)$/;"	f
+blobmsg_buf_init	include/blobmsg.h	/^static inline int blobmsg_buf_init(struct blob_buf *buf)$/;"	f
+blobmsg_close_array	include/blobmsg.h	/^blobmsg_close_array(struct blob_buf *buf, void *cookie)$/;"	f
+blobmsg_close_table	include/blobmsg.h	/^blobmsg_close_table(struct blob_buf *buf, void *cookie)$/;"	f
+blobmsg_data	include/blobmsg.h	/^static inline void *blobmsg_data(const struct blob_attr *attr)$/;"	f
+blobmsg_data_len	include/blobmsg.h	/^static inline int blobmsg_data_len(const struct blob_attr *attr)$/;"	f
+blobmsg_for_each_attr	include/blobmsg.h	216;"	d
+blobmsg_get_bool	include/blobmsg.h	/^static inline bool blobmsg_get_bool(struct blob_attr *attr)$/;"	f
+blobmsg_get_string	include/blobmsg.h	/^static inline char *blobmsg_get_string(struct blob_attr *attr)$/;"	f
+blobmsg_get_u16	include/blobmsg.h	/^static inline uint16_t blobmsg_get_u16(struct blob_attr *attr)$/;"	f
+blobmsg_get_u32	include/blobmsg.h	/^static inline uint32_t blobmsg_get_u32(struct blob_attr *attr)$/;"	f
+blobmsg_get_u64	include/blobmsg.h	/^static inline uint64_t blobmsg_get_u64(struct blob_attr *attr)$/;"	f
+blobmsg_get_u8	include/blobmsg.h	/^static inline uint8_t blobmsg_get_u8(struct blob_attr *attr)$/;"	f
+blobmsg_hdr	include/blobmsg.h	/^struct blobmsg_hdr {$/;"	s
+blobmsg_hdrlen	include/blobmsg.h	/^static inline int blobmsg_hdrlen(int namelen)$/;"	f
+blobmsg_len	include/blobmsg.h	/^static inline int blobmsg_len(const struct blob_attr *attr)$/;"	f
+blobmsg_name	include/blobmsg.h	/^static inline const char *blobmsg_name(const struct blob_attr *attr)$/;"	f
+blobmsg_open_array	include/blobmsg.h	/^blobmsg_open_array(struct blob_buf *buf, const char *name)$/;"	f
+blobmsg_open_table	include/blobmsg.h	/^blobmsg_open_table(struct blob_buf *buf, const char *name)$/;"	f
+blobmsg_policy	include/blobmsg.h	/^struct blobmsg_policy {$/;"	s
+blobmsg_type	include/blobmsg.h	/^enum blobmsg_type {$/;"	g
+blobmsg_type	include/blobmsg.h	/^static inline int blobmsg_type(const struct blob_attr *attr)$/;"	f
+name	include/blobmsg.h	/^	const char *name;$/;"	m	struct:blobmsg_policy
+name	include/blobmsg.h	/^	uint8_t name[];$/;"	m	struct:blobmsg_hdr
+namelen	include/blobmsg.h	/^	uint16_t namelen;$/;"	m	struct:blobmsg_hdr
+type	include/blobmsg.h	/^	enum blobmsg_type type;$/;"	m	struct:blobmsg_policy	typeref:enum:blobmsg_policy::blobmsg_type
+__BLOBMSG_JSON_H	include/blobmsg_json.h	17;"	d
+blobmsg_format_json	include/blobmsg_json.h	/^static inline char *blobmsg_format_json(struct blob_attr *attr, bool list)$/;"	f
+blobmsg_format_json_indent	include/blobmsg_json.h	/^static inline char *blobmsg_format_json_indent(struct blob_attr *attr, bool list, int indent)$/;"	f
+blobmsg_json_format_t	include/blobmsg_json.h	/^typedef const char *(*blobmsg_json_format_t)(void *priv, struct blob_attr *attr);$/;"	t
+CHUNK	include/bridge.h	32;"	d
+MAX_PORTS	include/bridge.h	31;"	d
+__TRAFFICD_BRIDGE_H	include/bridge.h	6;"	d
+ageing_timer_value	include/bridge.h	/^	struct timeval ageing_timer_value;$/;"	m	struct:fdb_entry	typeref:struct:fdb_entry::timeval
+delta_time	include/bridge.h	/^	double delta_time;$/;"	m	struct:trafficd_br_data
+fdb_entry	include/bridge.h	/^struct fdb_entry$/;"	s
+hwa	include/bridge.h	/^	char hwa[HWAMAXLEN];$/;"	m	struct:fdb_entry
+ifname	include/bridge.h	/^	char ifname[IFNAMSIZ];$/;"	m	struct:fdb_entry
+is_local	include/bridge.h	/^	unsigned char is_local;$/;"	m	struct:fdb_entry
+mac_addr	include/bridge.h	/^	u_int8_t mac_addr[6];$/;"	m	struct:fdb_entry
+port_no	include/bridge.h	/^	u_int16_t port_no;$/;"	m	struct:fdb_entry
+seq	include/bridge.h	/^	uint32_t seq;$/;"	m	struct:trafficd_br_data
+timeout	include/bridge.h	/^	struct uloop_timeout timeout;$/;"	m	struct:trafficd_br_data	typeref:struct:trafficd_br_data::uloop_timeout
+trafficd_br_data	include/bridge.h	/^struct trafficd_br_data {$/;"	s
+uptime	include/bridge.h	/^	double uptime;$/;"	m	struct:trafficd_br_data
+HAVE_DLFCN_H	include/config.h	8;"	d
+HAVE_FCNTL_H	include/config.h	14;"	d
+HAVE_INTTYPES_H	include/config.h	17;"	d
+HAVE_LIMITS_H	include/config.h	20;"	d
+HAVE_LOCALE_H	include/config.h	23;"	d
+HAVE_MALLOC	include/config.h	27;"	d
+HAVE_MEMORY_H	include/config.h	30;"	d
+HAVE_OPEN	include/config.h	33;"	d
+HAVE_REALLOC	include/config.h	37;"	d
+HAVE_SETLOCALE	include/config.h	40;"	d
+HAVE_SNPRINTF	include/config.h	43;"	d
+HAVE_STDARG_H	include/config.h	46;"	d
+HAVE_STDINT_H	include/config.h	49;"	d
+HAVE_STDLIB_H	include/config.h	52;"	d
+HAVE_STRCASECMP	include/config.h	55;"	d
+HAVE_STRDUP	include/config.h	58;"	d
+HAVE_STRERROR	include/config.h	61;"	d
+HAVE_STRINGS_H	include/config.h	64;"	d
+HAVE_STRING_H	include/config.h	67;"	d
+HAVE_STRNCASECMP	include/config.h	70;"	d
+HAVE_STRNDUP	include/config.h	73;"	d
+HAVE_SYSLOG_H	include/config.h	76;"	d
+HAVE_SYS_CDEFS_H	include/config.h	79;"	d
+HAVE_SYS_PARAM_H	include/config.h	82;"	d
+HAVE_SYS_STAT_H	include/config.h	85;"	d
+HAVE_SYS_TYPES_H	include/config.h	88;"	d
+HAVE_UNISTD_H	include/config.h	91;"	d
+HAVE_VASPRINTF	include/config.h	94;"	d
+HAVE_VPRINTF	include/config.h	97;"	d
+HAVE_VSNPRINTF	include/config.h	100;"	d
+HAVE_VSYSLOG	include/config.h	103;"	d
+JSON_C_HAVE_INTTYPES_H	include/config.h	106;"	d
+LT_OBJDIR	include/config.h	110;"	d
+PACKAGE	include/config.h	113;"	d
+PACKAGE_BUGREPORT	include/config.h	116;"	d
+PACKAGE_NAME	include/config.h	119;"	d
+PACKAGE_STRING	include/config.h	122;"	d
+PACKAGE_TARNAME	include/config.h	125;"	d
+PACKAGE_URL	include/config.h	128;"	d
+PACKAGE_VERSION	include/config.h	131;"	d
+STDC_HEADERS	include/config.h	134;"	d
+VERSION	include/config.h	137;"	d
+JASSERT	include/debug.h	37;"	d
+JASSERT	include/debug.h	41;"	d
+MC_ABORT	include/debug.h	51;"	d
+MC_DEBUG	include/debug.h	58;"	d
+MC_DEBUG	include/debug.h	64;"	d
+MC_ERROR	include/debug.h	52;"	d
+MC_GET_DEBUG	include/debug.h	56;"	d
+MC_GET_DEBUG	include/debug.h	62;"	d
+MC_INFO	include/debug.h	59;"	d
+MC_INFO	include/debug.h	65;"	d
+MC_SET_DEBUG	include/debug.h	55;"	d
+MC_SET_DEBUG	include/debug.h	61;"	d
+MC_SET_SYSLOG	include/debug.h	57;"	d
+MC_SET_SYSLOG	include/debug.h	63;"	d
+_DEBUG_H_	include/debug.h	14;"	d
+__STRING	include/debug.h	32;"	d
+__TRAFFICD_HW_H	include/hw.h	6;"	d
+ageing_timer_value	include/hw.h	/^	struct timeval ageing_timer_value;$/;"	m	struct:hw_node	typeref:struct:hw_node::timeval
+ap_ifname	include/hw.h	/^	char ap_ifname[IFNAMSIZ];$/;"	m	struct:hw_node
+arp_entry	include/hw.h	/^struct arp_entry {$/;"	s
+assoc	include/hw.h	/^	unsigned char assoc;$/;"	m	struct:hw_node
+avl	include/hw.h	/^	struct avl_node avl;$/;"	m	struct:hw_node	typeref:struct:hw_node::avl_node
+br_seq	include/hw.h	/^	uint32_t br_seq;$/;"	m	struct:hw_node
+br_uptime	include/hw.h	/^	double br_uptime;$/;"	m	struct:hw_node
+child_list	include/hw.h	/^	struct list_head child_list;$/;"	m	struct:hw_node	typeref:struct:hw_node::list_head
+data	include/hw.h	/^	struct hw_log_data data[TRAFFICD_HW_LOGSIZE];$/;"	m	struct:hw_log	typeref:struct:hw_log::hw_log_data
+dev	include/hw.h	/^	char dev[100];$/;"	m	struct:arp_entry
+down_time	include/hw.h	/^	time_t down_time;$/;"	m	struct:hw_log_data
+flags	include/hw.h	/^	int flags;$/;"	m	struct:arp_entry
+hw_log	include/hw.h	/^struct hw_log {$/;"	s
+hw_log_data	include/hw.h	/^struct hw_log_data {$/;"	s
+hw_node	include/hw.h	/^struct hw_node {$/;"	s
+hwa	include/hw.h	/^	char hwa[100];$/;"	m	struct:arp_entry
+hwa	include/hw.h	/^	char hwa[HWAMAXLEN];$/;"	m	struct:hw_log
+hwa	include/hw.h	/^	char hwa[HWAMAXLEN];$/;"	m	struct:hw_node
+hws	include/hw.h	/^	struct avl_tree *hws;$/;"	m	struct:trafficd_hw_data	typeref:struct:trafficd_hw_data::avl_tree
+ifname	include/hw.h	/^	char ifname[IFNAMSIZ];$/;"	m	struct:hw_node
+index	include/hw.h	/^	uint8_t index;$/;"	m	struct:hw_log
+ip	include/hw.h	/^	__be32 ip;$/;"	m	struct:arp_entry
+ip_list	include/hw.h	/^	struct list_head ip_list;	\/* for ip_node *\/$/;"	m	struct:hw_node	typeref:struct:hw_node::list_head
+ipa	include/hw.h	/^	char ipa[100];$/;"	m	struct:arp_entry
+is_ap	include/hw.h	/^	unsigned char is_ap;$/;"	m	struct:hw_node
+is_local	include/hw.h	/^	unsigned char is_local;$/;"	m	struct:hw_node
+list	include/hw.h	/^	struct list_head list;$/;"	m	struct:hw_node	typeref:struct:hw_node::list_head
+log	include/hw.h	/^	struct hw_log log;$/;"	m	struct:hw_node	typeref:struct:hw_node::hw_log
+mask	include/hw.h	/^	char mask[100];$/;"	m	struct:arp_entry
+parent	include/hw.h	/^	struct hw_node *parent;$/;"	m	struct:hw_node	typeref:struct:hw_node::hw_node
+point_rx	include/hw.h	/^	uint64_t point_rx;$/;"	m	struct:hw_node
+point_time	include/hw.h	/^	double point_time;$/;"	m	struct:hw_node
+point_tx	include/hw.h	/^	uint64_t point_tx;$/;"	m	struct:hw_node
+rx_bytes	include/hw.h	/^	uint64_t rx_bytes;$/;"	m	struct:hw_log_data
+seq	include/hw.h	/^	uint32_t seq;$/;"	m	struct:hw_node
+seq	include/hw.h	/^	uint32_t seq;$/;"	m	struct:trafficd_hw_data
+timeout	include/hw.h	/^	struct uloop_timeout timeout;$/;"	m	struct:trafficd_hw_data	typeref:struct:trafficd_hw_data::uloop_timeout
+trafficd_hw_data	include/hw.h	/^struct trafficd_hw_data {$/;"	s
+tx_bytes	include/hw.h	/^	uint64_t tx_bytes;$/;"	m	struct:hw_log_data
+type	include/hw.h	/^	int type;$/;"	m	struct:arp_entry
+up_time	include/hw.h	/^	time_t up_time;$/;"	m	struct:hw_log_data
+uptime	include/hw.h	/^	double uptime;$/;"	m	struct:hw_node
+IFNAMSIZ	include/int.h	6;"	d
+__TRAFFICD_INT_H	include/int.h	2;"	d
+__be32	include/int.h	3;"	d
+__TRAFFICD_IP_H	include/ip.h	6;"	d
+avl	include/ip.h	/^	struct avl_node avl;$/;"	m	struct:ip_node	typeref:struct:ip_node::avl_node
+delta_time	include/ip.h	/^	double delta_time;$/;"	m	struct:trafficd_ip_data
+dst_bytes_delta	include/ip.h	/^	uint32_t   dst_bytes_delta;$/;"	m	struct:ip_node
+hostname_dhcp	include/ip.h	/^	char hostname_dhcp[HOSTNAMSIZ];$/;"	m	struct:ip_node
+hw	include/ip.h	/^	struct hw_node *hw;$/;"	m	struct:ip_node	typeref:struct:ip_node::hw_node
+ip	include/ip.h	/^	__be32   ip;$/;"	m	struct:ip_node
+ip_node	include/ip.h	/^struct ip_node {$/;"	s
+ips	include/ip.h	/^	struct avl_tree *ips;$/;"	m	struct:trafficd_ip_data	typeref:struct:trafficd_ip_data::avl_tree
+list	include/ip.h	/^	struct list_head list;$/;"	m	struct:ip_node	typeref:struct:ip_node::list_head
+max_rx_rate	include/ip.h	/^	uint32_t   max_rx_rate;$/;"	m	struct:ip_node
+max_tx_rate	include/ip.h	/^	uint32_t   max_tx_rate;$/;"	m	struct:ip_node
+rx_bytes	include/ip.h	/^	uint64_t   rx_bytes;$/;"	m	struct:ip_node
+rx_rate	include/ip.h	/^	uint32_t   rx_rate;$/;"	m	struct:ip_node
+seq	include/ip.h	/^	uint32_t   seq;$/;"	m	struct:ip_node
+seq	include/ip.h	/^	uint32_t seq;$/;"	m	struct:trafficd_ip_data
+src_bytes_delta	include/ip.h	/^	uint32_t   src_bytes_delta;$/;"	m	struct:ip_node
+timeout	include/ip.h	/^	struct uloop_timeout timeout;$/;"	m	struct:trafficd_ip_data	typeref:struct:trafficd_ip_data::uloop_timeout
+trafficd_ip_data	include/ip.h	/^struct trafficd_ip_data {$/;"	s
+tx_bytes	include/ip.h	/^	uint64_t   tx_bytes;$/;"	m	struct:ip_node
+tx_rate	include/ip.h	/^	uint32_t   tx_rate;$/;"	m	struct:ip_node
+uptime	include/ip.h	/^	double     uptime;$/;"	m	struct:ip_node
+uptime	include/ip.h	/^	double uptime;$/;"	m	struct:trafficd_ip_data
+_json_h_	include/json.h	14;"	d
+JSON_C_MAJOR_VERSION	include/json_c_version.h	11;"	d
+JSON_C_MICRO_VERSION	include/json_c_version.h	13;"	d
+JSON_C_MINOR_VERSION	include/json_c_version.h	12;"	d
+JSON_C_VERSION	include/json_c_version.h	17;"	d
+JSON_C_VERSION_NUM	include/json_c_version.h	14;"	d
+_json_c_version_h_	include/json_c_version.h	9;"	d
+JSON_C_HAVE_INTTYPES_H	include/json_config.h	4;"	d
+INT32_MAX	include/json_inttypes.h	12;"	d
+INT32_MIN	include/json_inttypes.h	11;"	d
+INT64_MAX	include/json_inttypes.h	15;"	d
+INT64_MIN	include/json_inttypes.h	14;"	d
+PRId64	include/json_inttypes.h	16;"	d
+SCNd64	include/json_inttypes.h	17;"	d
+_json_inttypes_h_	include/json_inttypes.h	3;"	d
+int32_t	include/json_inttypes.h	/^typedef __int32 int32_t;$/;"	t
+int64_t	include/json_inttypes.h	/^typedef __int64 int64_t;$/;"	t
+FALSE	include/json_object.h	50;"	d
+FALSE	include/json_object.h	51;"	d
+JSON_C_TO_STRING_NOZERO	include/json_object.h	48;"	d
+JSON_C_TO_STRING_PLAIN	include/json_object.h	29;"	d
+JSON_C_TO_STRING_PRETTY	include/json_object.h	44;"	d
+JSON_C_TO_STRING_SPACED	include/json_object.h	35;"	d
+JSON_OBJECT_DEF_HASH_ENTRIES	include/json_object.h	22;"	d
+TRUE	include/json_object.h	53;"	d
+TRUE	include/json_object.h	54;"	d
+_json_object_h_	include/json_object.h	14;"	d
+array_list	include/json_object.h	/^typedef struct array_list array_list;$/;"	t	typeref:struct:array_list
+entry	include/json_object.h	/^	struct lh_entry *entry;$/;"	m	struct:json_object_iter	typeref:struct:json_object_iter::lh_entry
+json_bool	include/json_object.h	/^typedef int json_bool;$/;"	t
+json_object	include/json_object.h	/^typedef struct json_object json_object;$/;"	t	typeref:struct:json_object
+json_object_delete_fn	include/json_object.h	/^typedef void (json_object_delete_fn)(struct json_object *jso, void *userdata);$/;"	t
+json_object_iter	include/json_object.h	/^struct json_object_iter$/;"	s
+json_object_iter	include/json_object.h	/^typedef struct json_object_iter json_object_iter;$/;"	t	typeref:struct:json_object_iter
+json_object_object_foreach	include/json_object.h	314;"	d
+json_object_object_foreach	include/json_object.h	327;"	d
+json_object_object_foreachC	include/json_object.h	346;"	d
+json_object_to_json_string_fn	include/json_object.h	/^typedef int (json_object_to_json_string_fn)(struct json_object *jso,$/;"	t
+json_tokener	include/json_object.h	/^typedef struct json_tokener json_tokener;$/;"	t	typeref:struct:json_tokener
+json_type	include/json_object.h	/^typedef enum json_type {$/;"	g
+json_type	include/json_object.h	/^} json_type;$/;"	t	typeref:enum:json_type
+json_type_array	include/json_object.h	/^  json_type_array,$/;"	e	enum:json_type
+json_type_boolean	include/json_object.h	/^  json_type_boolean,$/;"	e	enum:json_type
+json_type_double	include/json_object.h	/^  json_type_double,$/;"	e	enum:json_type
+json_type_int	include/json_object.h	/^  json_type_int,$/;"	e	enum:json_type
+json_type_null	include/json_object.h	/^  json_type_null,$/;"	e	enum:json_type
+json_type_object	include/json_object.h	/^  json_type_object,$/;"	e	enum:json_type
+json_type_string	include/json_object.h	/^  json_type_string,$/;"	e	enum:json_type
+key	include/json_object.h	/^	char *key;$/;"	m	struct:json_object_iter
+lh_table	include/json_object.h	/^typedef struct lh_table lh_table;$/;"	t	typeref:struct:lh_table
+printbuf	include/json_object.h	/^typedef struct printbuf printbuf;$/;"	t	typeref:struct:printbuf
+val	include/json_object.h	/^	struct json_object *val;$/;"	m	struct:json_object_iter	typeref:struct:json_object_iter::json_object
+JSON_OBJECT_ITERATOR_H	include/json_object_iterator.h	24;"	d
+json_object_iterator	include/json_object_iterator.h	/^struct json_object_iterator {$/;"	s
+opaque_	include/json_object_iterator.h	/^    const void* opaque_;$/;"	m	struct:json_object_iterator
+_delete	include/json_object_private.h	/^  json_object_private_delete_fn *_delete;$/;"	m	struct:json_object
+_json_object_private_h_	include/json_object_private.h	13;"	d
+_pb	include/json_object_private.h	/^  struct printbuf *_pb;$/;"	m	struct:json_object	typeref:struct:json_object::printbuf
+_ref_count	include/json_object_private.h	/^  int _ref_count;$/;"	m	struct:json_object
+_to_json_string	include/json_object_private.h	/^  json_object_to_json_string_fn *_to_json_string;$/;"	m	struct:json_object
+_user_delete	include/json_object_private.h	/^  json_object_delete_fn *_user_delete;$/;"	m	struct:json_object
+_userdata	include/json_object_private.h	/^  void *_userdata;$/;"	m	struct:json_object
+c_array	include/json_object_private.h	/^    struct array_list *c_array;$/;"	m	union:json_object::data	typeref:struct:json_object::data::array_list
+c_boolean	include/json_object_private.h	/^    json_bool c_boolean;$/;"	m	union:json_object::data
+c_double	include/json_object_private.h	/^    double c_double;$/;"	m	union:json_object::data
+c_int64	include/json_object_private.h	/^    int64_t c_int64;$/;"	m	union:json_object::data
+c_object	include/json_object_private.h	/^    struct lh_table *c_object;$/;"	m	union:json_object::data	typeref:struct:json_object::data::lh_table
+c_string	include/json_object_private.h	/^    } c_string;$/;"	m	union:json_object::data	typeref:struct:json_object::data::__anon6
+data	include/json_object_private.h	/^  union data {$/;"	u	struct:json_object
+json_object	include/json_object_private.h	/^struct json_object$/;"	s
+json_object_private_delete_fn	include/json_object_private.h	/^typedef void (json_object_private_delete_fn)(struct json_object *o);$/;"	t
+len	include/json_object_private.h	/^        int len;$/;"	m	struct:json_object::data::__anon6
+o	include/json_object_private.h	/^  } o;$/;"	m	struct:json_object	typeref:union:json_object::data
+o_type	include/json_object_private.h	/^  enum json_type o_type;$/;"	m	struct:json_object	typeref:enum:json_object::json_type
+str	include/json_object_private.h	/^        char *str;$/;"	m	struct:json_object::data::__anon6
+__JSON_SCRIPT_H	include/json_script.h	17;"	d
+avl	include/json_script.h	/^	struct avl_node avl;$/;"	m	struct:json_script_file	typeref:struct:json_script_file::avl_node
+buf	include/json_script.h	/^	struct blob_buf buf;$/;"	m	struct:json_script_ctx	typeref:struct:json_script_ctx::blob_buf
+data	include/json_script.h	/^	struct blob_attr data[];$/;"	m	struct:json_script_file	typeref:struct:json_script_file::blob_attr
+files	include/json_script.h	/^	struct avl_tree files;$/;"	m	struct:json_script_ctx	typeref:struct:json_script_ctx::avl_tree
+handle_command	include/json_script.h	/^	void (*handle_command)(struct json_script_ctx *ctx, const char *name,$/;"	m	struct:json_script_ctx
+handle_error	include/json_script.h	/^	void (*handle_error)(struct json_script_ctx *ctx, const char *msg,$/;"	m	struct:json_script_ctx
+handle_expr	include/json_script.h	/^	int (*handle_expr)(struct json_script_ctx *ctx, const char *name,$/;"	m	struct:json_script_ctx
+handle_file	include/json_script.h	/^	struct json_script_file *(*handle_file)(struct json_script_ctx *ctx,$/;"	m	struct:json_script_ctx	typeref:struct:json_script_ctx::handle_file
+handle_var	include/json_script.h	/^	const char *(*handle_var)(struct json_script_ctx *ctx, const char *name,$/;"	m	struct:json_script_ctx
+json_script_ctx	include/json_script.h	/^struct json_script_ctx {$/;"	s
+json_script_file	include/json_script.h	/^struct json_script_file {$/;"	s
+next	include/json_script.h	/^	struct json_script_file *next;$/;"	m	struct:json_script_file	typeref:struct:json_script_file::json_script_file
+run_seq	include/json_script.h	/^	uint32_t run_seq;$/;"	m	struct:json_script_ctx
+seq	include/json_script.h	/^	unsigned int seq;$/;"	m	struct:json_script_file
+JSON_TOKENER_DEFAULT_DEPTH	include/json_tokener.h	74;"	d
+JSON_TOKENER_STRICT	include/json_tokener.h	98;"	d
+_json_tokener_h_	include/json_tokener.h	13;"	d
+char_offset	include/json_tokener.h	/^  int max_depth, depth, is_double, st_pos, char_offset;$/;"	m	struct:json_tokener
+current	include/json_tokener.h	/^  struct json_object *current;$/;"	m	struct:json_tokener_srec	typeref:struct:json_tokener_srec::json_object
+depth	include/json_tokener.h	/^  int max_depth, depth, is_double, st_pos, char_offset;$/;"	m	struct:json_tokener
+err	include/json_tokener.h	/^  enum json_tokener_error err;$/;"	m	struct:json_tokener	typeref:enum:json_tokener::json_tokener_error
+flags	include/json_tokener.h	/^  int flags;$/;"	m	struct:json_tokener
+is_double	include/json_tokener.h	/^  int max_depth, depth, is_double, st_pos, char_offset;$/;"	m	struct:json_tokener
+json_tokener	include/json_tokener.h	/^struct json_tokener$/;"	s
+json_tokener_continue	include/json_tokener.h	/^  json_tokener_continue,$/;"	e	enum:json_tokener_error
+json_tokener_error	include/json_tokener.h	/^enum json_tokener_error {$/;"	g
+json_tokener_error_depth	include/json_tokener.h	/^  json_tokener_error_depth,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_array	include/json_tokener.h	/^  json_tokener_error_parse_array,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_boolean	include/json_tokener.h	/^  json_tokener_error_parse_boolean,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_comment	include/json_tokener.h	/^  json_tokener_error_parse_comment$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_eof	include/json_tokener.h	/^  json_tokener_error_parse_eof,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_null	include/json_tokener.h	/^  json_tokener_error_parse_null,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_number	include/json_tokener.h	/^  json_tokener_error_parse_number,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_object_key_name	include/json_tokener.h	/^  json_tokener_error_parse_object_key_name,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_object_key_sep	include/json_tokener.h	/^  json_tokener_error_parse_object_key_sep,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_object_value_sep	include/json_tokener.h	/^  json_tokener_error_parse_object_value_sep,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_string	include/json_tokener.h	/^  json_tokener_error_parse_string,$/;"	e	enum:json_tokener_error
+json_tokener_error_parse_unexpected	include/json_tokener.h	/^  json_tokener_error_parse_unexpected,$/;"	e	enum:json_tokener_error
+json_tokener_srec	include/json_tokener.h	/^struct json_tokener_srec$/;"	s
+json_tokener_state	include/json_tokener.h	/^enum json_tokener_state {$/;"	g
+json_tokener_state_array	include/json_tokener.h	/^  json_tokener_state_array,$/;"	e	enum:json_tokener_state
+json_tokener_state_array_add	include/json_tokener.h	/^  json_tokener_state_array_add,$/;"	e	enum:json_tokener_state
+json_tokener_state_array_after_sep	include/json_tokener.h	/^  json_tokener_state_array_after_sep,$/;"	e	enum:json_tokener_state
+json_tokener_state_array_sep	include/json_tokener.h	/^  json_tokener_state_array_sep,$/;"	e	enum:json_tokener_state
+json_tokener_state_boolean	include/json_tokener.h	/^  json_tokener_state_boolean,$/;"	e	enum:json_tokener_state
+json_tokener_state_comment	include/json_tokener.h	/^  json_tokener_state_comment,$/;"	e	enum:json_tokener_state
+json_tokener_state_comment_end	include/json_tokener.h	/^  json_tokener_state_comment_end,$/;"	e	enum:json_tokener_state
+json_tokener_state_comment_eol	include/json_tokener.h	/^  json_tokener_state_comment_eol,$/;"	e	enum:json_tokener_state
+json_tokener_state_comment_start	include/json_tokener.h	/^  json_tokener_state_comment_start,$/;"	e	enum:json_tokener_state
+json_tokener_state_eatws	include/json_tokener.h	/^  json_tokener_state_eatws,$/;"	e	enum:json_tokener_state
+json_tokener_state_escape_unicode	include/json_tokener.h	/^  json_tokener_state_escape_unicode,$/;"	e	enum:json_tokener_state
+json_tokener_state_finish	include/json_tokener.h	/^  json_tokener_state_finish,$/;"	e	enum:json_tokener_state
+json_tokener_state_null	include/json_tokener.h	/^  json_tokener_state_null,$/;"	e	enum:json_tokener_state
+json_tokener_state_number	include/json_tokener.h	/^  json_tokener_state_number,$/;"	e	enum:json_tokener_state
+json_tokener_state_object_field	include/json_tokener.h	/^  json_tokener_state_object_field,$/;"	e	enum:json_tokener_state
+json_tokener_state_object_field_end	include/json_tokener.h	/^  json_tokener_state_object_field_end,$/;"	e	enum:json_tokener_state
+json_tokener_state_object_field_start	include/json_tokener.h	/^  json_tokener_state_object_field_start,$/;"	e	enum:json_tokener_state
+json_tokener_state_object_field_start_after_sep	include/json_tokener.h	/^  json_tokener_state_object_field_start_after_sep$/;"	e	enum:json_tokener_state
+json_tokener_state_object_sep	include/json_tokener.h	/^  json_tokener_state_object_sep,$/;"	e	enum:json_tokener_state
+json_tokener_state_object_value	include/json_tokener.h	/^  json_tokener_state_object_value,$/;"	e	enum:json_tokener_state
+json_tokener_state_object_value_add	include/json_tokener.h	/^  json_tokener_state_object_value_add,$/;"	e	enum:json_tokener_state
+json_tokener_state_start	include/json_tokener.h	/^  json_tokener_state_start,$/;"	e	enum:json_tokener_state
+json_tokener_state_string	include/json_tokener.h	/^  json_tokener_state_string,$/;"	e	enum:json_tokener_state
+json_tokener_state_string_escape	include/json_tokener.h	/^  json_tokener_state_string_escape,$/;"	e	enum:json_tokener_state
+json_tokener_success	include/json_tokener.h	/^  json_tokener_success,$/;"	e	enum:json_tokener_error
+max_depth	include/json_tokener.h	/^  int max_depth, depth, is_double, st_pos, char_offset;$/;"	m	struct:json_tokener
+obj	include/json_tokener.h	/^  struct json_object *obj;$/;"	m	struct:json_tokener_srec	typeref:struct:json_tokener_srec::json_object
+obj_field_name	include/json_tokener.h	/^  char *obj_field_name;$/;"	m	struct:json_tokener_srec
+pb	include/json_tokener.h	/^  struct printbuf *pb;$/;"	m	struct:json_tokener	typeref:struct:json_tokener::printbuf
+quote_char	include/json_tokener.h	/^  char quote_char;$/;"	m	struct:json_tokener
+saved_state	include/json_tokener.h	/^  enum json_tokener_state state, saved_state;$/;"	m	struct:json_tokener_srec	typeref:enum:json_tokener_srec::
+st_pos	include/json_tokener.h	/^  int max_depth, depth, is_double, st_pos, char_offset;$/;"	m	struct:json_tokener
+stack	include/json_tokener.h	/^  struct json_tokener_srec *stack;$/;"	m	struct:json_tokener	typeref:struct:json_tokener::json_tokener_srec
+state	include/json_tokener.h	/^  enum json_tokener_state state, saved_state;$/;"	m	struct:json_tokener_srec	typeref:enum:json_tokener_srec::json_tokener_state
+str	include/json_tokener.h	/^  char *str;$/;"	m	struct:json_tokener
+ucs_char	include/json_tokener.h	/^  unsigned int ucs_char;$/;"	m	struct:json_tokener
+JSON_FILE_BUF_SIZE	include/json_util.h	21;"	d
+_json_util_h_	include/json_util.h	13;"	d
+__LIBUBUS_IO_H	include/libubus-internal.h	15;"	d
+ubus_msghdr_data	include/libubus-internal.h	/^ubus_msghdr_data(struct ubus_msghdr *hdr)$/;"	f
+UBUS_MAX_NOTIFY_PEERS	include/libubus.h	34;"	d
+UBUS_METHOD	include/libubus.h	87;"	d
+UBUS_METHOD_MASK	include/libubus.h	90;"	d
+UBUS_METHOD_NOARG	include/libubus.h	96;"	d
+UBUS_OBJECT_TYPE	include/libubus.h	70;"	d
+__LIBUBUS_H	include/libubus.h	15;"	d
+__UBUS_METHOD	include/libubus.h	82;"	d
+__UBUS_METHOD_NOARG	include/libubus.h	78;"	d
+a	include/libubus.h	/^	struct sockaddr_in *a;$/;"	m	struct:ubus_auto_conn	typeref:struct:ubus_auto_conn::sockaddr_in
+avl	include/libubus.h	/^	struct avl_node avl;$/;"	m	struct:ubus_object	typeref:struct:ubus_object::avl_node
+blocked	include/libubus.h	/^	bool blocked;$/;"	m	struct:ubus_request
+cancelled	include/libubus.h	/^	bool cancelled;$/;"	m	struct:ubus_request
+cb	include/libubus.h	/^	ubus_connect_handler_t cb;$/;"	m	struct:ubus_auto_conn
+cb	include/libubus.h	/^	ubus_event_handler_t cb;$/;"	m	struct:ubus_event_handler
+cb	include/libubus.h	/^	ubus_handler_t cb;$/;"	m	struct:ubus_subscriber
+complete_cb	include/libubus.h	/^	ubus_complete_handler_t complete_cb;$/;"	m	struct:ubus_request
+complete_cb	include/libubus.h	/^	ubus_notify_complete_handler_t complete_cb;$/;"	m	struct:ubus_notify_request
+connection_lost	include/libubus.h	/^	void (*connection_lost)(struct ubus_context *ctx);$/;"	m	struct:ubus_context
+ctx	include/libubus.h	/^	struct ubus_context *ctx;$/;"	m	struct:ubus_request	typeref:struct:ubus_request::ubus_context
+ctx	include/libubus.h	/^	struct ubus_context ctx;$/;"	m	struct:ubus_auto_conn	typeref:struct:ubus_auto_conn::ubus_context
+data	include/libubus.h	/^	struct blob_attr *data;$/;"	m	struct:ubus_msghdr_buf	typeref:struct:ubus_msghdr_buf::blob_attr
+data_cb	include/libubus.h	/^	ubus_data_handler_t data_cb;$/;"	m	struct:ubus_request
+deferred	include/libubus.h	/^	bool deferred;$/;"	m	struct:ubus_request_data
+fd	include/libubus.h	/^	int fd;$/;"	m	struct:ubus_request_data
+fd_cb	include/libubus.h	/^	ubus_fd_handler_t fd_cb;$/;"	m	struct:ubus_request
+handler	include/libubus.h	/^	ubus_handler_t handler;$/;"	m	struct:ubus_method
+has_subscribers	include/libubus.h	/^	bool has_subscribers;$/;"	m	struct:ubus_object
+hdr	include/libubus.h	/^	struct ubus_msghdr hdr;$/;"	m	struct:ubus_msghdr_buf	typeref:struct:ubus_msghdr_buf::ubus_msghdr
+id	include/libubus.h	/^	uint32_t id;$/;"	m	struct:ubus_object
+id	include/libubus.h	/^	uint32_t id;$/;"	m	struct:ubus_object_data
+id	include/libubus.h	/^	uint32_t id;$/;"	m	struct:ubus_object_type
+id	include/libubus.h	/^	uint32_t id[UBUS_MAX_NOTIFY_PEERS + 1];$/;"	m	struct:ubus_notify_request
+list	include/libubus.h	/^	struct list_head list;$/;"	m	struct:ubus_request	typeref:struct:ubus_request::list_head
+local_id	include/libubus.h	/^	uint32_t local_id;$/;"	m	struct:ubus_context
+mask	include/libubus.h	/^	unsigned long mask;$/;"	m	struct:ubus_method
+methods	include/libubus.h	/^	const struct ubus_method *methods;$/;"	m	struct:ubus_object	typeref:struct:ubus_object::ubus_method
+methods	include/libubus.h	/^	const struct ubus_method *methods;$/;"	m	struct:ubus_object_type	typeref:struct:ubus_object_type::ubus_method
+msgbuf	include/libubus.h	/^	struct ubus_msghdr_buf msgbuf;$/;"	m	struct:ubus_context	typeref:struct:ubus_context::ubus_msghdr_buf
+msgbuf_data_len	include/libubus.h	/^	uint32_t msgbuf_data_len;$/;"	m	struct:ubus_context
+msgbuf_reduction_counter	include/libubus.h	/^	int msgbuf_reduction_counter;$/;"	m	struct:ubus_context
+n_methods	include/libubus.h	/^	int n_methods;$/;"	m	struct:ubus_object
+n_methods	include/libubus.h	/^	int n_methods;$/;"	m	struct:ubus_object_type
+n_policy	include/libubus.h	/^	int n_policy;$/;"	m	struct:ubus_method
+name	include/libubus.h	/^	const char *name;$/;"	m	struct:ubus_method
+name	include/libubus.h	/^	const char *name;$/;"	m	struct:ubus_object
+name	include/libubus.h	/^	const char *name;$/;"	m	struct:ubus_object_type
+notify	include/libubus.h	/^	bool notify;$/;"	m	struct:ubus_request
+obj	include/libubus.h	/^	struct ubus_object obj;$/;"	m	struct:ubus_event_handler	typeref:struct:ubus_event_handler::ubus_object
+obj	include/libubus.h	/^	struct ubus_object obj;$/;"	m	struct:ubus_subscriber	typeref:struct:ubus_subscriber::ubus_object
+object	include/libubus.h	/^	uint32_t object;$/;"	m	struct:ubus_request_data
+objects	include/libubus.h	/^	struct avl_tree objects;$/;"	m	struct:ubus_context	typeref:struct:ubus_context::avl_tree
+path	include/libubus.h	/^	const char *path;$/;"	m	struct:ubus_auto_conn
+path	include/libubus.h	/^	const char *path;$/;"	m	struct:ubus_object
+path	include/libubus.h	/^	const char *path;$/;"	m	struct:ubus_object_data
+peer	include/libubus.h	/^	uint32_t peer;$/;"	m	struct:ubus_request
+peer	include/libubus.h	/^	uint32_t peer;$/;"	m	struct:ubus_request_data
+pending	include/libubus.h	/^	struct list_head pending;$/;"	m	struct:ubus_context	typeref:struct:ubus_context::list_head
+pending	include/libubus.h	/^	struct list_head pending;$/;"	m	struct:ubus_request	typeref:struct:ubus_request::list_head
+pending	include/libubus.h	/^	uint32_t pending;$/;"	m	struct:ubus_notify_request
+pending_timer	include/libubus.h	/^	struct uloop_timeout pending_timer;$/;"	m	struct:ubus_context	typeref:struct:ubus_context::uloop_timeout
+policy	include/libubus.h	/^	const struct blobmsg_policy *policy;$/;"	m	struct:ubus_method	typeref:struct:ubus_method::blobmsg_policy
+priv	include/libubus.h	/^	void *priv;$/;"	m	struct:ubus_request
+raw_data_cb	include/libubus.h	/^	ubus_data_handler_t raw_data_cb;$/;"	m	struct:ubus_request
+remove_cb	include/libubus.h	/^	ubus_remove_handler_t remove_cb;$/;"	m	struct:ubus_subscriber
+req	include/libubus.h	/^	struct ubus_request req;$/;"	m	struct:ubus_notify_request	typeref:struct:ubus_notify_request::ubus_request
+request_seq	include/libubus.h	/^	uint16_t request_seq;$/;"	m	struct:ubus_context
+requests	include/libubus.h	/^	struct list_head requests;$/;"	m	struct:ubus_context	typeref:struct:ubus_context::list_head
+retry	include/libubus.h	/^	int retry;$/;"	m	struct:ubus_context
+seq	include/libubus.h	/^	uint16_t seq;$/;"	m	struct:ubus_request
+seq	include/libubus.h	/^	uint16_t seq;$/;"	m	struct:ubus_request_data
+signature	include/libubus.h	/^	struct blob_attr *signature;$/;"	m	struct:ubus_object_data	typeref:struct:ubus_object_data::blob_attr
+sock	include/libubus.h	/^	struct uloop_fd sock;$/;"	m	struct:ubus_context	typeref:struct:ubus_context::uloop_fd
+stack_depth	include/libubus.h	/^	int stack_depth;$/;"	m	struct:ubus_context
+status_cb	include/libubus.h	/^	ubus_notify_complete_handler_t status_cb;$/;"	m	struct:ubus_notify_request
+status_code	include/libubus.h	/^	int status_code;$/;"	m	struct:ubus_request
+status_msg	include/libubus.h	/^	bool status_msg;$/;"	m	struct:ubus_request
+subscribe_cb	include/libubus.h	/^	ubus_state_handler_t subscribe_cb;$/;"	m	struct:ubus_object
+timer	include/libubus.h	/^	struct uloop_timeout timer;$/;"	m	struct:ubus_auto_conn	typeref:struct:ubus_auto_conn::uloop_timeout
+type	include/libubus.h	/^	struct ubus_object_type *type;$/;"	m	struct:ubus_object	typeref:struct:ubus_object::ubus_object_type
+type_id	include/libubus.h	/^	uint32_t type_id;$/;"	m	struct:ubus_object_data
+ubus_add_uloop	include/libubus.h	/^static inline void ubus_add_uloop(struct ubus_context *ctx)$/;"	f
+ubus_auto_conn	include/libubus.h	/^struct ubus_auto_conn {$/;"	s
+ubus_complete_handler_t	include/libubus.h	/^typedef void (*ubus_complete_handler_t)(struct ubus_request *req, int ret);$/;"	t
+ubus_connect_handler_t	include/libubus.h	/^typedef void (*ubus_connect_handler_t)(struct ubus_context *ctx);$/;"	t
+ubus_context	include/libubus.h	/^struct ubus_context {$/;"	s
+ubus_data_handler_t	include/libubus.h	/^typedef void (*ubus_data_handler_t)(struct ubus_request *req,$/;"	t
+ubus_defer_request	include/libubus.h	/^static inline void ubus_defer_request(struct ubus_context *ctx,$/;"	f
+ubus_event_handler	include/libubus.h	/^struct ubus_event_handler {$/;"	s
+ubus_event_handler_t	include/libubus.h	/^typedef void (*ubus_event_handler_t)(struct ubus_context *ctx, struct ubus_event_handler *ev,$/;"	t
+ubus_fd_handler_t	include/libubus.h	/^typedef void (*ubus_fd_handler_t)(struct ubus_request *req, int fd);$/;"	t
+ubus_handle_event	include/libubus.h	/^static inline void ubus_handle_event(struct ubus_context *ctx)$/;"	f
+ubus_handler_t	include/libubus.h	/^typedef int (*ubus_handler_t)(struct ubus_context *ctx, struct ubus_object *obj,$/;"	t
+ubus_lookup_handler_t	include/libubus.h	/^typedef void (*ubus_lookup_handler_t)(struct ubus_context *ctx,$/;"	t
+ubus_method	include/libubus.h	/^struct ubus_method {$/;"	s
+ubus_msghdr_buf	include/libubus.h	/^struct ubus_msghdr_buf {$/;"	s
+ubus_notify_complete_handler_t	include/libubus.h	/^typedef void (*ubus_notify_complete_handler_t)(struct ubus_notify_request *req,$/;"	t
+ubus_notify_request	include/libubus.h	/^struct ubus_notify_request {$/;"	s
+ubus_object	include/libubus.h	/^struct ubus_object {$/;"	s
+ubus_object_data	include/libubus.h	/^struct ubus_object_data {$/;"	s
+ubus_object_type	include/libubus.h	/^struct ubus_object_type {$/;"	s
+ubus_remove_handler_t	include/libubus.h	/^typedef void (*ubus_remove_handler_t)(struct ubus_context *ctx,$/;"	t
+ubus_request	include/libubus.h	/^struct ubus_request {$/;"	s
+ubus_request_data	include/libubus.h	/^struct ubus_request_data {$/;"	s
+ubus_request_set_fd	include/libubus.h	/^static inline void ubus_request_set_fd(struct ubus_context *ctx,$/;"	f
+ubus_state_handler_t	include/libubus.h	/^typedef void (*ubus_state_handler_t)(struct ubus_context *ctx, struct ubus_object *obj);$/;"	t
+ubus_subscriber	include/libubus.h	/^struct ubus_subscriber {$/;"	s
+ubus_unregister_event_handler	include/libubus.h	/^static inline int ubus_unregister_event_handler(struct ubus_context *ctx,$/;"	f
+ubus_unregister_subscriber	include/libubus.h	/^ubus_unregister_subscriber(struct ubus_context *ctx, struct ubus_subscriber *obj)$/;"	f
+LH_EMPTY	include/linkhash.h	37;"	d
+LH_FREED	include/linkhash.h	42;"	d
+LH_LOAD_FACTOR	include/linkhash.h	32;"	d
+LH_PRIME	include/linkhash.h	25;"	d
+_linkhash_h_	include/linkhash.h	14;"	d
+collisions	include/linkhash.h	/^	int collisions;$/;"	m	struct:lh_table
+count	include/linkhash.h	/^	int count;$/;"	m	struct:lh_table
+deletes	include/linkhash.h	/^	int deletes;$/;"	m	struct:lh_table
+equal_fn	include/linkhash.h	/^	lh_equal_fn *equal_fn;$/;"	m	struct:lh_table
+free_fn	include/linkhash.h	/^	lh_entry_free_fn *free_fn;$/;"	m	struct:lh_table
+hash_fn	include/linkhash.h	/^	lh_hash_fn *hash_fn;$/;"	m	struct:lh_table
+head	include/linkhash.h	/^	struct lh_entry *head;$/;"	m	struct:lh_table	typeref:struct:lh_table::lh_entry
+inserts	include/linkhash.h	/^	int inserts;$/;"	m	struct:lh_table
+k	include/linkhash.h	/^	void *k;$/;"	m	struct:lh_entry
+lh_entry	include/linkhash.h	/^struct lh_entry {$/;"	s
+lh_entry_free_fn	include/linkhash.h	/^typedef void (lh_entry_free_fn) (struct lh_entry *e);$/;"	t
+lh_equal_fn	include/linkhash.h	/^typedef int (lh_equal_fn) (const void *k1, const void *k2);$/;"	t
+lh_foreach	include/linkhash.h	159;"	d
+lh_foreach_safe	include/linkhash.h	165;"	d
+lh_hash_fn	include/linkhash.h	/^typedef unsigned long (lh_hash_fn) (const void *k);$/;"	t
+lh_table	include/linkhash.h	/^struct lh_table {$/;"	s
+lookups	include/linkhash.h	/^	int lookups;$/;"	m	struct:lh_table
+name	include/linkhash.h	/^	const char *name;$/;"	m	struct:lh_table
+next	include/linkhash.h	/^	struct lh_entry *next;$/;"	m	struct:lh_entry	typeref:struct:lh_entry::lh_entry
+prev	include/linkhash.h	/^	struct lh_entry *prev;$/;"	m	struct:lh_entry	typeref:struct:lh_entry::lh_entry
+resizes	include/linkhash.h	/^	int resizes;$/;"	m	struct:lh_table
+size	include/linkhash.h	/^	int size;$/;"	m	struct:lh_table
+table	include/linkhash.h	/^	struct lh_entry *table;$/;"	m	struct:lh_table	typeref:struct:lh_table::lh_entry
+tail	include/linkhash.h	/^	struct lh_entry *tail;$/;"	m	struct:lh_table	typeref:struct:lh_table::lh_entry
+v	include/linkhash.h	/^	const void *v;$/;"	m	struct:lh_entry
+INIT_LIST_HEAD	include/list.h	/^INIT_LIST_HEAD(struct list_head *list)$/;"	f
+LIST_HEAD	include/list.h	51;"	d
+LIST_HEAD	include/list.h	52;"	d
+LIST_HEAD_INIT	include/list.h	50;"	d
+_LINUX_LIST_H_	include/list.h	30;"	d
+_list_add	include/list.h	/^_list_add(struct list_head *_new, struct list_head *prev,$/;"	f
+_list_del	include/list.h	/^_list_del(struct list_head *entry)$/;"	f
+_list_splice	include/list.h	/^_list_splice(const struct list_head *list, struct list_head *prev,$/;"	f
+container_of	include/list.h	38;"	d
+list_add	include/list.h	/^list_add(struct list_head *_new, struct list_head *head)$/;"	f
+list_add_tail	include/list.h	/^list_add_tail(struct list_head *_new, struct list_head *head)$/;"	f
+list_del	include/list.h	/^list_del(struct list_head *entry)$/;"	f
+list_del_init	include/list.h	/^list_del_init(struct list_head *entry)$/;"	f
+list_empty	include/list.h	/^list_empty(const struct list_head *head)$/;"	f
+list_entry	include/list.h	112;"	d
+list_first_entry	include/list.h	113;"	d
+list_for_each	include/list.h	116;"	d
+list_for_each_entry	include/list.h	122;"	d
+list_for_each_entry_reverse	include/list.h	131;"	d
+list_for_each_entry_safe	include/list.h	126;"	d
+list_for_each_prev	include/list.h	135;"	d
+list_for_each_prev_safe	include/list.h	136;"	d
+list_for_each_safe	include/list.h	119;"	d
+list_head	include/list.h	/^struct list_head {$/;"	s
+list_is_first	include/list.h	/^list_is_first(const struct list_head *list,$/;"	f
+list_is_last	include/list.h	/^list_is_last(const struct list_head *list,$/;"	f
+list_last_entry	include/list.h	114;"	d
+list_move	include/list.h	/^list_move(struct list_head *list, struct list_head *head)$/;"	f
+list_move_tail	include/list.h	/^list_move_tail(struct list_head *entry, struct list_head *head)$/;"	f
+list_splice	include/list.h	/^list_splice(const struct list_head *list, struct list_head *head)$/;"	f
+list_splice_init	include/list.h	/^list_splice_init(struct list_head *list, struct list_head *head)$/;"	f
+list_splice_tail	include/list.h	/^list_splice_tail(struct list_head *list, struct list_head *head)$/;"	f
+list_splice_tail_init	include/list.h	/^list_splice_tail_init(struct list_head *list, struct list_head *head)$/;"	f
+next	include/list.h	/^	struct list_head *next;$/;"	m	struct:list_head	typeref:struct:list_head::list_head
+prefetch	include/list.h	35;"	d
+prev	include/list.h	/^	struct list_head *prev;$/;"	m	struct:list_head	typeref:struct:list_head::list_head
+__LIST_COMPAT_H	include/list_compat.h	18;"	d
+list_add_after	include/list_compat.h	24;"	d
+list_add_before	include/list_compat.h	25;"	d
+list_add_head	include/list_compat.h	23;"	d
+list_entity	include/list_compat.h	20;"	d
+list_init_head	include/list_compat.h	22;"	d
+list_is_empty	include/list_compat.h	27;"	d
+list_next_element	include/list_compat.h	28;"	d
+list_remove	include/list_compat.h	26;"	d
+A	include/md5.h	/^	uint32_t A;$/;"	m	struct:md5_ctx
+B	include/md5.h	/^	uint32_t B;$/;"	m	struct:md5_ctx
+C	include/md5.h	/^	uint32_t C;$/;"	m	struct:md5_ctx
+D	include/md5.h	/^	uint32_t D;$/;"	m	struct:md5_ctx
+__PROCD_MD5_H	include/md5.h	16;"	d
+buffer	include/md5.h	/^	char buffer[128];$/;"	m	struct:md5_ctx
+buflen	include/md5.h	/^	uint32_t buflen;$/;"	m	struct:md5_ctx
+md5_ctx	include/md5.h	/^typedef struct md5_ctx {$/;"	s
+md5_ctx_t	include/md5.h	/^} md5_ctx_t;$/;"	t	typeref:struct:md5_ctx
+total	include/md5.h	/^	uint64_t total;$/;"	m	struct:md5_ctx
+_printbuf_h_	include/printbuf.h	17;"	d
+bpos	include/printbuf.h	/^  int bpos;$/;"	m	struct:printbuf
+buf	include/printbuf.h	/^  char *buf;$/;"	m	struct:printbuf
+printbuf	include/printbuf.h	/^struct printbuf {$/;"	s
+printbuf_length	include/printbuf.h	51;"	d
+printbuf_memappend_fast	include/printbuf.h	42;"	d
+size	include/printbuf.h	/^  int size;$/;"	m	struct:printbuf
+__LIBUBOX_RUNQUEUE_H	include/runqueue.h	20;"	d
+cancel	include/runqueue.h	/^	void (*cancel)(struct runqueue *q, struct runqueue_task *t, int type);$/;"	m	struct:runqueue_task_type
+cancel_timeout	include/runqueue.h	/^	int cancel_timeout;$/;"	m	struct:runqueue_task
+cancel_type	include/runqueue.h	/^	int cancel_type;$/;"	m	struct:runqueue_task
+cancelled	include/runqueue.h	/^	bool cancelled;$/;"	m	struct:runqueue_task
+complete	include/runqueue.h	/^	void (*complete)(struct runqueue *q, struct runqueue_task *t);$/;"	m	struct:runqueue_task
+empty	include/runqueue.h	/^	bool empty;$/;"	m	struct:runqueue
+empty_cb	include/runqueue.h	/^	void (*empty_cb)(struct runqueue *q);$/;"	m	struct:runqueue
+kill	include/runqueue.h	/^	void (*kill)(struct runqueue *q, struct runqueue_task *t);$/;"	m	struct:runqueue_task_type
+list	include/runqueue.h	/^	struct safe_list list;$/;"	m	struct:runqueue_task	typeref:struct:runqueue_task::safe_list
+max_running_tasks	include/runqueue.h	/^	int max_running_tasks;$/;"	m	struct:runqueue
+name	include/runqueue.h	/^	const char *name;$/;"	m	struct:runqueue_task_type
+proc	include/runqueue.h	/^	struct uloop_process proc;$/;"	m	struct:runqueue_process	typeref:struct:runqueue_process::uloop_process
+q	include/runqueue.h	/^	struct runqueue *q;$/;"	m	struct:runqueue_task	typeref:struct:runqueue_task::runqueue
+queued	include/runqueue.h	/^	bool queued;$/;"	m	struct:runqueue_task
+run	include/runqueue.h	/^	void (*run)(struct runqueue *q, struct runqueue_task *t);$/;"	m	struct:runqueue_task_type
+run_timeout	include/runqueue.h	/^	int run_timeout;$/;"	m	struct:runqueue_task
+running	include/runqueue.h	/^	bool running;$/;"	m	struct:runqueue_task
+running_tasks	include/runqueue.h	/^	int running_tasks;$/;"	m	struct:runqueue
+runqueue	include/runqueue.h	/^struct runqueue {$/;"	s
+runqueue_process	include/runqueue.h	/^struct runqueue_process {$/;"	s
+runqueue_task	include/runqueue.h	/^struct runqueue_task {$/;"	s
+runqueue_task_type	include/runqueue.h	/^struct runqueue_task_type {$/;"	s
+stopped	include/runqueue.h	/^	bool stopped;$/;"	m	struct:runqueue
+task	include/runqueue.h	/^	struct runqueue_task task;$/;"	m	struct:runqueue_process	typeref:struct:runqueue_process::runqueue_task
+tasks_active	include/runqueue.h	/^	struct safe_list tasks_active;$/;"	m	struct:runqueue	typeref:struct:runqueue::safe_list
+tasks_inactive	include/runqueue.h	/^	struct safe_list tasks_inactive;$/;"	m	struct:runqueue	typeref:struct:runqueue::safe_list
+timeout	include/runqueue.h	/^	struct uloop_timeout timeout;$/;"	m	struct:runqueue	typeref:struct:runqueue::uloop_timeout
+timeout	include/runqueue.h	/^	struct uloop_timeout timeout;$/;"	m	struct:runqueue_task	typeref:struct:runqueue_task::uloop_timeout
+type	include/runqueue.h	/^	const struct runqueue_task_type *type;$/;"	m	struct:runqueue_task	typeref:struct:runqueue_task::runqueue_task_type
+INIT_SAFE_LIST	include/safe_list.h	48;"	d
+SAFE_LIST	include/safe_list.h	55;"	d
+SAFE_LIST_INIT	include/safe_list.h	54;"	d
+__LIBUBOX_SAFE_LIST_H	include/safe_list.h	26;"	d
+i	include/safe_list.h	/^	struct safe_list_iterator *i;$/;"	m	struct:safe_list	typeref:struct:safe_list::safe_list_iterator
+list	include/safe_list.h	/^	struct list_head list;$/;"	m	struct:safe_list	typeref:struct:safe_list::list_head
+safe_list	include/safe_list.h	/^struct safe_list {$/;"	s
+safe_list_empty	include/safe_list.h	/^static inline bool safe_list_empty(struct safe_list *head)$/;"	f
+TRAFFICD_ASSOC_EVENT	include/system.h	9;"	d
+TRAFFICD_DISASSOC_EVENT	include/system.h	8;"	d
+__TRAFFICD_SYSTEM_H	include/system.h	6;"	d
+event_type	include/system.h	/^	int event_type;$/;"	m	struct:trafficd_iwevent
+hwa	include/system.h	/^	char hwa[HWAMAXLEN];$/;"	m	struct:trafficd_iwevent
+ifname	include/system.h	/^	char ifname[IFNAMSIZ];$/;"	m	struct:trafficd_iwevent
+trafficd_iwevent	include/system.h	/^struct trafficd_iwevent$/;"	s
+D	include/trafficd.h	169;"	d
+D	include/trafficd.h	175;"	d
+DEBUG_BR	include/trafficd.h	/^	DEBUG_BR	= 3,	\/\/ 8$/;"	e	enum:__anon3
+DEBUG_BUS	include/trafficd.h	/^	DEBUG_BUS	= 8,	\/\/ 256$/;"	e	enum:__anon3
+DEBUG_CONF	include/trafficd.h	/^	DEBUG_CONF	= 7,	\/\/ 128$/;"	e	enum:__anon3
+DEBUG_DEV	include/trafficd.h	/^	DEBUG_DEV	= 4,	\/\/ 16$/;"	e	enum:__anon3
+DEBUG_EVENT	include/trafficd.h	/^	DEBUG_EVENT	= 6,	\/\/ 64$/;"	e	enum:__anon3
+DEBUG_HW	include/trafficd.h	/^	DEBUG_HW	= 2,	\/\/ 4$/;"	e	enum:__anon3
+DEBUG_IP	include/trafficd.h	/^	DEBUG_IP	= 1,	\/\/ 2$/;"	e	enum:__anon3
+DEBUG_POINT	include/trafficd.h	/^	DEBUG_POINT	= 5,	\/\/ 32$/;"	e	enum:__anon3
+DEBUG_SYSTEM	include/trafficd.h	/^	DEBUG_SYSTEM	= 0,$/;"	e	enum:__anon3
+DEFAULT_LOG_LEVEL	include/trafficd.h	26;"	d
+DEVMAXLEN	include/trafficd.h	34;"	d
+DPRINTF	include/trafficd.h	168;"	d
+DPRINTF	include/trafficd.h	174;"	d
+HOSTNAMSIZ	include/trafficd.h	36;"	d
+HWAMAXLEN	include/trafficd.h	31;"	d
+IPACCOUNT_LAN_TABLE_NAME	include/trafficd.h	59;"	d
+IPAMAXLEN	include/trafficd.h	32;"	d
+L_CRIT	include/trafficd.h	/^	L_CRIT,$/;"	e	enum:__anon1
+L_DEBUG	include/trafficd.h	/^	L_DEBUG$/;"	e	enum:__anon1
+L_ERR	include/trafficd.h	/^	L_ERR,$/;"	e	enum:__anon1
+L_INFO	include/trafficd.h	/^	L_INFO,$/;"	e	enum:__anon1
+L_NOTICE	include/trafficd.h	/^	L_NOTICE,$/;"	e	enum:__anon1
+L_WARNING	include/trafficd.h	/^	L_WARNING,$/;"	e	enum:__anon1
+PATHMAXLEN	include/trafficd.h	37;"	d
+POINTSMAXLEN	include/trafficd.h	35;"	d
+PORTMAXLEN	include/trafficd.h	33;"	d
+PROC_MAT_TABLE_FILE	include/trafficd.h	28;"	d
+P_INSTANT	include/trafficd.h	/^	P_INSTANT$/;"	e	enum:__anon2
+P_NONE	include/trafficd.h	/^	P_NONE = 0,$/;"	e	enum:__anon2
+TBUS_LISENT_EVENT	include/trafficd.h	62;"	d
+TBUS_SERVER_ADDR	include/trafficd.h	61;"	d
+TRAFFICD_BR_LOOP_TIME	include/trafficd.h	51;"	d
+TRAFFICD_CLI_TIMEOUT1	include/trafficd.h	54;"	d
+TRAFFICD_CLI_TIMEOUT2	include/trafficd.h	55;"	d
+TRAFFICD_GUEST_2G	include/trafficd.h	46;"	d
+TRAFFICD_HW_LOGSIZE	include/trafficd.h	41;"	d
+TRAFFICD_HW_LOOP_TIME	include/trafficd.h	50;"	d
+TRAFFICD_HW_RECYCLE_PERCENT	include/trafficd.h	42;"	d
+TRAFFICD_HW_SIZELIMIT	include/trafficd.h	40;"	d
+TRAFFICD_IF_2G	include/trafficd.h	44;"	d
+TRAFFICD_IF_5G	include/trafficd.h	45;"	d
+TRAFFICD_IP_LOOP_TIME	include/trafficd.h	49;"	d
+TRAFFICD_KV_SIZELIMIT	include/trafficd.h	39;"	d
+TRAFFICD_LISTEN_ADDR	include/trafficd.h	64;"	d
+TRAFFICD_LISTEN_PORT	include/trafficd.h	63;"	d
+TRAFFICD_VERSION	include/trafficd.h	25;"	d
+TRAFFICD_WIFIAP_LOOP_TIME	include/trafficd.h	52;"	d
+TR_MAX	include/trafficd.h	161;"	d
+TR_REFRESH_TIME	include/trafficd.h	162;"	d
+UBUS_UNIX_SOCKET	include/trafficd.h	29;"	d
+WAN_RATE_SIZE	include/trafficd.h	57;"	d
+__TRAFFICD__	include/trafficd.h	7;"	d
+__trafficd_H	include/trafficd.h	6;"	d
+ap_hw	include/trafficd.h	/^	char ap_hw[HWAMAXLEN];$/;"	m	struct:trafficd_sys
+assoc_pending	include/trafficd.h	/^	bool assoc_pending;$/;"	m	struct:trafficd_sys
+bd	include/trafficd.h	/^	struct trafficd_br_data *bd;$/;"	m	struct:trafficd_sys	typeref:struct:trafficd_sys::trafficd_br_data
+br_guest	include/trafficd.h	/^	char br_guest[IFNAMSIZ];$/;"	m	struct:trafficd_cfg
+br_guest_on	include/trafficd.h	/^	bool br_guest_on;$/;"	m	struct:trafficd_cfg
+br_lan	include/trafficd.h	/^	char br_lan[IFNAMSIZ];$/;"	m	struct:trafficd_cfg
+br_lan_on	include/trafficd.h	/^	bool br_lan_on;$/;"	m	struct:trafficd_cfg
+br_looptime	include/trafficd.h	/^	uint32_t br_looptime;$/;"	m	struct:trafficd_cfg
+cfg	include/trafficd.h	/^	struct trafficd_cfg cfg;$/;"	m	struct:trafficd_sys	typeref:struct:trafficd_sys::trafficd_cfg
+dlog	include/trafficd.h	178;"	d
+elog	include/trafficd.h	180;"	d
+guest_2g	include/trafficd.h	/^	char guest_2g[IFNAMSIZ];$/;"	m	struct:trafficd_cfg
+guest_2g_on	include/trafficd.h	/^	bool guest_2g_on;$/;"	m	struct:trafficd_cfg
+hd	include/trafficd.h	/^	struct trafficd_hw_data *hd;$/;"	m	struct:trafficd_sys	typeref:struct:trafficd_sys::trafficd_hw_data
+hw_looptime	include/trafficd.h	/^	uint32_t hw_looptime;$/;"	m	struct:trafficd_cfg
+hw_recycle	include/trafficd.h	/^	uint32_t hw_recycle;$/;"	m	struct:trafficd_cfg
+hw_recycle_percent	include/trafficd.h	/^	uint32_t hw_recycle_percent;$/;"	m	struct:trafficd_cfg
+hw_size	include/trafficd.h	/^	uint32_t hw_size;$/;"	m	struct:trafficd_sys
+hw_sizelimit	include/trafficd.h	/^	uint32_t hw_sizelimit;$/;"	m	struct:trafficd_cfg
+hwnat_on	include/trafficd.h	/^	bool hwnat_on;$/;"	m	struct:trafficd_sys
+id	include/trafficd.h	/^	struct trafficd_ip_data *id;$/;"	m	struct:trafficd_sys	typeref:struct:trafficd_sys::trafficd_ip_data
+if_2g	include/trafficd.h	/^	char if_2g[IFNAMSIZ];$/;"	m	struct:trafficd_cfg
+if_2g_on	include/trafficd.h	/^	bool if_2g_on;$/;"	m	struct:trafficd_cfg
+if_5g	include/trafficd.h	/^	char if_5g[IFNAMSIZ];$/;"	m	struct:trafficd_cfg
+if_5g_on	include/trafficd.h	/^	bool if_5g_on;$/;"	m	struct:trafficd_cfg
+ip_looptime	include/trafficd.h	/^	uint32_t ip_looptime;$/;"	m	struct:trafficd_cfg
+is_router	include/trafficd.h	/^	bool is_router;$/;"	m	struct:trafficd_cfg
+is_wifiap	include/trafficd.h	/^	bool is_wifiap;$/;"	m	struct:trafficd_cfg
+lan_gw	include/trafficd.h	/^	char lan_gw[IPAMAXLEN];$/;"	m	struct:trafficd_cfg
+log_file	include/trafficd.h	/^	char log_file[PATHMAXLEN];$/;"	m	struct:trafficd_cfg
+nlog	include/trafficd.h	179;"	d
+no_debug	include/trafficd.h	/^static inline void no_debug(int level, const char *fmt, ...)$/;"	f
+tbus_ctx	include/trafficd.h	/^	struct ubus_context *tbus_ctx;$/;"	m	struct:trafficd_sys	typeref:struct:trafficd_sys::ubus_context
+tbus_listen_address	include/trafficd.h	/^	char *tbus_listen_address;$/;"	m	struct:trafficd_cfg
+tbus_listen_event	include/trafficd.h	/^	char tbus_listen_event[PATHMAXLEN];$/;"	m	struct:trafficd_cfg
+tbus_listen_port	include/trafficd.h	/^	uint16_t tbus_listen_port;$/;"	m	struct:trafficd_cfg
+trafficd_cfg	include/trafficd.h	/^struct trafficd_cfg{$/;"	s
+trafficd_sys	include/trafficd.h	/^struct trafficd_sys{$/;"	s
+tv	include/trafficd.h	/^	struct timeval tv;$/;"	m	struct:trafficd_sys	typeref:struct:trafficd_sys::timeval
+ubus_socket	include/trafficd.h	/^	char ubus_socket[PATHMAXLEN];$/;"	m	struct:trafficd_cfg
+uptime	include/trafficd.h	/^	double uptime;$/;"	m	struct:trafficd_sys
+use_syslog	include/trafficd.h	/^	bool use_syslog;$/;"	m	struct:trafficd_cfg
+version	include/trafficd.h	/^	uint32_t version;$/;"	m	struct:trafficd_cfg
+wan_gw	include/trafficd.h	/^	char wan_gw[IPAMAXLEN];$/;"	m	struct:trafficd_cfg
+C2S_EVENT	include/ubus.h	/^	C2S_EVENT,$/;"	e	enum:__anon5
+C2S_HW	include/ubus.h	/^	C2S_HW,$/;"	e	enum:__anon5
+C2S_IFNAME	include/ubus.h	/^	C2S_IFNAME,$/;"	e	enum:__anon5
+C2S_IP	include/ubus.h	/^	C2S_IP,$/;"	e	enum:__anon5
+C2S_MAT	include/ubus.h	/^	C2S_MAT,$/;"	e	enum:__anon5
+C2S_TABLE	include/ubus.h	/^	C2S_TABLE,$/;"	e	enum:__anon5
+__C2S_MAX	include/ubus.h	/^	__C2S_MAX,$/;"	e	enum:__anon5
+__TRAFFICD_UBUS_H	include/ubus.h	6;"	d
+c2s_policy	include/ubus.h	/^static const struct blobmsg_policy c2s_policy[__C2S_MAX] = {$/;"	v	typeref:struct:blobmsg_policy
+ARRAY_SIZE	include/ubus_common.h	21;"	d
+UBUS_SIGNATURE_END	include/ubus_common.h	18;"	d
+UBUS_SIGNATURE_METHOD	include/ubus_common.h	17;"	d
+__UBUS_COMMON_H	include/ubus_common.h	15;"	d
+__init	include/ubus_common.h	24;"	d
+UBUS_ATTR_ACTIVE	include/ubusmsg.h	/^	UBUS_ATTR_ACTIVE,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_DATA	include/ubusmsg.h	/^	UBUS_ATTR_DATA,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_MAX	include/ubusmsg.h	/^	UBUS_ATTR_MAX,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_METHOD	include/ubusmsg.h	/^	UBUS_ATTR_METHOD,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_NO_REPLY	include/ubusmsg.h	/^	UBUS_ATTR_NO_REPLY,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_OBJID	include/ubusmsg.h	/^	UBUS_ATTR_OBJID,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_OBJPATH	include/ubusmsg.h	/^	UBUS_ATTR_OBJPATH,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_OBJTYPE	include/ubusmsg.h	/^	UBUS_ATTR_OBJTYPE,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_SIGNATURE	include/ubusmsg.h	/^	UBUS_ATTR_SIGNATURE,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_STATUS	include/ubusmsg.h	/^	UBUS_ATTR_STATUS,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_SUBSCRIBERS	include/ubusmsg.h	/^	UBUS_ATTR_SUBSCRIBERS,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_TARGET	include/ubusmsg.h	/^	UBUS_ATTR_TARGET,$/;"	e	enum:ubus_msg_attr
+UBUS_ATTR_UNSPEC	include/ubusmsg.h	/^	UBUS_ATTR_UNSPEC,$/;"	e	enum:ubus_msg_attr
+UBUS_MSG_ADD_OBJECT	include/ubusmsg.h	/^	UBUS_MSG_ADD_OBJECT,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_CHUNK_SIZE	include/ubusmsg.h	27;"	d
+UBUS_MSG_DATA	include/ubusmsg.h	/^	UBUS_MSG_DATA,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_HELLO	include/ubusmsg.h	/^	UBUS_MSG_HELLO,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_INVOKE	include/ubusmsg.h	/^	UBUS_MSG_INVOKE,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_LOOKUP	include/ubusmsg.h	/^	UBUS_MSG_LOOKUP,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_NOTIFY	include/ubusmsg.h	/^	UBUS_MSG_NOTIFY,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_PING	include/ubusmsg.h	/^	UBUS_MSG_PING,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_REMOVE_OBJECT	include/ubusmsg.h	/^	UBUS_MSG_REMOVE_OBJECT,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_STATUS	include/ubusmsg.h	/^	UBUS_MSG_STATUS,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_SUBSCRIBE	include/ubusmsg.h	/^	UBUS_MSG_SUBSCRIBE,$/;"	e	enum:ubus_msg_type
+UBUS_MSG_UNSUBSCRIBE	include/ubusmsg.h	/^	UBUS_MSG_UNSUBSCRIBE,$/;"	e	enum:ubus_msg_type
+UBUS_STATUS_CONNECTION_FAILED	include/ubusmsg.h	/^	UBUS_STATUS_CONNECTION_FAILED,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_INVALID_ARGUMENT	include/ubusmsg.h	/^	UBUS_STATUS_INVALID_ARGUMENT,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_INVALID_COMMAND	include/ubusmsg.h	/^	UBUS_STATUS_INVALID_COMMAND,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_METHOD_NOT_FOUND	include/ubusmsg.h	/^	UBUS_STATUS_METHOD_NOT_FOUND,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_NOT_FOUND	include/ubusmsg.h	/^	UBUS_STATUS_NOT_FOUND,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_NOT_SUPPORTED	include/ubusmsg.h	/^	UBUS_STATUS_NOT_SUPPORTED,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_NO_DATA	include/ubusmsg.h	/^	UBUS_STATUS_NO_DATA,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_OK	include/ubusmsg.h	/^	UBUS_STATUS_OK,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_PERMISSION_DENIED	include/ubusmsg.h	/^	UBUS_STATUS_PERMISSION_DENIED,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_TIMEOUT	include/ubusmsg.h	/^	UBUS_STATUS_TIMEOUT,$/;"	e	enum:ubus_msg_status
+UBUS_STATUS_UNKNOWN_ERROR	include/ubusmsg.h	/^	UBUS_STATUS_UNKNOWN_ERROR,$/;"	e	enum:ubus_msg_status
+UBUS_SYSTEM_OBJECT_EVENT	include/ubusmsg.h	29;"	d
+UBUS_SYSTEM_OBJECT_MAX	include/ubusmsg.h	30;"	d
+__UBUSMSG_H	include/ubusmsg.h	15;"	d
+__UBUS_MSG_LAST	include/ubusmsg.h	/^	__UBUS_MSG_LAST,$/;"	e	enum:ubus_msg_type
+__UBUS_STATUS_LAST	include/ubusmsg.h	/^	__UBUS_STATUS_LAST$/;"	e	enum:ubus_msg_status
+__packetdata	include/ubusmsg.h	/^} __packetdata;$/;"	v	typeref:struct:ubus_msghdr
+__packetdata	include/ubusmsg.h	25;"	d
+peer	include/ubusmsg.h	/^	uint32_t peer;$/;"	m	struct:ubus_msghdr
+seq	include/ubusmsg.h	/^	uint16_t seq;$/;"	m	struct:ubus_msghdr
+type	include/ubusmsg.h	/^	uint8_t type;$/;"	m	struct:ubus_msghdr
+ubus_msg_attr	include/ubusmsg.h	/^enum ubus_msg_attr {$/;"	g
+ubus_msg_status	include/ubusmsg.h	/^enum ubus_msg_status {$/;"	g
+ubus_msg_type	include/ubusmsg.h	/^enum ubus_msg_type {$/;"	g
+ubus_msghdr	include/ubusmsg.h	/^struct ubus_msghdr {$/;"	s
+version	include/ubusmsg.h	/^	uint8_t version;$/;"	m	struct:ubus_msghdr
+ULOOP_BLOCKING	include/uloop.h	53;"	d
+ULOOP_EDGE_DEFER	include/uloop.h	60;"	d
+ULOOP_EDGE_TRIGGER	include/uloop.h	52;"	d
+ULOOP_ERROR_CB	include/uloop.h	63;"	d
+ULOOP_EVENT_BUFFERED	include/uloop.h	58;"	d
+ULOOP_EVENT_MASK	include/uloop.h	55;"	d
+ULOOP_READ	include/uloop.h	50;"	d
+ULOOP_WRITE	include/uloop.h	51;"	d
+USE_EPOLL	include/uloop.h	37;"	d
+USE_KQUEUE	include/uloop.h	35;"	d
+USE_SELECT	include/uloop.h	33;"	d
+_ULOOP_H__	include/uloop.h	19;"	d
+cb	include/uloop.h	/^	uloop_fd_handler cb;$/;"	m	struct:uloop_fd
+cb	include/uloop.h	/^	uloop_process_handler cb;$/;"	m	struct:uloop_process
+cb	include/uloop.h	/^	uloop_timeout_handler cb;$/;"	m	struct:uloop_timeout
+eof	include/uloop.h	/^	bool eof;$/;"	m	struct:uloop_fd
+error	include/uloop.h	/^	bool error;$/;"	m	struct:uloop_fd
+fd	include/uloop.h	/^	int fd;$/;"	m	struct:uloop_fd
+flags	include/uloop.h	/^	uint8_t flags;$/;"	m	struct:uloop_fd
+list	include/uloop.h	/^	struct list_head list;$/;"	m	struct:uloop_process	typeref:struct:uloop_process::list_head
+list	include/uloop.h	/^	struct list_head list;$/;"	m	struct:uloop_timeout	typeref:struct:uloop_timeout::list_head
+pending	include/uloop.h	/^	bool pending;$/;"	m	struct:uloop_process
+pending	include/uloop.h	/^	bool pending;$/;"	m	struct:uloop_timeout
+pid	include/uloop.h	/^	pid_t pid;$/;"	m	struct:uloop_process
+registered	include/uloop.h	/^	bool registered;$/;"	m	struct:uloop_fd
+time	include/uloop.h	/^	struct timeval time;$/;"	m	struct:uloop_timeout	typeref:struct:uloop_timeout::timeval
+uloop_end	include/uloop.h	/^static inline void uloop_end(void)$/;"	f
+uloop_fd	include/uloop.h	/^struct uloop_fd$/;"	s
+uloop_fd_handler	include/uloop.h	/^typedef void (*uloop_fd_handler)(struct uloop_fd *u, unsigned int events);$/;"	t
+uloop_process	include/uloop.h	/^struct uloop_process$/;"	s
+uloop_process_handler	include/uloop.h	/^typedef void (*uloop_process_handler)(struct uloop_process *c, int ret);$/;"	t
+uloop_timeout	include/uloop.h	/^struct uloop_timeout$/;"	s
+uloop_timeout_handler	include/uloop.h	/^typedef void (*uloop_timeout_handler)(struct uloop_timeout *t);$/;"	t
+USOCK_H_	include/usock.h	20;"	d
+USOCK_IPV4ONLY	include/usock.h	30;"	d
+USOCK_IPV6ONLY	include/usock.h	29;"	d
+USOCK_NOCLOEXEC	include/usock.h	26;"	d
+USOCK_NONBLOCK	include/usock.h	27;"	d
+USOCK_NUMERIC	include/usock.h	28;"	d
+USOCK_SERVER	include/usock.h	25;"	d
+USOCK_TCP	include/usock.h	22;"	d
+USOCK_UDP	include/usock.h	23;"	d
+USOCK_UNIX	include/usock.h	31;"	d
+READ_BLOCKED_FULL	include/ustream.h	/^	READ_BLOCKED_FULL = (1 << 1),$/;"	e	enum:read_blocked_reason
+READ_BLOCKED_USER	include/ustream.h	/^	READ_BLOCKED_USER = (1 << 0),$/;"	e	enum:read_blocked_reason
+__USTREAM_H	include/ustream.h	20;"	d
+alloc	include/ustream.h	/^	int (*alloc)(struct ustream *s, struct ustream_buf_list *l);$/;"	m	struct:ustream_buf_list
+buffer_len	include/ustream.h	/^	int buffer_len;$/;"	m	struct:ustream_buf_list
+buffers	include/ustream.h	/^	int buffers;$/;"	m	struct:ustream_buf_list
+data	include/ustream.h	/^	char *data;$/;"	m	struct:ustream_buf
+data_bytes	include/ustream.h	/^	int data_bytes;$/;"	m	struct:ustream_buf_list
+data_tail	include/ustream.h	/^	struct ustream_buf *data_tail;$/;"	m	struct:ustream_buf_list	typeref:struct:ustream_buf_list::ustream_buf
+end	include/ustream.h	/^	char *end;$/;"	m	struct:ustream_buf
+eof	include/ustream.h	/^	bool eof, eof_write_done;$/;"	m	struct:ustream
+eof_write_done	include/ustream.h	/^	bool eof, eof_write_done;$/;"	m	struct:ustream
+fd	include/ustream.h	/^	struct uloop_fd fd;$/;"	m	struct:ustream_fd	typeref:struct:ustream_fd::uloop_fd
+free	include/ustream.h	/^	void (*free)(struct ustream *s);$/;"	m	struct:ustream
+head	include/ustream.h	/^	char head[];$/;"	m	struct:ustream_buf
+head	include/ustream.h	/^	struct ustream_buf *head;$/;"	m	struct:ustream_buf_list	typeref:struct:ustream_buf_list::ustream_buf
+max_buffers	include/ustream.h	/^	int max_buffers;$/;"	m	struct:ustream_buf_list
+min_buffers	include/ustream.h	/^	int min_buffers;$/;"	m	struct:ustream_buf_list
+next	include/ustream.h	/^	struct ustream *next;$/;"	m	struct:ustream	typeref:struct:ustream::ustream
+next	include/ustream.h	/^	struct ustream_buf *next;$/;"	m	struct:ustream_buf	typeref:struct:ustream_buf::ustream_buf
+notify_read	include/ustream.h	/^	void (*notify_read)(struct ustream *s, int bytes_new);$/;"	m	struct:ustream
+notify_state	include/ustream.h	/^	void (*notify_state)(struct ustream *s);$/;"	m	struct:ustream
+notify_write	include/ustream.h	/^	void (*notify_write)(struct ustream *s, int bytes);$/;"	m	struct:ustream
+poll	include/ustream.h	/^	bool (*poll)(struct ustream *s);$/;"	m	struct:ustream
+r	include/ustream.h	/^	struct ustream_buf_list r, w;$/;"	m	struct:ustream	typeref:struct:ustream::ustream_buf_list
+read_blocked	include/ustream.h	/^	enum read_blocked_reason read_blocked;$/;"	m	struct:ustream	typeref:enum:ustream::read_blocked_reason
+read_blocked_reason	include/ustream.h	/^enum read_blocked_reason {$/;"	g
+set_read_blocked	include/ustream.h	/^	void (*set_read_blocked)(struct ustream *s);$/;"	m	struct:ustream
+state_change	include/ustream.h	/^	struct uloop_timeout state_change;$/;"	m	struct:ustream	typeref:struct:ustream::uloop_timeout
+stream	include/ustream.h	/^	struct ustream stream;$/;"	m	struct:ustream_fd	typeref:struct:ustream_fd::ustream
+string_data	include/ustream.h	/^	bool string_data;$/;"	m	struct:ustream
+tail	include/ustream.h	/^	char *tail;$/;"	m	struct:ustream_buf
+tail	include/ustream.h	/^	struct ustream_buf *tail;$/;"	m	struct:ustream_buf_list	typeref:struct:ustream_buf_list::ustream_buf
+ustream	include/ustream.h	/^struct ustream {$/;"	s
+ustream_buf	include/ustream.h	/^struct ustream_buf {$/;"	s
+ustream_buf_list	include/ustream.h	/^struct ustream_buf_list {$/;"	s
+ustream_fd	include/ustream.h	/^struct ustream_fd {$/;"	s
+ustream_pending_data	include/ustream.h	/^static inline int ustream_pending_data(struct ustream *s, bool write)$/;"	f
+ustream_poll	include/ustream.h	/^static inline bool ustream_poll(struct ustream *s)$/;"	f
+ustream_read_blocked	include/ustream.h	/^static inline bool ustream_read_blocked(struct ustream *s)$/;"	f
+ustream_read_buf_full	include/ustream.h	/^static inline bool ustream_read_buf_full(struct ustream *s)$/;"	f
+ustream_state_change	include/ustream.h	/^static inline void ustream_state_change(struct ustream *s)$/;"	f
+w	include/ustream.h	/^	struct ustream_buf_list r, w;$/;"	m	struct:ustream	typeref:struct:ustream::
+write	include/ustream.h	/^	int (*write)(struct ustream *s, const char *buf, int len, bool more);$/;"	m	struct:ustream
+write_error	include/ustream.h	/^	bool write_error;$/;"	m	struct:ustream
+ARRAY_SIZE	include/utils.h	48;"	d
+BAD_OPEN_MESSAGE	include/utils.h	222;"	d
+BITS_PER_LONG	include/utils.h	177;"	d
+BUILD_BUG_ON	include/utils.h	57;"	d
+BUILD_BUG_ON	include/utils.h	64;"	d
+CLOCK_MONOTONIC	include/utils.h	72;"	d
+CLOCK_REALTIME	include/utils.h	71;"	d
+HIPQUAD	include/utils.h	302;"	d
+HIPQUAD_FMT	include/utils.h	307;"	d
+NIPQUAD	include/utils.h	293;"	d
+NIPQUAD_FMT	include/utils.h	298;"	d
+_GNUC_MIN_VER	include/utils.h	79;"	d
+_GNUC_MIN_VER	include/utils.h	81;"	d
+__BIG_ENDIAN	include/utils.h	107;"	d
+__BUILD_BUG_ON	include/utils.h	53;"	d
+__BYTE_ORDER	include/utils.h	104;"	d
+__LIBUBOX_UTILS_H	include/utils.h	21;"	d
+__LITTLE_ENDIAN	include/utils.h	110;"	d
+__STDC_FORMAT_MACROS	include/utils.h	200;"	d
+__TRAFFICD_UTILS_H	include/utils.h	199;"	d
+__constructor	include/utils.h	169;"	d
+__hidden	include/utils.h	173;"	d
+__init	include/utils.h	231;"	d
+__packed	include/utils.h	165;"	d
+__u_bswap16	include/utils.h	/^static inline uint16_t __u_bswap16(uint16_t val)$/;"	f
+__u_bswap32	include/utils.h	119;"	d
+__u_bswap32	include/utils.h	122;"	d
+__u_bswap64	include/utils.h	120;"	d
+__u_bswap64	include/utils.h	123;"	d
+be16_to_cpu	include/utils.h	134;"	d
+be16_to_cpu	include/utils.h	160;"	d
+be32_to_cpu	include/utils.h	133;"	d
+be32_to_cpu	include/utils.h	159;"	d
+be64_to_cpu	include/utils.h	132;"	d
+be64_to_cpu	include/utils.h	158;"	d
+bitfield_set	include/utils.h	/^static inline void bitfield_set(unsigned long *bits, int bit)$/;"	f
+bitfield_test	include/utils.h	/^static inline bool bitfield_test(unsigned long *bits, int bit)$/;"	f
+bswap_32	include/utils.h	91;"	d
+bswap_32	include/utils.h	95;"	d
+bswap_32	include/utils.h	99;"	d
+bswap_64	include/utils.h	100;"	d
+bswap_64	include/utils.h	92;"	d
+bswap_64	include/utils.h	96;"	d
+calloc_a	include/utils.h	43;"	d
+cpu_to_be16	include/utils.h	130;"	d
+cpu_to_be16	include/utils.h	156;"	d
+cpu_to_be32	include/utils.h	129;"	d
+cpu_to_be32	include/utils.h	155;"	d
+cpu_to_be64	include/utils.h	128;"	d
+cpu_to_be64	include/utils.h	154;"	d
+cpu_to_le16	include/utils.h	138;"	d
+cpu_to_le16	include/utils.h	148;"	d
+cpu_to_le32	include/utils.h	137;"	d
+cpu_to_le32	include/utils.h	147;"	d
+cpu_to_le64	include/utils.h	136;"	d
+cpu_to_le64	include/utils.h	146;"	d
+head_offset	include/utils.h	/^	int head_offset;$/;"	m	struct:vlist_simple_tree
+hw_is_local	include/utils.h	229;"	d
+le16_to_cpu	include/utils.h	142;"	d
+le16_to_cpu	include/utils.h	152;"	d
+le32_to_cpu	include/utils.h	141;"	d
+le32_to_cpu	include/utils.h	151;"	d
+le64_to_cpu	include/utils.h	140;"	d
+le64_to_cpu	include/utils.h	150;"	d
+list	include/utils.h	/^	struct list_head list;$/;"	m	struct:vlist_simple_node	typeref:struct:vlist_simple_node::list_head
+list	include/utils.h	/^	struct list_head list;$/;"	m	struct:vlist_simple_tree	typeref:struct:vlist_simple_tree::list_head
+s6_addr32	include/utils.h	286;"	d
+up2time	include/utils.h	228;"	d
+version	include/utils.h	/^	int version;$/;"	m	struct:vlist_simple_node
+version	include/utils.h	/^	int version;$/;"	m	struct:vlist_simple_tree
+vlist_for_each_element_safe	include/utils.h	244;"	d
+vlist_simple_add	include/utils.h	/^static inline void vlist_simple_add(struct vlist_simple_tree *tree, struct vlist_simple_node *node)$/;"	f
+vlist_simple_empty	include/utils.h	270;"	d
+vlist_simple_for_each_element	include/utils.h	267;"	d
+vlist_simple_init	include/utils.h	247;"	d
+vlist_simple_node	include/utils.h	/^struct vlist_simple_node {$/;"	s
+vlist_simple_tree	include/utils.h	/^struct vlist_simple_tree {$/;"	s
+vlist_simple_update	include/utils.h	/^static inline void vlist_simple_update(struct vlist_simple_tree *tree)$/;"	f
+__LIBUBOX_VLIST_H	include/vlist.h	18;"	d
+avl	include/vlist.h	/^	struct avl_node avl;$/;"	m	struct:vlist_node	typeref:struct:vlist_node::avl_node
+avl	include/vlist.h	/^	struct avl_tree avl;$/;"	m	struct:vlist_tree	typeref:struct:vlist_tree::avl_tree
+keep_old	include/vlist.h	/^	bool keep_old;$/;"	m	struct:vlist_tree
+no_delete	include/vlist.h	/^	bool no_delete;$/;"	m	struct:vlist_tree
+update	include/vlist.h	/^	vlist_update_cb update;$/;"	m	struct:vlist_tree
+version	include/vlist.h	/^	int version;$/;"	m	struct:vlist_node
+version	include/vlist.h	/^	int version;$/;"	m	struct:vlist_tree
+vlist_find	include/vlist.h	46;"	d
+vlist_for_each_element	include/vlist.h	59;"	d
+vlist_node	include/vlist.h	/^struct vlist_node {$/;"	s
+vlist_tree	include/vlist.h	/^struct vlist_tree {$/;"	s
+vlist_update	include/vlist.h	/^static inline void vlist_update(struct vlist_tree *tree)$/;"	f
+vlist_update_cb	include/vlist.h	/^typedef void (*vlist_update_cb)(struct vlist_tree *tree,$/;"	t
+CFLAGS	json-c-0.11/Makefile	/^CFLAGS = -I..\/include -g -O0$/;"	m
+OBJS	json-c-0.11/Makefile	/^OBJS = arraylist.o \\$/;"	m
+array_list_add	json-c-0.11/arraylist.c	/^array_list_add(struct array_list *arr, void *data)$/;"	f
+array_list_expand_internal	json-c-0.11/arraylist.c	/^static int array_list_expand_internal(struct array_list *arr, int max)$/;"	f	file:
+array_list_free	json-c-0.11/arraylist.c	/^array_list_free(struct array_list *arr)$/;"	f
+array_list_get_idx	json-c-0.11/arraylist.c	/^array_list_get_idx(struct array_list *arr, int i)$/;"	f
+array_list_length	json-c-0.11/arraylist.c	/^array_list_length(struct array_list *arr)$/;"	f
+array_list_new	json-c-0.11/arraylist.c	/^array_list_new(array_list_free_fn *free_fn)$/;"	f
+array_list_put_idx	json-c-0.11/arraylist.c	/^array_list_put_idx(struct array_list *arr, int idx, void *data)$/;"	f
+array_list_sort	json-c-0.11/arraylist.c	/^array_list_sort(struct array_list *arr, int(*sort_fn)(const void *, const void *))$/;"	f
+_debug	json-c-0.11/debug.c	/^static int _debug = 0;$/;"	v	file:
+_syslog	json-c-0.11/debug.c	/^static int _syslog = 0;$/;"	v	file:
+mc_abort	json-c-0.11/debug.c	/^void mc_abort(const char *msg, ...)$/;"	f
+mc_debug	json-c-0.11/debug.c	/^void mc_debug(const char *msg, ...)$/;"	f
+mc_error	json-c-0.11/debug.c	/^void mc_error(const char *msg, ...)$/;"	f
+mc_get_debug	json-c-0.11/debug.c	/^int mc_get_debug(void) { return _debug; }$/;"	f
+mc_info	json-c-0.11/debug.c	/^void mc_info(const char *msg, ...)$/;"	f
+mc_set_debug	json-c-0.11/debug.c	/^void mc_set_debug(int debug) { _debug = debug; }$/;"	f
+mc_set_syslog	json-c-0.11/debug.c	/^extern void mc_set_syslog(int syslog)$/;"	f
+json_c_version	json-c-0.11/json_c_version.c	/^const char *json_c_version(void)$/;"	f
+json_c_version_num	json-c-0.11/json_c_version.c	/^int json_c_version_num(void)$/;"	f
+indent	json-c-0.11/json_object.c	/^static void indent(struct printbuf *pb, int level, int flags)$/;"	f	file:
+json_escape_str	json-c-0.11/json_object.c	/^static int json_escape_str(struct printbuf *pb, char *str, int len)$/;"	f	file:
+json_hex_chars	json-c-0.11/json_object.c	/^const char *json_hex_chars = "0123456789abcdefABCDEF";$/;"	v
+json_number_chars	json-c-0.11/json_object.c	/^const char *json_number_chars = "0123456789.+-eE";$/;"	v
+json_object_array_add	json-c-0.11/json_object.c	/^int json_object_array_add(struct json_object *jso,struct json_object *val)$/;"	f
+json_object_array_delete	json-c-0.11/json_object.c	/^static void json_object_array_delete(struct json_object* jso)$/;"	f	file:
+json_object_array_entry_free	json-c-0.11/json_object.c	/^static void json_object_array_entry_free(void *data)$/;"	f	file:
+json_object_array_get_idx	json-c-0.11/json_object.c	/^struct json_object* json_object_array_get_idx(struct json_object *jso,$/;"	f
+json_object_array_length	json-c-0.11/json_object.c	/^int json_object_array_length(struct json_object *jso)$/;"	f
+json_object_array_put_idx	json-c-0.11/json_object.c	/^int json_object_array_put_idx(struct json_object *jso, int idx,$/;"	f
+json_object_array_sort	json-c-0.11/json_object.c	/^void json_object_array_sort(struct json_object *jso, int(*sort_fn)(const void *, const void *))$/;"	f
+json_object_array_to_json_string	json-c-0.11/json_object.c	/^static int json_object_array_to_json_string(struct json_object* jso,$/;"	f	file:
+json_object_array_to_json_string	json-c-0.11/json_object.c	/^static json_object_to_json_string_fn json_object_array_to_json_string;$/;"	v	file:
+json_object_boolean_to_json_string	json-c-0.11/json_object.c	/^static int json_object_boolean_to_json_string(struct json_object* jso,$/;"	f	file:
+json_object_boolean_to_json_string	json-c-0.11/json_object.c	/^static json_object_to_json_string_fn json_object_boolean_to_json_string;$/;"	v	file:
+json_object_double_to_json_string	json-c-0.11/json_object.c	/^static int json_object_double_to_json_string(struct json_object* jso,$/;"	f	file:
+json_object_double_to_json_string	json-c-0.11/json_object.c	/^static json_object_to_json_string_fn json_object_double_to_json_string;$/;"	v	file:
+json_object_fini	json-c-0.11/json_object.c	/^static void json_object_fini(void) {$/;"	f	file:
+json_object_generic_delete	json-c-0.11/json_object.c	/^static void json_object_generic_delete(struct json_object* jso)$/;"	f	file:
+json_object_get	json-c-0.11/json_object.c	/^extern struct json_object* json_object_get(struct json_object *jso)$/;"	f
+json_object_get_array	json-c-0.11/json_object.c	/^struct array_list* json_object_get_array(struct json_object *jso)$/;"	f
+json_object_get_boolean	json-c-0.11/json_object.c	/^json_bool json_object_get_boolean(struct json_object *jso)$/;"	f
+json_object_get_double	json-c-0.11/json_object.c	/^double json_object_get_double(struct json_object *jso)$/;"	f
+json_object_get_int	json-c-0.11/json_object.c	/^int32_t json_object_get_int(struct json_object *jso)$/;"	f
+json_object_get_int64	json-c-0.11/json_object.c	/^int64_t json_object_get_int64(struct json_object *jso)$/;"	f
+json_object_get_object	json-c-0.11/json_object.c	/^struct lh_table* json_object_get_object(struct json_object *jso)$/;"	f
+json_object_get_string	json-c-0.11/json_object.c	/^const char* json_object_get_string(struct json_object *jso)$/;"	f
+json_object_get_string_len	json-c-0.11/json_object.c	/^int json_object_get_string_len(struct json_object *jso)  {$/;"	f
+json_object_get_type	json-c-0.11/json_object.c	/^enum json_type json_object_get_type(struct json_object *jso)$/;"	f
+json_object_init	json-c-0.11/json_object.c	/^static void json_object_init(void) {$/;"	f	file:
+json_object_int_to_json_string	json-c-0.11/json_object.c	/^static int json_object_int_to_json_string(struct json_object* jso,$/;"	f	file:
+json_object_int_to_json_string	json-c-0.11/json_object.c	/^static json_object_to_json_string_fn json_object_int_to_json_string;$/;"	v	file:
+json_object_is_type	json-c-0.11/json_object.c	/^int json_object_is_type(struct json_object *jso, enum json_type type)$/;"	f
+json_object_lh_entry_free	json-c-0.11/json_object.c	/^static void json_object_lh_entry_free(struct lh_entry *ent)$/;"	f	file:
+json_object_new	json-c-0.11/json_object.c	/^static struct json_object* json_object_new(enum json_type o_type)$/;"	f	file:
+json_object_new_array	json-c-0.11/json_object.c	/^struct json_object* json_object_new_array(void)$/;"	f
+json_object_new_boolean	json-c-0.11/json_object.c	/^struct json_object* json_object_new_boolean(json_bool b)$/;"	f
+json_object_new_double	json-c-0.11/json_object.c	/^struct json_object* json_object_new_double(double d)$/;"	f
+json_object_new_int	json-c-0.11/json_object.c	/^struct json_object* json_object_new_int(int32_t i)$/;"	f
+json_object_new_int64	json-c-0.11/json_object.c	/^struct json_object* json_object_new_int64(int64_t i)$/;"	f
+json_object_new_object	json-c-0.11/json_object.c	/^struct json_object* json_object_new_object(void)$/;"	f
+json_object_new_string	json-c-0.11/json_object.c	/^struct json_object* json_object_new_string(const char *s)$/;"	f
+json_object_new_string_len	json-c-0.11/json_object.c	/^struct json_object* json_object_new_string_len(const char *s, int len)$/;"	f
+json_object_object_add	json-c-0.11/json_object.c	/^void json_object_object_add(struct json_object* jso, const char *key,$/;"	f
+json_object_object_del	json-c-0.11/json_object.c	/^void json_object_object_del(struct json_object* jso, const char *key)$/;"	f
+json_object_object_delete	json-c-0.11/json_object.c	/^static void json_object_object_delete(struct json_object* jso)$/;"	f	file:
+json_object_object_get	json-c-0.11/json_object.c	/^struct json_object* json_object_object_get(struct json_object* jso, const char *key)$/;"	f
+json_object_object_get_ex	json-c-0.11/json_object.c	/^json_bool json_object_object_get_ex(struct json_object* jso, const char *key, struct json_object **value)$/;"	f
+json_object_object_length	json-c-0.11/json_object.c	/^int json_object_object_length(struct json_object *jso)$/;"	f
+json_object_object_to_json_string	json-c-0.11/json_object.c	/^static int json_object_object_to_json_string(struct json_object* jso,$/;"	f	file:
+json_object_object_to_json_string	json-c-0.11/json_object.c	/^static json_object_to_json_string_fn json_object_object_to_json_string;$/;"	v	file:
+json_object_put	json-c-0.11/json_object.c	/^int json_object_put(struct json_object *jso)$/;"	f
+json_object_set_serializer	json-c-0.11/json_object.c	/^void json_object_set_serializer(json_object *jso,$/;"	f
+json_object_string_delete	json-c-0.11/json_object.c	/^static void json_object_string_delete(struct json_object* jso)$/;"	f	file:
+json_object_string_to_json_string	json-c-0.11/json_object.c	/^static int json_object_string_to_json_string(struct json_object* jso,$/;"	f	file:
+json_object_string_to_json_string	json-c-0.11/json_object.c	/^static json_object_to_json_string_fn json_object_string_to_json_string;$/;"	v	file:
+json_object_table	json-c-0.11/json_object.c	/^static struct lh_table *json_object_table;$/;"	v	typeref:struct:lh_table	file:
+json_object_to_json_string	json-c-0.11/json_object.c	/^const char* json_object_to_json_string(struct json_object *jso)$/;"	f
+json_object_to_json_string_ext	json-c-0.11/json_object.c	/^const char* json_object_to_json_string_ext(struct json_object *jso, int flags)$/;"	f
+strdup	json-c-0.11/json_object.c	31;"	d	file:
+json_object_iter_begin	json-c-0.11/json_object_iterator.c	/^json_object_iter_begin(struct json_object* obj)$/;"	f
+json_object_iter_end	json-c-0.11/json_object_iterator.c	/^json_object_iter_end(const struct json_object* obj)$/;"	f
+json_object_iter_equal	json-c-0.11/json_object_iterator.c	/^json_object_iter_equal(const struct json_object_iterator* iter1,$/;"	f
+json_object_iter_init_default	json-c-0.11/json_object_iterator.c	/^json_object_iter_init_default(void)$/;"	f
+json_object_iter_next	json-c-0.11/json_object_iterator.c	/^json_object_iter_next(struct json_object_iterator* iter)$/;"	f
+json_object_iter_peek_name	json-c-0.11/json_object_iterator.c	/^json_object_iter_peek_name(const struct json_object_iterator* iter)$/;"	f
+json_object_iter_peek_value	json-c-0.11/json_object_iterator.c	/^json_object_iter_peek_value(const struct json_object_iterator* iter)$/;"	f
+kObjectEndIterValue	json-c-0.11/json_object_iterator.c	/^static const void* kObjectEndIterValue = NULL;$/;"	v	file:
+ADVANCE_CHAR	json-c-0.11/json_tokener.c	234;"	d	file:
+DECODE_SURROGATE_PAIR	json-c-0.11/json_tokener.c	90;"	d	file:
+IS_HIGH_SURROGATE	json-c-0.11/json_tokener.c	88;"	d	file:
+IS_LOW_SURROGATE	json-c-0.11/json_tokener.c	89;"	d	file:
+PEEK_CHAR	json-c-0.11/json_tokener.c	219;"	d	file:
+current	json-c-0.11/json_tokener.c	198;"	d	file:
+json_false_str	json-c-0.11/json_tokener.c	/^static const char* json_false_str = "false";$/;"	v	file:
+json_null_str	json-c-0.11/json_tokener.c	/^static const char* json_null_str = "null";$/;"	v	file:
+json_tokener_error_desc	json-c-0.11/json_tokener.c	/^const char *json_tokener_error_desc(enum json_tokener_error jerr)$/;"	f
+json_tokener_errors	json-c-0.11/json_tokener.c	/^const char* json_tokener_errors[] = {$/;"	v
+json_tokener_free	json-c-0.11/json_tokener.c	/^void json_tokener_free(struct json_tokener *tok)$/;"	f
+json_tokener_get_error	json-c-0.11/json_tokener.c	/^enum json_tokener_error json_tokener_get_error(json_tokener *tok)$/;"	f
+json_tokener_new	json-c-0.11/json_tokener.c	/^struct json_tokener* json_tokener_new(void)$/;"	f
+json_tokener_new_ex	json-c-0.11/json_tokener.c	/^struct json_tokener* json_tokener_new_ex(int depth)$/;"	f
+json_tokener_parse	json-c-0.11/json_tokener.c	/^struct json_object* json_tokener_parse(const char *str)$/;"	f
+json_tokener_parse_ex	json-c-0.11/json_tokener.c	/^struct json_object* json_tokener_parse_ex(struct json_tokener *tok,$/;"	f
+json_tokener_parse_verbose	json-c-0.11/json_tokener.c	/^struct json_object* json_tokener_parse_verbose(const char *str, enum json_tokener_error *error)$/;"	f
+json_tokener_reset	json-c-0.11/json_tokener.c	/^void json_tokener_reset(struct json_tokener *tok)$/;"	f
+json_tokener_reset_level	json-c-0.11/json_tokener.c	/^static void json_tokener_reset_level(struct json_tokener *tok, int depth)$/;"	f	file:
+json_tokener_set_flags	json-c-0.11/json_tokener.c	/^void json_tokener_set_flags(struct json_tokener *tok, int flags)$/;"	f
+json_true_str	json-c-0.11/json_tokener.c	/^static const char* json_true_str = "true";$/;"	v	file:
+obj_field_name	json-c-0.11/json_tokener.c	199;"	d	file:
+saved_state	json-c-0.11/json_tokener.c	197;"	d	file:
+state	json-c-0.11/json_tokener.c	196;"	d	file:
+strdup	json-c-0.11/json_tokener.c	40;"	d	file:
+strncasecmp	json-c-0.11/json_tokener.c	47;"	d	file:
+strndup	json-c-0.11/json_tokener.c	/^char* strndup(const char* str, size_t n)$/;"	f
+utf8_replacement_char	json-c-0.11/json_tokener.c	/^static unsigned char utf8_replacement_char[3] = { 0xEF, 0xBF, 0xBD };$/;"	v	file:
+NELEM	json-c-0.11/json_util.c	277;"	d	file:
+WIN32_LEAN_AND_MEAN	json-c-0.11/json_util.c	40;"	d	file:
+json_object_from_file	json-c-0.11/json_util.c	/^struct json_object* json_object_from_file(const char *filename)$/;"	f
+json_object_to_file	json-c-0.11/json_util.c	/^int json_object_to_file(char *filename, struct json_object *obj)$/;"	f
+json_object_to_file_ext	json-c-0.11/json_util.c	/^int json_object_to_file_ext(char *filename, struct json_object *obj, int flags)$/;"	f
+json_parse_double	json-c-0.11/json_util.c	/^int json_parse_double(const char *buf, double *retval)$/;"	f
+json_parse_int64	json-c-0.11/json_util.c	/^int json_parse_int64(const char *buf, int64_t *retval)$/;"	f
+json_type_name	json-c-0.11/json_util.c	/^static const char* json_type_name[] = {$/;"	v	file:
+json_type_to_name	json-c-0.11/json_util.c	/^const char *json_type_to_name(enum json_type o_type)$/;"	f
+open	json-c-0.11/json_util.c	46;"	d	file:
+realloc	json-c-0.11/json_util.c	13;"	d	file:
+rpl_realloc	json-c-0.11/json_util.c	/^void* rpl_realloc(void* p, size_t n)$/;"	f
+snprintf	json-c-0.11/json_util.c	51;"	d	file:
+sscanf_is_broken	json-c-0.11/json_util.c	/^static int sscanf_is_broken = 0;$/;"	v	file:
+sscanf_is_broken_test	json-c-0.11/json_util.c	/^static void sscanf_is_broken_test()$/;"	f	file:
+sscanf_is_broken_testdone	json-c-0.11/json_util.c	/^static int sscanf_is_broken_testdone = 0;$/;"	v	file:
+__warn_references	json-c-0.11/libjson.c	12;"	d	file:
+__warn_references	json-c-0.11/libjson.c	16;"	d	file:
+lh_abort	json-c-0.11/linkhash.c	/^void lh_abort(const char *msg, ...)$/;"	f
+lh_char_equal	json-c-0.11/linkhash.c	/^int lh_char_equal(const void *k1, const void *k2)$/;"	f
+lh_char_hash	json-c-0.11/linkhash.c	/^unsigned long lh_char_hash(const void *k)$/;"	f
+lh_kchar_table_new	json-c-0.11/linkhash.c	/^struct lh_table* lh_kchar_table_new(int size, const char *name,$/;"	f
+lh_kptr_table_new	json-c-0.11/linkhash.c	/^struct lh_table* lh_kptr_table_new(int size, const char *name,$/;"	f
+lh_ptr_equal	json-c-0.11/linkhash.c	/^int lh_ptr_equal(const void *k1, const void *k2)$/;"	f
+lh_ptr_hash	json-c-0.11/linkhash.c	/^unsigned long lh_ptr_hash(const void *k)$/;"	f
+lh_table_delete	json-c-0.11/linkhash.c	/^int lh_table_delete(struct lh_table *t, const void *k)$/;"	f
+lh_table_delete_entry	json-c-0.11/linkhash.c	/^int lh_table_delete_entry(struct lh_table *t, struct lh_entry *e)$/;"	f
+lh_table_free	json-c-0.11/linkhash.c	/^void lh_table_free(struct lh_table *t)$/;"	f
+lh_table_insert	json-c-0.11/linkhash.c	/^int lh_table_insert(struct lh_table *t, void *k, const void *v)$/;"	f
+lh_table_length	json-c-0.11/linkhash.c	/^int lh_table_length(struct lh_table *t)$/;"	f
+lh_table_lookup	json-c-0.11/linkhash.c	/^const void* lh_table_lookup(struct lh_table *t, const void *k)$/;"	f
+lh_table_lookup_entry	json-c-0.11/linkhash.c	/^struct lh_entry* lh_table_lookup_entry(struct lh_table *t, const void *k)$/;"	f
+lh_table_lookup_ex	json-c-0.11/linkhash.c	/^json_bool lh_table_lookup_ex(struct lh_table* t, const void* k, void **v)$/;"	f
+lh_table_new	json-c-0.11/linkhash.c	/^struct lh_table* lh_table_new(int size, const char *name,$/;"	f
+lh_table_resize	json-c-0.11/linkhash.c	/^void lh_table_resize(struct lh_table *t, int new_size)$/;"	f
+main	json-c-0.11/main.c	/^int main(int argc,char **argv) {$/;"	f
+printbuf_extend	json-c-0.11/printbuf.c	/^static int printbuf_extend(struct printbuf *p, int min_size)$/;"	f	file:
+printbuf_free	json-c-0.11/printbuf.c	/^void printbuf_free(struct printbuf *p)$/;"	f
+printbuf_memappend	json-c-0.11/printbuf.c	/^int printbuf_memappend(struct printbuf *p, const char *buf, int size)$/;"	f
+printbuf_memset	json-c-0.11/printbuf.c	/^int printbuf_memset(struct printbuf *pb, int offset, int charvalue, int len)$/;"	f
+printbuf_new	json-c-0.11/printbuf.c	/^struct printbuf* printbuf_new(void)$/;"	f
+printbuf_reset	json-c-0.11/printbuf.c	/^void printbuf_reset(struct printbuf *p)$/;"	f
+sprintbuf	json-c-0.11/printbuf.c	/^int sprintbuf(struct printbuf *p, const char *msg, ...)$/;"	f
+vasprintf	json-c-0.11/printbuf.c	/^static int vasprintf(char **buf, const char *fmt, va_list ap)$/;"	f	file:
+vsnprintf	json-c-0.11/printbuf.c	112;"	d	file:
+CFLAGS	libubox-2014-03-18/Makefile	/^CFLAGS = -I..\/include -D__ECOS__$/;"	m
+JSON_OBJS	libubox-2014-03-18/Makefile	/^JSON_OBJS = \\$/;"	m
+LDFLAGS	libubox-2014-03-18/Makefile	/^LDFLAGS = -lrt -g -O0 #for clock_gettime$/;"	m
+OBJS	libubox-2014-03-18/Makefile	/^OBJS = avl.o \\$/;"	m
+avl_strcmp	libubox-2014-03-18/avl-cmp.c	/^avl_strcmp(const void *k1, const void *k2, void *ptr)$/;"	f
+avl_delete	libubox-2014-03-18/avl.c	/^avl_delete(struct avl_tree *tree, struct avl_node *node)$/;"	f
+avl_delete_worker	libubox-2014-03-18/avl.c	/^avl_delete_worker(struct avl_tree *tree, struct avl_node *node)$/;"	f	file:
+avl_find	libubox-2014-03-18/avl.c	/^avl_find(const struct avl_tree *tree, const void *key)$/;"	f
+avl_find_greaterequal	libubox-2014-03-18/avl.c	/^avl_find_greaterequal(const struct avl_tree *tree, const void *key) {$/;"	f
+avl_find_lessequal	libubox-2014-03-18/avl.c	/^avl_find_lessequal(const struct avl_tree *tree, const void *key) {$/;"	f
+avl_find_rec	libubox-2014-03-18/avl.c	/^avl_find_rec(struct avl_node *node, const void *key, avl_tree_comp comp, void *cmp_ptr, int *cmp_result)$/;"	f	file:
+avl_init	libubox-2014-03-18/avl.c	/^avl_init(struct avl_tree *tree, avl_tree_comp comp, bool allow_dups, void *ptr)$/;"	f
+avl_insert	libubox-2014-03-18/avl.c	/^avl_insert(struct avl_tree *tree, struct avl_node *new)$/;"	f
+avl_insert_after	libubox-2014-03-18/avl.c	/^avl_insert_after(struct avl_tree *tree, struct avl_node *pos_node, struct avl_node *node)$/;"	f	file:
+avl_insert_before	libubox-2014-03-18/avl.c	/^avl_insert_before(struct avl_tree *tree, struct avl_node *pos_node, struct avl_node *node)$/;"	f	file:
+avl_local_min	libubox-2014-03-18/avl.c	/^avl_local_min(struct avl_node *node)$/;"	f	file:
+avl_max	libubox-2014-03-18/avl.c	/^static inline int avl_max(int x, int y) {$/;"	f	file:
+avl_min	libubox-2014-03-18/avl.c	/^static inline int avl_min(int x, int y) {$/;"	f	file:
+avl_post_delete	libubox-2014-03-18/avl.c	/^avl_post_delete(struct avl_tree *tree, struct avl_node *node)$/;"	f	file:
+avl_remove	libubox-2014-03-18/avl.c	/^avl_remove(struct avl_tree *tree, struct avl_node *node)$/;"	f	file:
+avl_rotate_left	libubox-2014-03-18/avl.c	/^avl_rotate_left(struct avl_tree *tree, struct avl_node *node)$/;"	f	file:
+avl_rotate_right	libubox-2014-03-18/avl.c	/^avl_rotate_right(struct avl_tree *tree, struct avl_node *node)$/;"	f	file:
+list_is_first	libubox-2014-03-18/avl.c	52;"	d	file:
+list_is_last	libubox-2014-03-18/avl.c	51;"	d	file:
+list_merge	libubox-2014-03-18/avl.c	50;"	d	file:
+post_insert	libubox-2014-03-18/avl.c	/^post_insert(struct avl_tree *tree, struct avl_node *node)$/;"	f	file:
+attr_to_offset	libubox-2014-03-18/blob.c	/^attr_to_offset(struct blob_buf *buf, struct blob_attr *attr)$/;"	f	file:
+blob_add	libubox-2014-03-18/blob.c	/^blob_add(struct blob_buf *buf, struct blob_attr *pos, int id, int payload)$/;"	f	file:
+blob_attr_equal	libubox-2014-03-18/blob.c	/^blob_attr_equal(const struct blob_attr *a1, const struct blob_attr *a2)$/;"	f
+blob_buf_free	libubox-2014-03-18/blob.c	/^blob_buf_free(struct blob_buf *buf)$/;"	f
+blob_buf_grow	libubox-2014-03-18/blob.c	/^blob_buf_grow(struct blob_buf *buf, int required)$/;"	f
+blob_buf_init	libubox-2014-03-18/blob.c	/^blob_buf_init(struct blob_buf *buf, int id)$/;"	f
+blob_buffer_grow	libubox-2014-03-18/blob.c	/^blob_buffer_grow(struct blob_buf *buf, int minlen)$/;"	f	file:
+blob_check_type	libubox-2014-03-18/blob.c	/^blob_check_type(const void *ptr, int len, int type)$/;"	f
+blob_fill_pad	libubox-2014-03-18/blob.c	/^blob_fill_pad(struct blob_attr *attr)$/;"	f
+blob_init	libubox-2014-03-18/blob.c	/^blob_init(struct blob_attr *attr, int id, unsigned int len)$/;"	f	file:
+blob_memdup	libubox-2014-03-18/blob.c	/^blob_memdup(struct blob_attr *attr)$/;"	f
+blob_nest_end	libubox-2014-03-18/blob.c	/^blob_nest_end(struct blob_buf *buf, void *cookie)$/;"	f
+blob_nest_start	libubox-2014-03-18/blob.c	/^blob_nest_start(struct blob_buf *buf, int id)$/;"	f
+blob_new	libubox-2014-03-18/blob.c	/^blob_new(struct blob_buf *buf, int id, int payload)$/;"	f
+blob_parse	libubox-2014-03-18/blob.c	/^blob_parse(struct blob_attr *attr, struct blob_attr **data, const struct blob_attr_info *info, int max)$/;"	f
+blob_put	libubox-2014-03-18/blob.c	/^blob_put(struct blob_buf *buf, int id, const void *ptr, int len)$/;"	f
+blob_put_raw	libubox-2014-03-18/blob.c	/^blob_put_raw(struct blob_buf *buf, const void *ptr, int len)$/;"	f
+blob_set_raw_len	libubox-2014-03-18/blob.c	/^blob_set_raw_len(struct blob_attr *attr, unsigned int len)$/;"	f
+blob_type_minlen	libubox-2014-03-18/blob.c	/^static const int blob_type_minlen[BLOB_ATTR_LAST] = {$/;"	v	file:
+offset_to_attr	libubox-2014-03-18/blob.c	/^offset_to_attr(struct blob_buf *buf, int offset)$/;"	f	file:
+attr_to_offset	libubox-2014-03-18/blobmsg.c	/^attr_to_offset(struct blob_buf *buf, struct blob_attr *attr)$/;"	f	file:
+blob_type	libubox-2014-03-18/blobmsg.c	/^static const int blob_type[__BLOBMSG_TYPE_LAST] = {$/;"	v	file:
+blobmsg_add_field	libubox-2014-03-18/blobmsg.c	/^blobmsg_add_field(struct blob_buf *buf, int type, const char *name,$/;"	f
+blobmsg_add_string_buffer	libubox-2014-03-18/blobmsg.c	/^blobmsg_add_string_buffer(struct blob_buf *buf)$/;"	f
+blobmsg_alloc_string_buffer	libubox-2014-03-18/blobmsg.c	/^blobmsg_alloc_string_buffer(struct blob_buf *buf, const char *name, int maxlen)$/;"	f
+blobmsg_check_attr	libubox-2014-03-18/blobmsg.c	/^bool blobmsg_check_attr(const struct blob_attr *attr, bool name)$/;"	f
+blobmsg_check_attr_list	libubox-2014-03-18/blobmsg.c	/^bool blobmsg_check_attr_list(const struct blob_attr *attr, int type)$/;"	f
+blobmsg_namelen	libubox-2014-03-18/blobmsg.c	/^blobmsg_namelen(const struct blobmsg_hdr *hdr)$/;"	f	file:
+blobmsg_new	libubox-2014-03-18/blobmsg.c	/^blobmsg_new(struct blob_buf *buf, int type, const char *name, int payload_len, void **data)$/;"	f	file:
+blobmsg_open_nested	libubox-2014-03-18/blobmsg.c	/^blobmsg_open_nested(struct blob_buf *buf, const char *name, bool array)$/;"	f
+blobmsg_parse	libubox-2014-03-18/blobmsg.c	/^int blobmsg_parse(const struct blobmsg_policy *policy, int policy_len,$/;"	f
+blobmsg_parse_array	libubox-2014-03-18/blobmsg.c	/^int blobmsg_parse_array(const struct blobmsg_policy *policy, int policy_len,$/;"	f
+blobmsg_printf	libubox-2014-03-18/blobmsg.c	/^blobmsg_printf(struct blob_buf *buf, const char *name, const char *format, ...)$/;"	f
+blobmsg_realloc_string_buffer	libubox-2014-03-18/blobmsg.c	/^blobmsg_realloc_string_buffer(struct blob_buf *buf, int maxlen)$/;"	f
+blobmsg_vprintf	libubox-2014-03-18/blobmsg.c	/^blobmsg_vprintf(struct blob_buf *buf, const char *name, const char *format, va_list arg)$/;"	f
+__blobmsg_add_json	libubox-2014-03-18/blobmsg_json.c	/^static bool __blobmsg_add_json(struct blob_buf *b, json_object *obj)$/;"	f	file:
+add_separator	libubox-2014-03-18/blobmsg_json.c	/^static void add_separator(struct strbuf *s)$/;"	f	file:
+blobmsg_add_array	libubox-2014-03-18/blobmsg_json.c	/^static bool blobmsg_add_array(struct blob_buf *b, struct array_list *a)$/;"	f	file:
+blobmsg_add_json_element	libubox-2014-03-18/blobmsg_json.c	/^bool blobmsg_add_json_element(struct blob_buf *b, const char *name, json_object *obj)$/;"	f
+blobmsg_add_json_from_file	libubox-2014-03-18/blobmsg_json.c	/^bool blobmsg_add_json_from_file(struct blob_buf *b, const char *file)$/;"	f
+blobmsg_add_json_from_string	libubox-2014-03-18/blobmsg_json.c	/^bool blobmsg_add_json_from_string(struct blob_buf *b, const char *str)$/;"	f
+blobmsg_add_object	libubox-2014-03-18/blobmsg_json.c	/^bool blobmsg_add_object(struct blob_buf *b, json_object *obj)$/;"	f
+blobmsg_format_element	libubox-2014-03-18/blobmsg_json.c	/^static void blobmsg_format_element(struct strbuf *s, struct blob_attr *attr, bool array, bool head)$/;"	f	file:
+blobmsg_format_json_list	libubox-2014-03-18/blobmsg_json.c	/^static void blobmsg_format_json_list(struct strbuf *s, struct blob_attr *attr, int len, bool array)$/;"	f	file:
+blobmsg_format_json_with_cb	libubox-2014-03-18/blobmsg_json.c	/^char *blobmsg_format_json_with_cb(struct blob_attr *attr, bool list, blobmsg_json_format_t cb, void *priv, int indent)$/;"	f
+blobmsg_format_string	libubox-2014-03-18/blobmsg_json.c	/^static void blobmsg_format_string(struct strbuf *s, const char *str)$/;"	f	file:
+blobmsg_puts	libubox-2014-03-18/blobmsg_json.c	/^static bool blobmsg_puts(struct strbuf *s, const char *c, int len)$/;"	f	file:
+buf	libubox-2014-03-18/blobmsg_json.c	/^	char *buf;$/;"	m	struct:strbuf	file:
+custom_format	libubox-2014-03-18/blobmsg_json.c	/^	blobmsg_json_format_t custom_format;$/;"	m	struct:strbuf	file:
+indent	libubox-2014-03-18/blobmsg_json.c	/^	bool indent;$/;"	m	struct:strbuf	file:
+indent_level	libubox-2014-03-18/blobmsg_json.c	/^	int indent_level;$/;"	m	struct:strbuf	file:
+len	libubox-2014-03-18/blobmsg_json.c	/^	int len;$/;"	m	struct:strbuf	file:
+pos	libubox-2014-03-18/blobmsg_json.c	/^	int pos;$/;"	m	struct:strbuf	file:
+priv	libubox-2014-03-18/blobmsg_json.c	/^	void *priv;$/;"	m	struct:strbuf	file:
+strbuf	libubox-2014-03-18/blobmsg_json.c	/^struct strbuf {$/;"	s	file:
+MAX_VARLEN	libubox-2014-03-18/jshn.c	30;"	d	file:
+add_json_array	libubox-2014-03-18/jshn.c	/^static int add_json_array(struct array_list *a)$/;"	f	file:
+add_json_element	libubox-2014-03-18/jshn.c	/^static int add_json_element(const char *key, json_object *obj)$/;"	f	file:
+add_json_object	libubox-2014-03-18/jshn.c	/^static int add_json_object(json_object *obj)$/;"	f	file:
+add_json_string	libubox-2014-03-18/jshn.c	/^static void add_json_string(const char *str)$/;"	f	file:
+get_keys	libubox-2014-03-18/jshn.c	/^static char *get_keys(const char *prefix)$/;"	f	file:
+get_var	libubox-2014-03-18/jshn.c	/^static void get_var(const char *prefix, const char **name, char **var, char **type)$/;"	f	file:
+jshn_add_object_var	libubox-2014-03-18/jshn.c	/^static void jshn_add_object_var(json_object *obj, bool array, const char *prefix, const char *name)$/;"	f	file:
+jshn_add_objects	libubox-2014-03-18/jshn.c	/^static json_object *jshn_add_objects(json_object *obj, const char *prefix, bool array)$/;"	f	file:
+jshn_format	libubox-2014-03-18/jshn.c	/^static int jshn_format(bool no_newline)$/;"	f	file:
+jshn_parse	libubox-2014-03-18/jshn.c	/^static int jshn_parse(const char *str)$/;"	f	file:
+main	libubox-2014-03-18/jshn.c	/^int main(int argc, char **argv)$/;"	f
+usage	libubox-2014-03-18/jshn.c	/^static int usage(const char *progname)$/;"	f	file:
+var_prefix	libubox-2014-03-18/jshn.c	/^static const char *var_prefix = "";$/;"	v	file:
+var_prefix_len	libubox-2014-03-18/jshn.c	/^static int var_prefix_len = 0;$/;"	v	file:
+write_key_string	libubox-2014-03-18/jshn.c	/^static void write_key_string(const char *key)$/;"	f	file:
+__default_handle_error	libubox-2014-03-18/json_script.c	/^__default_handle_error(struct json_script_ctx *ctx, const char *msg,$/;"	f	file:
+__default_handle_expr	libubox-2014-03-18/json_script.c	/^__default_handle_expr(struct json_script_ctx *ctx, const char *name,$/;"	f	file:
+__default_handle_file	libubox-2014-03-18/json_script.c	/^__default_handle_file(struct json_script_ctx *ctx, const char *name)$/;"	f	file:
+__default_handle_var	libubox-2014-03-18/json_script.c	/^__default_handle_var(struct json_script_ctx *ctx, const char *name,$/;"	f	file:
+__json_process_cmd	libubox-2014-03-18/json_script.c	/^static int __json_process_cmd(struct json_call *call, struct blob_attr *cur)$/;"	f	file:
+__json_process_type	libubox-2014-03-18/json_script.c	/^__json_process_type(struct json_call *call, struct blob_attr *cur,$/;"	f	file:
+__json_script_file_free	libubox-2014-03-18/json_script.c	/^static void __json_script_file_free(struct json_script_ctx *ctx, struct json_script_file *f)$/;"	f	file:
+__json_script_run	libubox-2014-03-18/json_script.c	/^static void __json_script_run(struct json_call *call, struct json_script_file *file,$/;"	f	file:
+cb	libubox-2014-03-18/json_script.c	/^	int (*cb)(struct json_call *call, struct blob_attr *cur);$/;"	m	struct:json_handler	file:
+cmd	libubox-2014-03-18/json_script.c	/^static const struct json_handler cmd[] = {$/;"	v	typeref:struct:json_handler	file:
+cmd_add_string	libubox-2014-03-18/json_script.c	/^static int cmd_add_string(struct json_call *call, const char *pattern)$/;"	f	file:
+cmd_process_strings	libubox-2014-03-18/json_script.c	/^static int cmd_process_strings(struct json_call *call, struct blob_attr *attr)$/;"	f	file:
+ctx	libubox-2014-03-18/json_script.c	/^	struct json_script_ctx *ctx;$/;"	m	struct:json_call	typeref:struct:json_call::json_script_ctx	file:
+eq_regex_cmp	libubox-2014-03-18/json_script.c	/^static int eq_regex_cmp(const char *str, const char *pattern, bool regex)$/;"	f	file:
+expr	libubox-2014-03-18/json_script.c	/^static const struct json_handler expr[] = {$/;"	v	typeref:struct:json_handler	file:
+expr_and_or	libubox-2014-03-18/json_script.c	/^static int expr_and_or(struct json_call *call, struct blob_attr *expr, bool and)$/;"	f	file:
+expr_eq_regex	libubox-2014-03-18/json_script.c	/^static int expr_eq_regex(struct json_call *call, struct blob_attr *expr, bool regex)$/;"	f	file:
+handle_case	libubox-2014-03-18/json_script.c	/^static int handle_case(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_expr_and	libubox-2014-03-18/json_script.c	/^static int handle_expr_and(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_expr_eq	libubox-2014-03-18/json_script.c	/^static int handle_expr_eq(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_expr_has	libubox-2014-03-18/json_script.c	/^static int handle_expr_has(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_expr_not	libubox-2014-03-18/json_script.c	/^static int handle_expr_not(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_expr_or	libubox-2014-03-18/json_script.c	/^static int handle_expr_or(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_expr_regex	libubox-2014-03-18/json_script.c	/^static int handle_expr_regex(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_if	libubox-2014-03-18/json_script.c	/^static int handle_if(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_include	libubox-2014-03-18/json_script.c	/^static int handle_include(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+handle_return	libubox-2014-03-18/json_script.c	/^static int handle_return(struct json_call *call, struct blob_attr *expr)$/;"	f	file:
+json_call	libubox-2014-03-18/json_script.c	/^struct json_call {$/;"	s	file:
+json_get_tuple	libubox-2014-03-18/json_script.c	/^json_get_tuple(struct blob_attr *cur, struct blob_attr **tb, int t1, int t2)$/;"	f	file:
+json_handler	libubox-2014-03-18/json_script.c	/^struct json_handler {$/;"	s	file:
+json_process_cmd	libubox-2014-03-18/json_script.c	/^static int json_process_cmd(struct json_call *call, struct blob_attr *block)$/;"	f	file:
+json_process_expr	libubox-2014-03-18/json_script.c	/^static int json_process_expr(struct json_call *call, struct blob_attr *cur)$/;"	f	file:
+json_script_file_from_blobmsg	libubox-2014-03-18/json_script.c	/^json_script_file_from_blobmsg(const char *name, void *data, int len)$/;"	f
+json_script_find_var	libubox-2014-03-18/json_script.c	/^const char *json_script_find_var(struct json_script_ctx *ctx, struct blob_attr *vars,$/;"	f
+json_script_free	libubox-2014-03-18/json_script.c	/^json_script_free(struct json_script_ctx *ctx)$/;"	f
+json_script_get_file	libubox-2014-03-18/json_script.c	/^json_script_get_file(struct json_script_ctx *ctx, const char *filename)$/;"	f	file:
+json_script_init	libubox-2014-03-18/json_script.c	/^void json_script_init(struct json_script_ctx *ctx)$/;"	f
+json_script_run	libubox-2014-03-18/json_script.c	/^void json_script_run(struct json_script_ctx *ctx, const char *name,$/;"	f
+msg_find_var	libubox-2014-03-18/json_script.c	/^msg_find_var(struct json_call *call, const char *name)$/;"	f	file:
+name	libubox-2014-03-18/json_script.c	/^	const char *name;$/;"	m	struct:json_handler	file:
+seq	libubox-2014-03-18/json_script.c	/^	unsigned int seq;$/;"	m	struct:json_call	file:
+vars	libubox-2014-03-18/json_script.c	/^	struct blob_attr *vars;$/;"	m	struct:json_call	typeref:struct:json_call::blob_attr	file:
+ARRAY_SIZE	libubox-2014-03-18/main.c	89;"	d	file:
+FOO_LIST	libubox-2014-03-18/main.c	/^	FOO_LIST,$/;"	e	enum:__anon12	file:
+FOO_MESSAGE	libubox-2014-03-18/main.c	/^	FOO_MESSAGE,$/;"	e	enum:__anon12	file:
+FOO_TESTDATA	libubox-2014-03-18/main.c	/^	FOO_TESTDATA,$/;"	e	enum:__anon12	file:
+MAT_HW	libubox-2014-03-18/main.c	/^	MAT_HW,$/;"	e	enum:__anon12	file:
+MAT_IP	libubox-2014-03-18/main.c	/^	MAT_IP,$/;"	e	enum:__anon12	file:
+MAT_LIST	libubox-2014-03-18/main.c	/^	MAT_LIST,$/;"	e	enum:__anon12	file:
+MAT_TABLE	libubox-2014-03-18/main.c	/^	MAT_TABLE,$/;"	e	enum:__anon12	file:
+dump_attr_data	libubox-2014-03-18/main.c	/^static void dump_attr_data(void *data, int len, int type, int indent, int next_indent)$/;"	f	file:
+dump_mat_data	libubox-2014-03-18/main.c	/^static void dump_mat_data(struct blob_attr *head, int len){$/;"	f	file:
+dump_message	libubox-2014-03-18/main.c	/^static void dump_message(struct blob_buf *buf)$/;"	f	file:
+dump_table	libubox-2014-03-18/main.c	/^dump_table(struct blob_attr *head, int len, int indent, bool array)$/;"	f	file:
+fill_message	libubox-2014-03-18/main.c	/^fill_message(struct blob_buf *buf)$/;"	f	file:
+indent_printf	libubox-2014-03-18/main.c	8;"	d	file:
+indent_str	libubox-2014-03-18/main.c	/^static const char *indent_str = "\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t\\t";$/;"	v	file:
+main	libubox-2014-03-18/main.c	/^int main(int argc, char **argv)$/;"	f
+pol	libubox-2014-03-18/main.c	/^static const struct blobmsg_policy pol[] = {$/;"	v	typeref:struct:blobmsg_policy	file:
+CYCLIC	libubox-2014-03-18/md5.c	105;"	d	file:
+FF	libubox-2014-03-18/md5.c	50;"	d	file:
+FG	libubox-2014-03-18/md5.c	51;"	d	file:
+FH	libubox-2014-03-18/md5.c	52;"	d	file:
+FI	libubox-2014-03-18/md5.c	53;"	d	file:
+SWAP_LE32	libubox-2014-03-18/md5.c	26;"	d	file:
+SWAP_LE32	libubox-2014-03-18/md5.c	28;"	d	file:
+md5_begin	libubox-2014-03-18/md5.c	/^void md5_begin(md5_ctx_t *ctx)$/;"	f
+md5_end	libubox-2014-03-18/md5.c	/^void md5_end(void *resbuf, md5_ctx_t *ctx)$/;"	f
+md5_hash	libubox-2014-03-18/md5.c	/^void md5_hash(const void *buffer, size_t len, md5_ctx_t *ctx)$/;"	f
+md5_hash_block	libubox-2014-03-18/md5.c	/^static void md5_hash_block(const void *buffer, md5_ctx_t *ctx)$/;"	f	file:
+md5sum	libubox-2014-03-18/md5.c	/^int md5sum(char *file, uint32_t *md5)$/;"	f
+__runqueue_cancel	libubox-2014-03-18/runqueue.c	/^static int __runqueue_cancel(void *ctx, struct safe_list *list)$/;"	f	file:
+__runqueue_empty_cb	libubox-2014-03-18/runqueue.c	/^__runqueue_empty_cb(struct uloop_timeout *timeout)$/;"	f	file:
+__runqueue_proc_cb	libubox-2014-03-18/runqueue.c	/^__runqueue_proc_cb(struct uloop_process *p, int ret)$/;"	f	file:
+__runqueue_start_next	libubox-2014-03-18/runqueue.c	/^static void __runqueue_start_next(struct uloop_timeout *timeout)$/;"	f	file:
+__runqueue_task_timeout	libubox-2014-03-18/runqueue.c	/^__runqueue_task_timeout(struct uloop_timeout *timeout)$/;"	f	file:
+_runqueue_task_add	libubox-2014-03-18/runqueue.c	/^static void _runqueue_task_add(struct runqueue *q, struct runqueue_task *t, bool running, bool first)$/;"	f	file:
+runqueue_cancel	libubox-2014-03-18/runqueue.c	/^void runqueue_cancel(struct runqueue *q)$/;"	f
+runqueue_cancel_active	libubox-2014-03-18/runqueue.c	/^void runqueue_cancel_active(struct runqueue *q)$/;"	f
+runqueue_cancel_pending	libubox-2014-03-18/runqueue.c	/^void runqueue_cancel_pending(struct runqueue *q)$/;"	f
+runqueue_init	libubox-2014-03-18/runqueue.c	/^void runqueue_init(struct runqueue *q)$/;"	f
+runqueue_kill	libubox-2014-03-18/runqueue.c	/^void runqueue_kill(struct runqueue *q)$/;"	f
+runqueue_proc_type	libubox-2014-03-18/runqueue.c	/^static const struct runqueue_task_type runqueue_proc_type = {$/;"	v	typeref:struct:runqueue_task_type	file:
+runqueue_process_add	libubox-2014-03-18/runqueue.c	/^void runqueue_process_add(struct runqueue *q, struct runqueue_process *p, pid_t pid)$/;"	f
+runqueue_process_cancel_cb	libubox-2014-03-18/runqueue.c	/^void runqueue_process_cancel_cb(struct runqueue *q, struct runqueue_task *t, int type)$/;"	f
+runqueue_process_kill_cb	libubox-2014-03-18/runqueue.c	/^void runqueue_process_kill_cb(struct runqueue *q, struct runqueue_task *t)$/;"	f
+runqueue_resume	libubox-2014-03-18/runqueue.c	/^void runqueue_resume(struct runqueue *q)$/;"	f
+runqueue_start_next	libubox-2014-03-18/runqueue.c	/^static void runqueue_start_next(struct runqueue *q)$/;"	f	file:
+runqueue_stop	libubox-2014-03-18/runqueue.c	/^void runqueue_stop(struct runqueue *q)$/;"	f
+runqueue_task_add	libubox-2014-03-18/runqueue.c	/^void runqueue_task_add(struct runqueue *q, struct runqueue_task *t, bool running)$/;"	f
+runqueue_task_add_first	libubox-2014-03-18/runqueue.c	/^void runqueue_task_add_first(struct runqueue *q, struct runqueue_task *t, bool running)$/;"	f
+runqueue_task_cancel	libubox-2014-03-18/runqueue.c	/^void runqueue_task_cancel(struct runqueue_task *t, int type)$/;"	f
+runqueue_task_complete	libubox-2014-03-18/runqueue.c	/^void runqueue_task_complete(struct runqueue_task *t)$/;"	f
+runqueue_task_kill	libubox-2014-03-18/runqueue.c	/^void runqueue_task_kill(struct runqueue_task *t)$/;"	f
+__safe_list_del_iterator	libubox-2014-03-18/safe_list.c	/^__safe_list_del_iterator(struct safe_list_iterator *i)$/;"	f	file:
+__safe_list_move_iterator	libubox-2014-03-18/safe_list.c	/^__safe_list_move_iterator(struct safe_list *list,$/;"	f	file:
+__safe_list_set_iterator	libubox-2014-03-18/safe_list.c	/^__safe_list_set_iterator(struct safe_list *list,$/;"	f	file:
+head	libubox-2014-03-18/safe_list.c	/^	struct safe_list_iterator **head;$/;"	m	struct:safe_list_iterator	typeref:struct:safe_list_iterator::safe_list_iterator	file:
+next	libubox-2014-03-18/safe_list.c	/^	struct safe_list *next;$/;"	m	struct:safe_list_iterator	typeref:struct:safe_list_iterator::safe_list	file:
+next_i	libubox-2014-03-18/safe_list.c	/^	struct safe_list_iterator *next_i;$/;"	m	struct:safe_list_iterator	typeref:struct:safe_list_iterator::safe_list_iterator	file:
+safe_list_add	libubox-2014-03-18/safe_list.c	/^void safe_list_add(struct safe_list *list, struct safe_list *head)$/;"	f
+safe_list_add_first	libubox-2014-03-18/safe_list.c	/^void safe_list_add_first(struct safe_list *list, struct safe_list *head)$/;"	f
+safe_list_del	libubox-2014-03-18/safe_list.c	/^void safe_list_del(struct safe_list *list)$/;"	f
+safe_list_for_each	libubox-2014-03-18/safe_list.c	/^int safe_list_for_each(struct safe_list *head,$/;"	f
+safe_list_iterator	libubox-2014-03-18/safe_list.c	/^struct safe_list_iterator {$/;"	s	file:
+EPOLLRDHUP	libubox-2014-03-18/uloop.c	214;"	d	file:
+ULOOP_MAX_EVENTS	libubox-2014-03-18/uloop.c	58;"	d	file:
+ULOOP_NALLOC	libubox-2014-03-18/uloop.c	305;"	d	file:
+__uloop_fd_delete	libubox-2014-03-18/uloop.c	/^static int __uloop_fd_delete(struct uloop_fd *fd)$/;"	f	file:
+__uloop_fd_delete	libubox-2014-03-18/uloop.c	/^static int __uloop_fd_delete(struct uloop_fd *sock)$/;"	f	file:
+cur_fd	libubox-2014-03-18/uloop.c	/^static int cur_fd, cur_nfds;$/;"	v	file:
+cur_fds	libubox-2014-03-18/uloop.c	/^static struct uloop_fd_event cur_fds[ULOOP_MAX_EVENTS];$/;"	v	typeref:struct:uloop_fd_event	file:
+cur_nfds	libubox-2014-03-18/uloop.c	/^static int cur_fd, cur_nfds;$/;"	v	file:
+do_sigchld	libubox-2014-03-18/uloop.c	/^static bool do_sigchld = false;$/;"	v	file:
+es	libubox-2014-03-18/uloop.c	/^	struct uloop_fd_event *es;$/;"	m	struct:__anon11	typeref:struct:__anon11::uloop_fd_event	file:
+events	libubox-2014-03-18/uloop.c	/^	unsigned int events;$/;"	m	struct:uloop_fd_event	file:
+events	libubox-2014-03-18/uloop.c	/^	unsigned int events;$/;"	m	struct:uloop_fd_stack	file:
+events	libubox-2014-03-18/uloop.c	/^static struct epoll_event events[ULOOP_MAX_EVENTS];$/;"	v	typeref:struct:epoll_event	file:
+events	libubox-2014-03-18/uloop.c	/^static struct kevent events[ULOOP_MAX_EVENTS];$/;"	v	typeref:struct:kevent	file:
+fd	libubox-2014-03-18/uloop.c	/^	struct uloop_fd *fd;$/;"	m	struct:uloop_fd_event	typeref:struct:uloop_fd_event::uloop_fd	file:
+fd	libubox-2014-03-18/uloop.c	/^	struct uloop_fd *fd;$/;"	m	struct:uloop_fd_stack	typeref:struct:uloop_fd_stack::uloop_fd	file:
+fd_stack	libubox-2014-03-18/uloop.c	/^static struct uloop_fd_stack *fd_stack = NULL;$/;"	v	typeref:struct:uloop_fd_stack	file:
+get_flags	libubox-2014-03-18/uloop.c	/^static uint16_t get_flags(unsigned int flags, unsigned int mask)$/;"	f	file:
+max_size	libubox-2014-03-18/uloop.c	/^	int max_size;$/;"	m	struct:__anon11	file:
+maxfd	libubox-2014-03-18/uloop.c	/^	int maxfd;$/;"	m	struct:__anon11	file:
+next	libubox-2014-03-18/uloop.c	/^	struct uloop_fd_stack *next;$/;"	m	struct:uloop_fd_stack	typeref:struct:uloop_fd_stack::uloop_fd_stack	file:
+poll_fd	libubox-2014-03-18/uloop.c	/^static int poll_fd = -1;$/;"	v	file:
+processes	libubox-2014-03-18/uloop.c	/^static struct list_head processes = LIST_HEAD_INIT(processes);$/;"	v	typeref:struct:list_head	file:
+rd	libubox-2014-03-18/uloop.c	/^	fd_set *rd;$/;"	m	struct:__anon11	file:
+register_kevent	libubox-2014-03-18/uloop.c	/^static int register_kevent(struct uloop_fd *fd, unsigned int flags)$/;"	f	file:
+register_poll	libubox-2014-03-18/uloop.c	/^static int register_poll(struct uloop_fd *fd, unsigned int flags)$/;"	f	file:
+rfds	libubox-2014-03-18/uloop.c	/^	fd_set rfds;$/;"	m	struct:__anon11	file:
+s	libubox-2014-03-18/uloop.c	/^} s;$/;"	v	typeref:struct:__anon11	file:
+size	libubox-2014-03-18/uloop.c	/^	int size;$/;"	m	struct:__anon11	file:
+timeouts	libubox-2014-03-18/uloop.c	/^static struct list_head timeouts = LIST_HEAD_INIT(timeouts);$/;"	v	typeref:struct:list_head	file:
+tv_diff	libubox-2014-03-18/uloop.c	/^static int tv_diff(struct timeval *t1, struct timeval *t2)$/;"	f	file:
+uloop_cancelled	libubox-2014-03-18/uloop.c	/^bool uloop_cancelled = false;$/;"	v
+uloop_clear_processes	libubox-2014-03-18/uloop.c	/^static void uloop_clear_processes(void)$/;"	f	file:
+uloop_clear_timeouts	libubox-2014-03-18/uloop.c	/^static void uloop_clear_timeouts(void)$/;"	f	file:
+uloop_done	libubox-2014-03-18/uloop.c	/^void uloop_done(void)$/;"	f
+uloop_fd_add	libubox-2014-03-18/uloop.c	/^int uloop_fd_add(struct uloop_fd *sock, unsigned int flags)$/;"	f
+uloop_fd_delete	libubox-2014-03-18/uloop.c	/^int uloop_fd_delete(struct uloop_fd *fd)$/;"	f
+uloop_fd_event	libubox-2014-03-18/uloop.c	/^struct uloop_fd_event {$/;"	s	file:
+uloop_fd_stack	libubox-2014-03-18/uloop.c	/^struct uloop_fd_stack {$/;"	s	file:
+uloop_fd_stack_event	libubox-2014-03-18/uloop.c	/^static bool uloop_fd_stack_event(struct uloop_fd *fd, int events)$/;"	f	file:
+uloop_fetch_events	libubox-2014-03-18/uloop.c	/^static int uloop_fetch_events(int timeout)$/;"	f	file:
+uloop_get_next_timeout	libubox-2014-03-18/uloop.c	/^static int uloop_get_next_timeout(struct timeval *tv)$/;"	f	file:
+uloop_gettime	libubox-2014-03-18/uloop.c	/^static void uloop_gettime(struct timeval *tv)$/;"	f	file:
+uloop_handle_processes	libubox-2014-03-18/uloop.c	/^static void uloop_handle_processes(void)$/;"	f	file:
+uloop_handle_sigchld	libubox-2014-03-18/uloop.c	/^bool uloop_handle_sigchld = true;$/;"	v
+uloop_handle_sigint	libubox-2014-03-18/uloop.c	/^static void uloop_handle_sigint(int signo)$/;"	f	file:
+uloop_init	libubox-2014-03-18/uloop.c	/^int uloop_init(void)$/;"	f
+uloop_process_add	libubox-2014-03-18/uloop.c	/^int uloop_process_add(struct uloop_process *p)$/;"	f
+uloop_process_delete	libubox-2014-03-18/uloop.c	/^int uloop_process_delete(struct uloop_process *p)$/;"	f
+uloop_process_timeouts	libubox-2014-03-18/uloop.c	/^static void uloop_process_timeouts(struct timeval *tv)$/;"	f	file:
+uloop_run	libubox-2014-03-18/uloop.c	/^void uloop_run(void)$/;"	f
+uloop_run_events	libubox-2014-03-18/uloop.c	/^static void uloop_run_events(int timeout)$/;"	f	file:
+uloop_setup_signals	libubox-2014-03-18/uloop.c	/^static void uloop_setup_signals(bool add)$/;"	f	file:
+uloop_sigchld	libubox-2014-03-18/uloop.c	/^static void uloop_sigchld(int signo)$/;"	f	file:
+uloop_timeout_add	libubox-2014-03-18/uloop.c	/^int uloop_timeout_add(struct uloop_timeout *timeout)$/;"	f
+uloop_timeout_cancel	libubox-2014-03-18/uloop.c	/^int uloop_timeout_cancel(struct uloop_timeout *timeout)$/;"	f
+uloop_timeout_remaining	libubox-2014-03-18/uloop.c	/^int uloop_timeout_remaining(struct uloop_timeout *timeout)$/;"	f
+uloop_timeout_set	libubox-2014-03-18/uloop.c	/^int uloop_timeout_set(struct uloop_timeout *timeout, int msecs)$/;"	f
+wfds	libubox-2014-03-18/uloop.c	/^	fd_set wfds;$/;"	m	struct:__anon11	file:
+wr	libubox-2014-03-18/uloop.c	/^	fd_set *wr;$/;"	m	struct:__anon11	file:
+usock	libubox-2014-03-18/usock.c	/^int usock(int type, const char *host, const char *service) {$/;"	f
+usock_connect	libubox-2014-03-18/usock.c	/^static int usock_connect(struct sockaddr *sa, int sa_len, int family, int socktype, bool server)$/;"	f	file:
+usock_inet	libubox-2014-03-18/usock.c	/^static int usock_inet(int type, const char *host, const char *service, int socktype, bool server)$/;"	f	file:
+usock_set_flags	libubox-2014-03-18/usock.c	/^static void usock_set_flags(int sock, unsigned int type)$/;"	f	file:
+usock_unix	libubox-2014-03-18/usock.c	/^static int usock_unix(const char *host, int socktype, bool server)$/;"	f	file:
+__ustream_fd_poll	libubox-2014-03-18/ustream-fd.c	/^static bool __ustream_fd_poll(struct ustream_fd *sf, unsigned int events)$/;"	f	file:
+ustream_fd_free	libubox-2014-03-18/ustream-fd.c	/^static void ustream_fd_free(struct ustream *s)$/;"	f	file:
+ustream_fd_init	libubox-2014-03-18/ustream-fd.c	/^void ustream_fd_init(struct ustream_fd *sf, int fd)$/;"	f
+ustream_fd_poll	libubox-2014-03-18/ustream-fd.c	/^static bool ustream_fd_poll(struct ustream *s)$/;"	f	file:
+ustream_fd_read_pending	libubox-2014-03-18/ustream-fd.c	/^static void ustream_fd_read_pending(struct ustream_fd *sf, bool *more)$/;"	f	file:
+ustream_fd_set_read_blocked	libubox-2014-03-18/ustream-fd.c	/^static void ustream_fd_set_read_blocked(struct ustream *s)$/;"	f	file:
+ustream_fd_set_uloop	libubox-2014-03-18/ustream-fd.c	/^static void ustream_fd_set_uloop(struct ustream *s, bool write)$/;"	f	file:
+ustream_fd_write	libubox-2014-03-18/ustream-fd.c	/^static int ustream_fd_write(struct ustream *s, const char *buf, int buflen, bool more)$/;"	f	file:
+ustream_uloop_cb	libubox-2014-03-18/ustream-fd.c	/^static void ustream_uloop_cb(struct uloop_fd *fd, unsigned int events)$/;"	f	file:
+DEFAULT_SET	libubox-2014-03-18/ustream.c	111;"	d	file:
+DEFAULT_SET	libubox-2014-03-18/ustream.c	128;"	d	file:
+MAX_STACK_BUFLEN	libubox-2014-03-18/ustream.c	436;"	d	file:
+__ustream_set_read_blocked	libubox-2014-03-18/ustream.c	/^static void __ustream_set_read_blocked(struct ustream *s, unsigned char val)$/;"	f	file:
+ustream_add_buf	libubox-2014-03-18/ustream.c	/^static void ustream_add_buf(struct ustream_buf_list *l, struct ustream_buf *buf)$/;"	f	file:
+ustream_alloc_default	libubox-2014-03-18/ustream.c	/^static int ustream_alloc_default(struct ustream *s, struct ustream_buf_list *l)$/;"	f	file:
+ustream_can_alloc	libubox-2014-03-18/ustream.c	/^static bool ustream_can_alloc(struct ustream_buf_list *l)$/;"	f	file:
+ustream_consume	libubox-2014-03-18/ustream.c	/^void ustream_consume(struct ustream *s, int len)$/;"	f
+ustream_fill_read	libubox-2014-03-18/ustream.c	/^void ustream_fill_read(struct ustream *s, int len)$/;"	f
+ustream_fixup_string	libubox-2014-03-18/ustream.c	/^static void ustream_fixup_string(struct ustream *s, struct ustream_buf *buf)$/;"	f	file:
+ustream_free	libubox-2014-03-18/ustream.c	/^void ustream_free(struct ustream *s)$/;"	f
+ustream_free_buf	libubox-2014-03-18/ustream.c	/^static void ustream_free_buf(struct ustream_buf_list *l, struct ustream_buf *buf)$/;"	f	file:
+ustream_free_buffers	libubox-2014-03-18/ustream.c	/^static void ustream_free_buffers(struct ustream_buf_list *l)$/;"	f	file:
+ustream_get_read_buf	libubox-2014-03-18/ustream.c	/^char *ustream_get_read_buf(struct ustream *s, int *buflen)$/;"	f
+ustream_init_buf	libubox-2014-03-18/ustream.c	/^static void ustream_init_buf(struct ustream_buf *buf, int len)$/;"	f	file:
+ustream_init_defaults	libubox-2014-03-18/ustream.c	/^void ustream_init_defaults(struct ustream *s)$/;"	f
+ustream_prepare_buf	libubox-2014-03-18/ustream.c	/^static bool ustream_prepare_buf(struct ustream *s, struct ustream_buf_list *l, int len)$/;"	f	file:
+ustream_printf	libubox-2014-03-18/ustream.c	/^int ustream_printf(struct ustream *s, const char *format, ...)$/;"	f
+ustream_reserve	libubox-2014-03-18/ustream.c	/^char *ustream_reserve(struct ustream *s, int len, int *maxlen)$/;"	f
+ustream_set_read_blocked	libubox-2014-03-18/ustream.c	/^void ustream_set_read_blocked(struct ustream *s, bool set)$/;"	f
+ustream_should_move	libubox-2014-03-18/ustream.c	/^static bool ustream_should_move(struct ustream_buf_list *l, struct ustream_buf *buf, int len)$/;"	f	file:
+ustream_state_change_cb	libubox-2014-03-18/ustream.c	/^static void ustream_state_change_cb(struct uloop_timeout *t)$/;"	f	file:
+ustream_vprintf	libubox-2014-03-18/ustream.c	/^int ustream_vprintf(struct ustream *s, const char *format, va_list arg)$/;"	f
+ustream_write	libubox-2014-03-18/ustream.c	/^int ustream_write(struct ustream *s, const char *data, int len, bool more)$/;"	f
+ustream_write_buffered	libubox-2014-03-18/ustream.c	/^static int ustream_write_buffered(struct ustream *s, const char *data, int len, int wr)$/;"	f	file:
+ustream_write_error	libubox-2014-03-18/ustream.c	/^static void ustream_write_error(struct ustream *s)$/;"	f	file:
+ustream_write_pending	libubox-2014-03-18/ustream.c	/^bool ustream_write_pending(struct ustream *s)$/;"	f
+__calloc_a	libubox-2014-03-18/utils.c	/^void *__calloc_a(size_t len, ...)$/;"	f
+clock_gettime	libubox-2014-03-18/utils.c	/^void clock_gettime(int type, struct timespec *tv)$/;"	f
+clock_gettime_monotonic	libubox-2014-03-18/utils.c	/^static void clock_gettime_monotonic(struct timespec *tv)$/;"	f	file:
+clock_gettime_realtime	libubox-2014-03-18/utils.c	/^static void clock_gettime_realtime(struct timespec *tv)$/;"	f	file:
+foreach_arg	libubox-2014-03-18/utils.c	24;"	d	file:
+vlist_add	libubox-2014-03-18/vlist.c	/^vlist_add(struct vlist_tree *tree, struct vlist_node *node, const void *key)$/;"	f
+vlist_delete	libubox-2014-03-18/vlist.c	/^vlist_delete(struct vlist_tree *tree, struct vlist_node *node)$/;"	f
+vlist_flush	libubox-2014-03-18/vlist.c	/^vlist_flush(struct vlist_tree *tree)$/;"	f
+vlist_flush_all	libubox-2014-03-18/vlist.c	/^vlist_flush_all(struct vlist_tree *tree)$/;"	f
+vlist_init	libubox-2014-03-18/vlist.c	/^vlist_init(struct vlist_tree *tree, avl_tree_comp cmp, vlist_update_cb update)$/;"	f
+UBUS_DBGPRINT	src/ubus.c	40;"	d	file:
+UBUS_PRIORITY	src/ubus.c	21;"	d	file:
+UBUS_SHUTDOWN	src/ubus.c	19;"	d	file:
+UBUS_SIGHUP	src/ubus.c	18;"	d	file:
+UBUS_STACKSIZE	src/ubus.c	22;"	d	file:
+UBUS_daemon	src/ubus.c	/^void UBUS_daemon(cyg_addrword_t data)$/;"	f
+UBUS_init	src/ubus.c	/^void UBUS_init(void) $/;"	f
+recv_infaces_num	src/ubus.c	/^static int recv_infaces_num = 0;$/;"	v	file:
+ubus_cmd	src/ubus.c	/^int ubus_cmd(int argc, char* argv[])$/;"	f
+ubus_handle	src/ubus.c	/^cyg_handle_t ubus_handle;$/;"	v
+ubus_mbox_id	src/ubus.c	/^static cyg_handle_t ubus_mbox_id;$/;"	v	file:
+ubus_mbox_obj	src/ubus.c	/^static cyg_mbox ubus_mbox_obj;$/;"	v	file:
+ubus_running	src/ubus.c	/^static int ubus_running = 0;$/;"	v	file:
+ubus_seq	src/ubus.c	/^static int ubus_seq = 0;$/;"	v	file:
+ubus_servers_num	src/ubus.c	/^static int ubus_servers_num = 0;$/;"	v	file:
+ubus_stack	src/ubus.c	/^static char ubus_stack[UBUS_STACKSIZE];$/;"	v	file:
+ubus_thread	src/ubus.c	/^cyg_thread ubus_thread;$/;"	v
+CFLAGS	trafficd/Makefile	/^CFLAGS = -I..\/include -DUBUS_MAX_MSGLEN=1048576 -DDEBUG -g -O0$/;"	m
+JSON_OBJS	trafficd/Makefile	/^JSON_OBJS = \\$/;"	m
+LDFLAGS	trafficd/Makefile	/^LDFLAGS = -lrt  #for clock_gettime$/;"	m
+OBJS	trafficd/Makefile	/^OBJS = \\$/;"	m
+UBOX_OBJS	trafficd/Makefile	/^UBOX_OBJS = \\$/;"	m
+config_alive	trafficd/config.c	/^static void config_alive(struct uloop_timeout *t)$/;"	f	file:
+config_init_alive	trafficd/config.c	/^int config_init_alive(void)$/;"	f
+config_init_all	trafficd/config.c	/^int config_init_all(void)$/;"	f
+config_loop	trafficd/config.c	/^static struct uloop_timeout config_loop;$/;"	v	typeref:struct:uloop_timeout	file:
+cmp_hw_node	trafficd/hw.c	/^static int cmp_hw_node(const void *p1, const void *p2)$/;"	f	file:
+get_hw_lasttime	trafficd/hw.c	/^static time_t get_hw_lasttime(struct hw_node *hw_node){$/;"	f	file:
+hd	trafficd/hw.c	/^static struct trafficd_hw_data *hd;$/;"	v	typeref:struct:trafficd_hw_data	file:
+hw_clean	trafficd/hw.c	/^static void hw_clean(void)$/;"	f	file:
+hw_create_default	trafficd/hw.c	/^static struct hw_node * hw_create_default(const char *hwa)$/;"	f	file:
+hw_delete	trafficd/hw.c	/^static void hw_delete(struct hw_node *hw_node)$/;"	f	file:
+hw_log_create	trafficd/hw.c	/^static void hw_log_create(struct hw_node *hw_node)$/;"	f	file:
+hw_node_cleanup	trafficd/hw.c	/^static void hw_node_cleanup(struct hw_node *hw_node)$/;"	f	file:
+hw_reset_counter	trafficd/hw.c	/^static void hw_reset_counter(struct hw_node *hw_node)$/;"	f	file:
+hw_update	trafficd/hw.c	/^static struct hw_node * hw_update(struct arp_entry *arp_entry)$/;"	f	file:
+hws	trafficd/hw.c	/^static struct avl_tree hws;$/;"	v	typeref:struct:avl_tree	file:
+trafficd_hw_done	trafficd/hw.c	/^void trafficd_hw_done()$/;"	f
+trafficd_hw_free	trafficd/hw.c	/^void trafficd_hw_free(struct hw_node *hw_node)$/;"	f
+trafficd_hw_get	trafficd/hw.c	/^struct hw_node * trafficd_hw_get(char *hwa, int create)$/;"	f
+trafficd_hw_init	trafficd/hw.c	/^struct trafficd_hw_data * trafficd_hw_init()$/;"	f
+trafficd_hw_iwevent	trafficd/hw.c	/^void trafficd_hw_iwevent(struct trafficd_iwevent *ev, struct hw_node *speaker)$/;"	f
+trafficd_hw_update_ap	trafficd/hw.c	/^void trafficd_hw_update_ap(struct hw_node *hw_node, struct ip_node *ip_node)$/;"	f
+trafficd_hw_update_ap_sta	trafficd/hw.c	/^void trafficd_hw_update_ap_sta(struct ip_node *speaker_ip, char *hw, char *ip)$/;"	f
+trafficd_hw_update_assoclist	trafficd/hw.c	/^void trafficd_hw_update_assoclist()$/;"	f
+trafficd_hw_update_br	trafficd/hw.c	/^void trafficd_hw_update_br(struct fdb_entry *f)$/;"	f
+_trafficd_ip_get	trafficd/ip.c	/^struct ip_node * _trafficd_ip_get(__be32 ip, int create)$/;"	f
+id	trafficd/ip.c	/^static struct trafficd_ip_data *id;$/;"	v	typeref:struct:trafficd_ip_data	file:
+ip_cleanup	trafficd/ip.c	/^static void ip_cleanup(struct ip_node *ip_node)$/;"	f	file:
+ip_create_default	trafficd/ip.c	/^static struct ip_node * ip_create_default(const __be32 ip)$/;"	f	file:
+ip_delete	trafficd/ip.c	/^static void ip_delete(struct ip_node *ip_node)$/;"	f	file:
+ip_reset_counter	trafficd/ip.c	/^void ip_reset_counter(struct ip_node *ip_node)$/;"	f
+ips	trafficd/ip.c	/^static struct avl_tree ips;$/;"	v	typeref:struct:avl_tree	file:
+trafficd_ip_done	trafficd/ip.c	/^void trafficd_ip_done()$/;"	f
+trafficd_ip_dump_status	trafficd/ip.c	/^void trafficd_ip_dump_status(struct blob_buf *b, struct ip_node *ip_node, int debug)$/;"	f
+trafficd_ip_free	trafficd/ip.c	/^void trafficd_ip_free(struct ip_node *ip_node)$/;"	f
+trafficd_ip_get	trafficd/ip.c	/^struct ip_node * trafficd_ip_get(char *ipaddr, int create)$/;"	f
+trafficd_ip_init	trafficd/ip.c	/^struct trafficd_ip_data * trafficd_ip_init()$/;"	f
+STATIC_IOV	trafficd/libubus-io.c	37;"	d	file:
+UBUS_MSGBUF_REDUCTION_INTERVAL	trafficd/libubus-io.c	39;"	d	file:
+attrbuf	trafficd/libubus-io.c	/^static struct blob_attr *attrbuf[UBUS_ATTR_MAX];$/;"	v	typeref:struct:blob_attr	file:
+connect_socket	trafficd/libubus-io.c	/^connect_socket(struct sockaddr_in *a)$/;"	f	file:
+get_next_msg	trafficd/libubus-io.c	/^static bool get_next_msg(struct ubus_context *ctx, int *recv_fd)$/;"	f	file:
+recv_retry	trafficd/libubus-io.c	/^static int recv_retry(struct ubus_context * ctx, struct iovec *iov, bool wait, int *recv_fd)$/;"	f	file:
+tbus_reconnect	trafficd/libubus-io.c	/^int tbus_reconnect(struct ubus_context *ctx, struct sockaddr_in *a)$/;"	f
+ubus_handle_data	trafficd/libubus-io.c	/^void __hidden ubus_handle_data(struct uloop_fd *u, unsigned int events)$/;"	f
+ubus_parse_msg	trafficd/libubus-io.c	/^__hidden struct blob_attr **ubus_parse_msg(struct blob_attr *msg)$/;"	f
+ubus_policy	trafficd/libubus-io.c	/^static const struct blob_attr_info ubus_policy[UBUS_ATTR_MAX] = {$/;"	v	typeref:struct:blob_attr_info	file:
+ubus_poll_data	trafficd/libubus-io.c	/^void __hidden ubus_poll_data(struct ubus_context *ctx, int timeout)$/;"	f
+ubus_reconnect	trafficd/libubus-io.c	/^int ubus_reconnect(struct ubus_context *ctx, const char *path)$/;"	f
+ubus_refresh_state	trafficd/libubus-io.c	/^ubus_refresh_state(struct ubus_context *ctx)$/;"	f	file:
+ubus_send_msg	trafficd/libubus-io.c	/^int __hidden ubus_send_msg(struct ubus_context *ctx, uint32_t seq,$/;"	f
+ubus_validate_hdr	trafficd/libubus-io.c	/^static bool ubus_validate_hdr(struct ubus_msghdr *hdr)$/;"	f	file:
+wait_data	trafficd/libubus-io.c	/^static void wait_data(int fd, bool write)$/;"	f	file:
+writev_retry	trafficd/libubus-io.c	/^static int writev_retry(struct ubus_context * ctx, struct iovec *iov, int iov_len, int sock_fd)$/;"	f	file:
+ubus_add_object	trafficd/libubus-obj.c	/^int ubus_add_object(struct ubus_context *ctx, struct ubus_object *obj)$/;"	f
+ubus_add_object_cb	trafficd/libubus-obj.c	/^static void ubus_add_object_cb(struct ubus_request *req, int type, struct blob_attr *msg)$/;"	f	file:
+ubus_process_invoke	trafficd/libubus-obj.c	/^ubus_process_invoke(struct ubus_context *ctx, struct ubus_msghdr *hdr,$/;"	f	file:
+ubus_process_notify	trafficd/libubus-obj.c	/^ubus_process_notify(struct ubus_context *ctx, struct ubus_msghdr *hdr,$/;"	f	file:
+ubus_process_obj_msg	trafficd/libubus-obj.c	/^void __hidden ubus_process_obj_msg(struct ubus_context *ctx, struct ubus_msghdr *hdr)$/;"	f
+ubus_process_unsubscribe	trafficd/libubus-obj.c	/^ubus_process_unsubscribe(struct ubus_context *ctx, struct ubus_msghdr *hdr,$/;"	f	file:
+ubus_push_method_data	trafficd/libubus-obj.c	/^static void ubus_push_method_data(const struct ubus_method *m)$/;"	f	file:
+ubus_push_object_type	trafficd/libubus-obj.c	/^static bool ubus_push_object_type(const struct ubus_object_type *type)$/;"	f	file:
+ubus_remove_object	trafficd/libubus-obj.c	/^int ubus_remove_object(struct ubus_context *ctx, struct ubus_object *obj)$/;"	f
+ubus_remove_object_cb	trafficd/libubus-obj.c	/^static void ubus_remove_object_cb(struct ubus_request *req, int type, struct blob_attr *msg)$/;"	f	file:
+__ubus_notify_async	trafficd/libubus-req.c	/^__ubus_notify_async(struct ubus_context *ctx, struct ubus_object *obj,$/;"	f	file:
+__ubus_process_req_data	trafficd/libubus-req.c	/^static void __ubus_process_req_data(struct ubus_request *req)$/;"	f	file:
+data	trafficd/libubus-req.c	/^	struct blob_attr data[];$/;"	m	struct:ubus_pending_data	typeref:struct:ubus_pending_data::blob_attr	file:
+get_time_msec	trafficd/libubus-req.c	/^static int64_t get_time_msec(void)$/;"	f	file:
+list	trafficd/libubus-req.c	/^	struct list_head list;$/;"	m	struct:ubus_pending_data	typeref:struct:ubus_pending_data::list_head	file:
+req_data_cb	trafficd/libubus-req.c	/^static void req_data_cb(struct ubus_request *req, int type, struct blob_attr *data)$/;"	f	file:
+type	trafficd/libubus-req.c	/^	int type;$/;"	m	struct:ubus_pending_data	file:
+ubus_abort_request	trafficd/libubus-req.c	/^void ubus_abort_request(struct ubus_context *ctx, struct ubus_request *req)$/;"	f
+ubus_complete_deferred_request	trafficd/libubus-req.c	/^void ubus_complete_deferred_request(struct ubus_context *ctx, struct ubus_request_data *req, int ret)$/;"	f
+ubus_complete_request	trafficd/libubus-req.c	/^int ubus_complete_request(struct ubus_context *ctx, struct ubus_request *req,$/;"	f
+ubus_complete_request_async	trafficd/libubus-req.c	/^void ubus_complete_request_async(struct ubus_context *ctx, struct ubus_request *req)$/;"	f
+ubus_find_notify_id	trafficd/libubus-req.c	/^ubus_find_notify_id(struct ubus_notify_request *n, uint32_t objid)$/;"	f	file:
+ubus_find_request	trafficd/libubus-req.c	/^ubus_find_request(struct ubus_context *ctx, uint32_t seq, uint32_t peer, int *id)$/;"	f	file:
+ubus_get_status	trafficd/libubus-req.c	/^static bool ubus_get_status(struct ubus_msghdr *hdr, int *ret)$/;"	f	file:
+ubus_invoke	trafficd/libubus-req.c	/^int ubus_invoke(struct ubus_context *ctx, uint32_t obj, const char *method,$/;"	f
+ubus_invoke_async	trafficd/libubus-req.c	/^int ubus_invoke_async(struct ubus_context *ctx, uint32_t obj, const char *method,$/;"	f
+ubus_notify	trafficd/libubus-req.c	/^int ubus_notify(struct ubus_context *ctx, struct ubus_object *obj,$/;"	f
+ubus_notify_async	trafficd/libubus-req.c	/^int ubus_notify_async(struct ubus_context *ctx, struct ubus_object *obj,$/;"	f
+ubus_notify_complete_cb	trafficd/libubus-req.c	/^ubus_notify_complete_cb(struct ubus_request *req, int ret)$/;"	f	file:
+ubus_pending_data	trafficd/libubus-req.c	/^struct ubus_pending_data {$/;"	s	file:
+ubus_process_notify_status	trafficd/libubus-req.c	/^static void ubus_process_notify_status(struct ubus_request *req, int id, struct ubus_msghdr *hdr)$/;"	f	file:
+ubus_process_req_data	trafficd/libubus-req.c	/^ubus_process_req_data(struct ubus_request *req, struct ubus_msghdr *hdr)$/;"	f	file:
+ubus_process_req_msg	trafficd/libubus-req.c	/^void __hidden ubus_process_req_msg(struct ubus_context *ctx, struct ubus_msghdr *hdr, int fd)$/;"	f
+ubus_process_req_status	trafficd/libubus-req.c	/^ubus_process_req_status(struct ubus_request *req, struct ubus_msghdr *hdr)$/;"	f	file:
+ubus_req_complete_cb	trafficd/libubus-req.c	/^ubus_req_complete_cb(struct ubus_request *req)$/;"	f	file:
+ubus_send_reply	trafficd/libubus-req.c	/^int ubus_send_reply(struct ubus_context *ctx, struct ubus_request_data *req,$/;"	f
+ubus_set_req_status	trafficd/libubus-req.c	/^ubus_set_req_status(struct ubus_request *req, int ret)$/;"	f	file:
+ubus_start_request	trafficd/libubus-req.c	/^int __hidden ubus_start_request(struct ubus_context *ctx, struct ubus_request *req,$/;"	f
+ubus_sync_req_cb	trafficd/libubus-req.c	/^static void ubus_sync_req_cb(struct ubus_request *req, int ret)$/;"	f	file:
+__hidden	trafficd/libubus-sub.c	/^const struct ubus_method watch_method __hidden = {$/;"	v	typeref:struct:watch_method
+__ubus_subscribe_request	trafficd/libubus-sub.c	/^__ubus_subscribe_request(struct ubus_context *ctx, struct ubus_object *obj, uint32_t id, int type)$/;"	f	file:
+ubus_register_subscriber	trafficd/libubus-sub.c	/^int ubus_register_subscriber(struct ubus_context *ctx, struct ubus_subscriber *s)$/;"	f
+ubus_subscribe	trafficd/libubus-sub.c	/^int ubus_subscribe(struct ubus_context *ctx, struct ubus_subscriber *obj, uint32_t id)$/;"	f
+ubus_subscriber_cb	trafficd/libubus-sub.c	/^static int ubus_subscriber_cb(struct ubus_context *ctx, struct ubus_object *obj,$/;"	f	file:
+ubus_unsubscribe	trafficd/libubus-sub.c	/^int ubus_unsubscribe(struct ubus_context *ctx, struct ubus_subscriber *obj, uint32_t id)$/;"	f
+__hidden	trafficd/libubus.c	/^struct blob_buf b __hidden = {};$/;"	v	typeref:struct:b
+__ubus_strerror	trafficd/libubus.c	/^const char *__ubus_strerror[__UBUS_STATUS_LAST] = {$/;"	v
+_tbus_connect	trafficd/libubus.c	/^static int _tbus_connect(struct ubus_context *ctx, struct sockaddr_in *a)$/;"	f	file:
+_ubus_connect	trafficd/libubus.c	/^static int _ubus_connect(struct ubus_context *ctx, const char *path)$/;"	f	file:
+cb	trafficd/libubus.c	/^	ubus_lookup_handler_t cb;$/;"	m	struct:ubus_lookup_request	file:
+event_method	trafficd/libubus.c	/^static const struct ubus_method event_method = {$/;"	v	typeref:struct:ubus_method	file:
+hdr	trafficd/libubus.c	/^	struct ubus_msghdr_buf hdr;$/;"	m	struct:ubus_pending_msg	typeref:struct:ubus_pending_msg::ubus_msghdr_buf	file:
+list	trafficd/libubus.c	/^	struct list_head list;$/;"	m	struct:ubus_pending_msg	typeref:struct:ubus_pending_msg::list_head	file:
+req	trafficd/libubus.c	/^	struct ubus_request req;$/;"	m	struct:ubus_lookup_request	typeref:struct:ubus_lookup_request::ubus_request	file:
+tbus_auto_connect	trafficd/libubus.c	/^void tbus_auto_connect(struct ubus_auto_conn *conn)$/;"	f
+tbus_auto_connect_cb	trafficd/libubus.c	/^static void tbus_auto_connect_cb(struct uloop_timeout *timeout)$/;"	f	file:
+tbus_auto_disconnect_cb	trafficd/libubus.c	/^static void tbus_auto_disconnect_cb(struct ubus_context *ctx)$/;"	f	file:
+tbus_auto_reconnect_cb	trafficd/libubus.c	/^static void tbus_auto_reconnect_cb(struct uloop_timeout *timeout)$/;"	f	file:
+tbus_connect	trafficd/libubus.c	/^struct ubus_context *tbus_connect(struct sockaddr_in *a)$/;"	f
+tbus_free	trafficd/libubus.c	/^void tbus_free(struct ubus_context *ctx)$/;"	f
+ubus_auto_connect	trafficd/libubus.c	/^void ubus_auto_connect(struct ubus_auto_conn *conn)$/;"	f
+ubus_auto_connect_cb	trafficd/libubus.c	/^static void ubus_auto_connect_cb(struct uloop_timeout *timeout)$/;"	f	file:
+ubus_auto_disconnect_cb	trafficd/libubus.c	/^static void ubus_auto_disconnect_cb(struct ubus_context *ctx)$/;"	f	file:
+ubus_auto_reconnect_cb	trafficd/libubus.c	/^static void ubus_auto_reconnect_cb(struct uloop_timeout *timeout)$/;"	f	file:
+ubus_cmp_id	trafficd/libubus.c	/^static int ubus_cmp_id(const void *k1, const void *k2, void *ptr)$/;"	f	file:
+ubus_connect	trafficd/libubus.c	/^struct ubus_context *ubus_connect(const char *path)$/;"	f
+ubus_default_connection_lost	trafficd/libubus.c	/^static void ubus_default_connection_lost(struct ubus_context *ctx)$/;"	f	file:
+ubus_event_cb	trafficd/libubus.c	/^static int ubus_event_cb(struct ubus_context *ctx, struct ubus_object *obj,$/;"	f	file:
+ubus_free	trafficd/libubus.c	/^void ubus_free(struct ubus_context *ctx)$/;"	f
+ubus_lookup	trafficd/libubus.c	/^int ubus_lookup(struct ubus_context *ctx, const char *path,$/;"	f
+ubus_lookup_cb	trafficd/libubus.c	/^static void ubus_lookup_cb(struct ubus_request *ureq, int type, struct blob_attr *msg)$/;"	f	file:
+ubus_lookup_id	trafficd/libubus.c	/^int ubus_lookup_id(struct ubus_context *ctx, const char *path, uint32_t *id)$/;"	f
+ubus_lookup_id_cb	trafficd/libubus.c	/^static void ubus_lookup_id_cb(struct ubus_request *req, int type, struct blob_attr *msg)$/;"	f	file:
+ubus_lookup_request	trafficd/libubus.c	/^struct ubus_lookup_request {$/;"	s	file:
+ubus_pending_msg	trafficd/libubus.c	/^struct ubus_pending_msg {$/;"	s	file:
+ubus_process_msg	trafficd/libubus.c	/^ubus_process_msg(struct ubus_context *ctx, struct ubus_msghdr *hdr, int fd)$/;"	f
+ubus_process_pending_msg	trafficd/libubus.c	/^static void ubus_process_pending_msg(struct uloop_timeout *timeout)$/;"	f	file:
+ubus_queue_msg	trafficd/libubus.c	/^ubus_queue_msg(struct ubus_context *ctx, struct ubus_msghdr *hdr)$/;"	f	file:
+ubus_register_event_handler	trafficd/libubus.c	/^int ubus_register_event_handler(struct ubus_context *ctx,$/;"	f
+ubus_send_event	trafficd/libubus.c	/^int ubus_send_event(struct ubus_context *ctx, const char *id,$/;"	f
+ubus_strerror	trafficd/libubus.c	/^const char *ubus_strerror(int error)$/;"	f
+debug_mask	trafficd/main.c	/^unsigned int debug_mask = 0x0;$/;"	v
+global_argv	trafficd/main.c	/^static char **global_argv;$/;"	v	file:
+log_class	trafficd/main.c	/^static const int log_class[] = {$/;"	v	file:
+log_level	trafficd/main.c	/^static int log_level = DEFAULT_LOG_LEVEL;$/;"	v	file:
+main	trafficd/main.c	/^int main(int argc, char **argv)$/;"	f
+sys	trafficd/main.c	/^struct trafficd_sys *sys;$/;"	v	typeref:struct:trafficd_sys
+trafficd_handle_signal	trafficd/main.c	/^trafficd_handle_signal(int signo)$/;"	f	file:
+trafficd_log_message	trafficd/main.c	/^void trafficd_log_message(int priority, const char *format, ...)$/;"	f
+trafficd_setup_signals	trafficd/main.c	/^trafficd_setup_signals(void)$/;"	f	file:
+usage	trafficd/main.c	/^static int usage(const char *progname)$/;"	f	file:
+mat_loop_cb	trafficd/system_ecos.c	/^static void mat_loop_cb(struct uloop_timeout *timeout)$/;"	f	file:
+sd	trafficd/system_ecos.c	/^} *sd;$/;"	v	typeref:struct:trafficd_system_data
+system_assoclist_update	trafficd/system_ecos.c	/^void system_assoclist_update()$/;"	f
+system_init	trafficd/system_ecos.c	/^int system_init()$/;"	f
+timeout_mat	trafficd/system_ecos.c	/^	struct uloop_timeout timeout_mat;$/;"	m	struct:trafficd_system_data	typeref:struct:trafficd_system_data::uloop_timeout	file:
+trafficd_system_data	trafficd/system_ecos.c	/^struct trafficd_system_data {$/;"	s	file:
+update_mat_table	trafficd/system_ecos.c	/^static void update_mat_table()$/;"	f	file:
+b1	trafficd/tbus.c	/^struct blob_buf b1;$/;"	v	typeref:struct:blob_buf
+ctx	trafficd/tbus.c	/^static struct ubus_context *ctx = NULL;$/;"	v	typeref:struct:ubus_context	file:
+listener	trafficd/tbus.c	/^static struct ubus_event_handler listener;$/;"	v	typeref:struct:ubus_event_handler	file:
+tbus_init	trafficd/tbus.c	/^static int tbus_init(struct sockaddr_in *a)$/;"	f	file:
+tbus_receive_event	trafficd/tbus.c	/^static void tbus_receive_event(struct ubus_context *ctx, struct ubus_event_handler *ev,$/;"	f	file:
+trafficd_router2cli_msg_handle	trafficd/tbus.c	/^static int trafficd_router2cli_msg_handle(const char *type, struct blob_attr *msg)$/;"	f	file:
+trafficd_tbus_done	trafficd/tbus.c	/^int trafficd_tbus_done(){$/;"	f
+trafficd_tbus_init	trafficd/tbus.c	/^int trafficd_tbus_init(){$/;"	f
+trafficd_ubus_add_fd	trafficd/tbus.c	/^static void trafficd_ubus_add_fd(void)$/;"	f	file:
+trafficd_ubus_add_listen	trafficd/tbus.c	/^static int trafficd_ubus_add_listen(){$/;"	f	file:
+trafficd_ubus_connection_lost	trafficd/tbus.c	/^static void trafficd_ubus_connection_lost(struct ubus_context *ctx)$/;"	f	file:
+trafficd_ubus_reconnect_timer	trafficd/tbus.c	/^static void trafficd_ubus_reconnect_timer(struct uloop_timeout *timeout)$/;"	f	file:
+ubus_addr	trafficd/tbus.c	/^static struct sockaddr_in ubus_addr;$/;"	v	typeref:struct:sockaddr_in	file:
+DEV_DEBUG	trafficd/ubus.c	/^	DEV_DEBUG,$/;"	e	enum:__anon10	file:
+DEV_IFNAME	trafficd/ubus.c	/^	DEV_IFNAME,$/;"	e	enum:__anon10	file:
+HW_ADDR	trafficd/ubus.c	/^	HW_ADDR,$/;"	e	enum:__anon9	file:
+HW_ALL	trafficd/ubus.c	/^	HW_ALL,$/;"	e	enum:__anon9	file:
+HW_DEBUG	trafficd/ubus.c	/^	HW_DEBUG,$/;"	e	enum:__anon9	file:
+HW_LOG	trafficd/ubus.c	/^	HW_LOG,$/;"	e	enum:__anon9	file:
+HW_TREE	trafficd/ubus.c	/^	HW_TREE,$/;"	e	enum:__anon9	file:
+IP_ADDR	trafficd/ubus.c	/^	IP_ADDR,$/;"	e	enum:__anon8	file:
+IP_DEBUG	trafficd/ubus.c	/^	IP_DEBUG,$/;"	e	enum:__anon8	file:
+TIMESTEP_10MIN	trafficd/ubus.c	/^	TIMESTEP_10MIN,$/;"	e	enum:__anon7	file:
+TIMESTEP_DAY	trafficd/ubus.c	/^	TIMESTEP_DAY,$/;"	e	enum:__anon7	file:
+TIMESTEP_HOUR	trafficd/ubus.c	/^	TIMESTEP_HOUR,$/;"	e	enum:__anon7	file:
+__DEV_MAX	trafficd/ubus.c	/^	__DEV_MAX,$/;"	e	enum:__anon10	file:
+__HW_MAX	trafficd/ubus.c	/^	__HW_MAX,$/;"	e	enum:__anon9	file:
+__IP_MAX	trafficd/ubus.c	/^	__IP_MAX,$/;"	e	enum:__anon8	file:
+__TIMESTEP_MAX	trafficd/ubus.c	/^	__TIMESTEP_MAX,$/;"	e	enum:__anon7	file:
+ctx	trafficd/ubus.c	/^static struct ubus_context *ctx;$/;"	v	typeref:struct:ubus_context	file:
+dev_policy	trafficd/ubus.c	/^static const struct blobmsg_policy dev_policy[__DEV_MAX] = {$/;"	v	typeref:struct:blobmsg_policy	file:
+hw_policy	trafficd/ubus.c	/^static const struct blobmsg_policy hw_policy[__HW_MAX] = {$/;"	v	typeref:struct:blobmsg_policy	file:
+ip_policy	trafficd/ubus.c	/^static const struct blobmsg_policy ip_policy[__IP_MAX] = {$/;"	v	typeref:struct:blobmsg_policy	file:
+listener	trafficd/ubus.c	/^static struct ubus_event_handler listener;$/;"	v	typeref:struct:ubus_event_handler	file:
+timestep_policy	trafficd/ubus.c	/^static const struct blobmsg_policy timestep_policy[__TIMESTEP_MAX] = {$/;"	v	typeref:struct:blobmsg_policy	file:
+trafficd_add_object	trafficd/ubus.c	/^static int trafficd_add_object(struct ubus_object *obj)$/;"	f	file:
+trafficd_ap_methods	trafficd/ubus.c	/^static const struct ubus_method trafficd_ap_methods[] = {$/;"	v	typeref:struct:ubus_method	file:
+trafficd_ap_object	trafficd/ubus.c	/^static struct ubus_object trafficd_ap_object = {$/;"	v	typeref:struct:ubus_object	file:
+trafficd_ap_object_type	trafficd/ubus.c	/^static struct ubus_object_type trafficd_ap_object_type =$/;"	v	typeref:struct:ubus_object_type	file:
+trafficd_handle_assoclist_update	trafficd/ubus.c	/^static int trafficd_handle_assoclist_update($/;"	f	file:
+trafficd_handle_dev	trafficd/ubus.c	/^static int trafficd_handle_dev($/;"	f	file:
+trafficd_handle_hw	trafficd/ubus.c	/^static int trafficd_handle_hw($/;"	f	file:
+trafficd_handle_ip	trafficd/ubus.c	/^static int trafficd_handle_ip($/;"	f	file:
+trafficd_handle_lan_dump	trafficd/ubus.c	/^static int trafficd_handle_lan_dump($/;"	f	file:
+trafficd_handle_point_dump	trafficd/ubus.c	/^static int trafficd_handle_point_dump($/;"	f	file:
+trafficd_handle_point_timestep	trafficd/ubus.c	/^static int trafficd_handle_point_timestep($/;"	f	file:
+trafficd_handle_reload	trafficd/ubus.c	/^static int trafficd_handle_reload($/;"	f	file:
+trafficd_handle_restart	trafficd/ubus.c	/^static int trafficd_handle_restart($/;"	f	file:
+trafficd_handle_setlan	trafficd/ubus.c	/^static int trafficd_handle_setlan($/;"	f	file:
+trafficd_handle_setwan	trafficd/ubus.c	/^static int trafficd_handle_setwan($/;"	f	file:
+trafficd_handle_update_hostname	trafficd/ubus.c	/^static int trafficd_handle_update_hostname($/;"	f	file:
+trafficd_handle_wan_dump	trafficd/ubus.c	/^static int trafficd_handle_wan_dump($/;"	f	file:
+trafficd_handle_wan_rate_dump	trafficd/ubus.c	/^static int trafficd_handle_wan_rate_dump($/;"	f	file:
+trafficd_router_methods	trafficd/ubus.c	/^static const struct ubus_method trafficd_router_methods[] = {$/;"	v	typeref:struct:ubus_method	file:
+trafficd_router_object	trafficd/ubus.c	/^static struct ubus_object trafficd_router_object = {$/;"	v	typeref:struct:ubus_object	file:
+trafficd_router_object_type	trafficd/ubus.c	/^static struct ubus_object_type trafficd_router_object_type =$/;"	v	typeref:struct:ubus_object_type	file:
+trafficd_ubus_add_fd	trafficd/ubus.c	/^static void trafficd_ubus_add_fd(void)$/;"	f	file:
+trafficd_ubus_add_listen	trafficd/ubus.c	/^static int trafficd_ubus_add_listen(){$/;"	f	file:
+trafficd_ubus_connection_lost	trafficd/ubus.c	/^static void trafficd_ubus_connection_lost(struct ubus_context *ctx)$/;"	f	file:
+trafficd_ubus_done	trafficd/ubus.c	/^void trafficd_ubus_done(void)$/;"	f
+trafficd_ubus_init	trafficd/ubus.c	/^int trafficd_ubus_init()$/;"	f
+trafficd_ubus_reconnect_timer	trafficd/ubus.c	/^static void trafficd_ubus_reconnect_timer(struct uloop_timeout *timeout)$/;"	f	file:
+ubus_receive_event	trafficd/ubus.c	/^static void ubus_receive_event($/;"	f	file:
+__vlist_simple_init	trafficd/utils.c	/^__vlist_simple_init(struct vlist_simple_tree *tree, int offset)$/;"	f
+buf	trafficd/utils.c	/^static char buf[2048];$/;"	v	file:
+check_pid_path	trafficd/utils.c	/^bool check_pid_path(int pid, const char *exe)$/;"	f
+cmp_ip	trafficd/utils.c	/^int cmp_ip(const void *k1, const void *k2, void *ptr)$/;"	f
+format_macaddr	trafficd/utils.c	/^format_macaddr(uint8_t *mac)$/;"	f
+get_uptime	trafficd/utils.c	/^double get_uptime(double * uptime_secs, double * idle_secs) {$/;"	f
+system_fd_set_cloexec	trafficd/utils.c	/^void system_fd_set_cloexec(int fd)$/;"	f
+trafficd_ctime	trafficd/utils.c	/^char *trafficd_ctime(time_t time){$/;"	f
+upper_nstring	trafficd/utils.c	/^void upper_nstring(char *string, int size)$/;"	f
+uptime_fd	trafficd/utils.c	/^static int uptime_fd = -1;$/;"	v	file:
+vlist_simple_delete	trafficd/utils.c	/^vlist_simple_delete(struct vlist_simple_tree *tree, struct vlist_simple_node *node)$/;"	f
+vlist_simple_flush	trafficd/utils.c	/^vlist_simple_flush(struct vlist_simple_tree *tree)$/;"	f
+vlist_simple_flush_all	trafficd/utils.c	/^vlist_simple_flush_all(struct vlist_simple_tree *tree)$/;"	f
+vlist_simple_replace	trafficd/utils.c	/^vlist_simple_replace(struct vlist_simple_tree *dest, struct vlist_simple_tree *old)$/;"	f

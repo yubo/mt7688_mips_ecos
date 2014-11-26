@@ -248,6 +248,8 @@ struct cfgid_str_t cfgid_str_table[]=
     CFG_STR_ENTRY_( DNS_DEF ),
     CFG_STR_ENTRY_( DNS_FIX_FIRST ),
     CFG_STR_ENTRY_( DNS_HOSTS ),
+	
+    CFG_STR_ENTRY_( TRAFFIC_EN ),
 
     CFG_STR_ENTRY_( QOS_EN ),
     CFG_STR_ENTRY_( QOS_IPTABLE ),

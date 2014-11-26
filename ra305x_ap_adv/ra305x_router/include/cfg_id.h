@@ -67,6 +67,9 @@
 #ifdef CONFIG_IPTV
 #define  CFG_ID_IPTV   16
 #endif
+#ifdef CONFIG_TRAFFIC
+#define  CFG_ID_TRAFFIC   17
+#endif
 #define	CFG_ID_SOC	32		// SoC Settings
 /*  Note: module ID behind 33 (included) will not be saved in the flash  */
 #define CFG_ID_STS  33		// running status
@@ -324,6 +327,11 @@
 #define CFG_DNS_DEF		    CFG_DNS_(4,CFG_TYPE_IP)
 #define CFG_DNS_FIX_FIRST	CFG_DNS_(5,CFG_TYPE_INT) 
 #define CFG_DNS_HOSTS		CFG_DNS_(6,CFG_TYPE_STR) 
+
+
+#define CFG_TRAFFIC_(idx,type)  CFG_ID_(CFG_ID_TRAFFIC,idx,type,0)
+#define CFG_TRAFFIC_EN	    	CFG_TRAFFIC_(1,CFG_TYPE_INT) 
+
 
 #ifdef CONFIG_IPTV
 #define CFG_IPTV_(idx,type)   CFG_ID_(CFG_ID_IPTV,idx,type,0)

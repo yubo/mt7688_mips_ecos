@@ -61,6 +61,7 @@ extern int  HTTPD_init(void);
 extern int usb_test_init(void);
 #endif
 extern void UPNP_init(void);
+extern void TRAFFIC_init(void);
 extern void CLI_start(int cmd);
 extern void rand_initialize(void);
 extern void lo_set_ip(void);
@@ -187,6 +188,9 @@ int main(void)
 #endif
 #if (MODULE_UPNP == 1)
 	UPNP_init() ;
+#endif
+#if (MODULE_TRAFFIC == 1)
+	TRAFFIC_init() ;
 #endif
 #ifdef RALINK_LLTD_SUPPORT
 	LLTP_Start();

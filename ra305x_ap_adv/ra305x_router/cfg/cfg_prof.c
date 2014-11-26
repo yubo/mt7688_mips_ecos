@@ -521,6 +521,10 @@ void set_event(cfgid cid)
 	case CFG_ID_LOG:
 		eventcmd |= MON_CMD_LOG_UPDATE | MON_CMD_CFGCHANGE;
 		break;
+
+	case CFG_ID_TRAFFIC:
+		eventcmd |= MON_CMD_TRAFFIC_UPDATE | MON_CMD_CFGCHANGE;
+		break;
 		
 	default:
 		break;
