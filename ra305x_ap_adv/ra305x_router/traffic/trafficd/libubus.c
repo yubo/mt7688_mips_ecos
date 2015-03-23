@@ -21,10 +21,10 @@
 #include <libubox/blob.h>
 #include <libubox/blobmsg.h>
 
-#include "trafficd.h"
-#include "libubus.h"
-#include "libubus-internal.h"
-#include "ubusmsg.h"
+#include "traffic/trafficd.h"
+#include "traffic/libubus.h"
+#include "traffic/libubus-internal.h"
+#include "traffic/ubusmsg.h"
 
 const char *__ubus_strerror[__UBUS_STATUS_LAST] = {
 	[UBUS_STATUS_OK] = "Success",
@@ -96,7 +96,6 @@ ubus_queue_msg(struct ubus_context *ctx, struct ubus_msghdr *hdr)
 void __hidden
 ubus_process_msg(struct ubus_context *ctx, struct ubus_msghdr *hdr, int fd)
 {
-
 	switch(hdr->type) {
 	case UBUS_MSG_STATUS:
 	case UBUS_MSG_DATA:
@@ -277,28 +276,7 @@ static void ubus_default_connection_lost(struct ubus_context *ctx)
 		uloop_end();
 }
 
-static int _ubus_connect(struct ubus_context *ctx, const char *path)
-{
-	ctx->sock.fd = -1;
-	ctx->sock.cb = ubus_handle_data;
-	ctx->connection_lost = ubus_default_connection_lost;
-	ctx->pending_timer.cb = ubus_process_pending_msg;
 
-	ctx->msgbuf.data = calloc(UBUS_MSG_CHUNK_SIZE, sizeof(char));
-	if (!ctx->msgbuf.data)
-		return -1;
-	ctx->msgbuf_data_len = UBUS_MSG_CHUNK_SIZE;
-
-	INIT_LIST_HEAD(&ctx->requests);
-	INIT_LIST_HEAD(&ctx->pending);
-	avl_init(&ctx->objects, ubus_cmp_id, false, NULL);
-	if (ubus_reconnect(ctx, path)) {
-		free(ctx->msgbuf.data);
-		return -1;
-	}
-
-	return 0;
-}
 
 static int _tbus_connect(struct ubus_context *ctx, struct sockaddr_in *a)
 {
@@ -324,15 +302,7 @@ static int _tbus_connect(struct ubus_context *ctx, struct sockaddr_in *a)
 	return 0;
 }
 
-static void ubus_auto_reconnect_cb(struct uloop_timeout *timeout)
-{
-	struct ubus_auto_conn *conn = container_of(timeout, struct ubus_auto_conn, timer);
 
-	if (!ubus_reconnect(&conn->ctx, conn->path))
-		ubus_add_uloop(&conn->ctx);
-	else
-		uloop_timeout_set(timeout, 1000);
-}
 
 static void tbus_auto_reconnect_cb(struct uloop_timeout *timeout)
 {
@@ -344,13 +314,7 @@ static void tbus_auto_reconnect_cb(struct uloop_timeout *timeout)
 		uloop_timeout_set(timeout, 1000);
 }
 
-static void ubus_auto_disconnect_cb(struct ubus_context *ctx)
-{
-	struct ubus_auto_conn *conn = container_of(ctx, struct ubus_auto_conn, ctx);
 
-	conn->timer.cb = ubus_auto_reconnect_cb;
-	uloop_timeout_set(&conn->timer, 1000);
-}
 
 static void tbus_auto_disconnect_cb(struct ubus_context *ctx)
 {
@@ -360,20 +324,7 @@ static void tbus_auto_disconnect_cb(struct ubus_context *ctx)
 	uloop_timeout_set(&conn->timer, 1000);
 }
 
-static void ubus_auto_connect_cb(struct uloop_timeout *timeout)
-{
-	struct ubus_auto_conn *conn = container_of(timeout, struct ubus_auto_conn, timer);
 
-	if (_ubus_connect(&conn->ctx, conn->path)) {
-		uloop_timeout_set(timeout, 1000);
-		D(BUS, "failed to connect to ubus\n");
-		return;
-	}
-	conn->ctx.connection_lost = ubus_auto_disconnect_cb;
-	if (conn->cb)
-		conn->cb(&conn->ctx);
-	ubus_add_uloop(&conn->ctx);
-}
 
 static void tbus_auto_connect_cb(struct uloop_timeout *timeout)
 {
@@ -390,11 +341,7 @@ static void tbus_auto_connect_cb(struct uloop_timeout *timeout)
 	ubus_add_uloop(&conn->ctx);
 }
 
-void ubus_auto_connect(struct ubus_auto_conn *conn)
-{
-	conn->timer.cb = ubus_auto_connect_cb;
-	ubus_auto_connect_cb(&conn->timer);
-}
+
 
 void tbus_auto_connect(struct ubus_auto_conn *conn)
 {
@@ -402,21 +349,7 @@ void tbus_auto_connect(struct ubus_auto_conn *conn)
 	tbus_auto_connect_cb(&conn->timer);
 }
 
-struct ubus_context *ubus_connect(const char *path)
-{
-	struct ubus_context *ctx;
 
-	ctx = calloc(1, sizeof(*ctx));
-	if (!ctx)
-		return NULL;
-
-	if (_ubus_connect(ctx, path)) {
-		free(ctx);
-		ctx = NULL;
-	}
-
-	return ctx;
-}
 
 struct ubus_context *tbus_connect(struct sockaddr_in *a)
 {
@@ -434,13 +367,7 @@ struct ubus_context *tbus_connect(struct sockaddr_in *a)
 	return ctx;
 }
 
-void ubus_free(struct ubus_context *ctx)
-{
-	blob_buf_free(&b);
-	close(ctx->sock.fd);
-	free(ctx->msgbuf.data);
-	free(ctx);
-}
+
 
 void tbus_free(struct ubus_context *ctx)
 {

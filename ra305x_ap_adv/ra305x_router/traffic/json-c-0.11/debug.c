@@ -9,14 +9,14 @@
  *
  */
 
-#include "config.h"
+#include "json/config.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
 
-#if HAVE_SYSLOG_H
+#if HAVE_SYSLOG_H & !defined(__ECOS)
 # include <syslog.h>
 #endif /* HAVE_SYSLOG_H */
 
@@ -28,7 +28,7 @@
 #include <sys/param.h>
 #endif /* HAVE_SYS_PARAM_H */
 
-#include "debug.h"
+#include "json/debug.h"
 
 static int _syslog = 0;
 static int _debug = 0;
@@ -91,7 +91,7 @@ void mc_info(const char *msg, ...)
 #if HAVE_VSYSLOG
     if(_syslog) {
 		vsyslog(LOG_INFO, msg, ap);
-	} else 
+	} else
 #endif
 		vfprintf(stderr, msg, ap);
   va_end(ap);

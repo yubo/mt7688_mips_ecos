@@ -22,11 +22,11 @@
 #include <sys/types.h>
 #include <stdbool.h>
 
-#ifndef __ECOS
+#ifdef __ECOS
+#include "traffic/int.h"
+#else
 #include <stdint.h>
 #include <signal.h>
-#else
-#include "int.h"
 #endif
 
 
@@ -102,8 +102,10 @@ int uloop_timeout_set(struct uloop_timeout *timeout, int msecs);
 int uloop_timeout_cancel(struct uloop_timeout *timeout);
 int uloop_timeout_remaining(struct uloop_timeout *timeout);
 
+#ifndef __ECOS
 int uloop_process_add(struct uloop_process *p);
 int uloop_process_delete(struct uloop_process *p);
+#endif
 
 static inline void uloop_end(void)
 {

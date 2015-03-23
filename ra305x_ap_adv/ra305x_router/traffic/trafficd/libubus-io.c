@@ -27,18 +27,17 @@
 #include <poll.h>
 #endif
 
-#include <libubox/usock.h>
 #include <libubox/blob.h>
 #include <libubox/blobmsg.h>
 
-#include "trafficd.h"
-#include "libubus.h"
-#include "libubus-internal.h"
+#include "traffic/trafficd.h"
+#include "traffic/libubus.h"
+#include "traffic/libubus-internal.h"
 
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-
+#define MAX_PKGSIZ  10240
 
 
 #define STATIC_IOV(_var) { .iov_base = (char *) &(_var), .iov_len = sizeof(_var) }
@@ -63,9 +62,9 @@ __hidden struct blob_attr **ubus_parse_msg(struct blob_attr *msg)
 	return attrbuf;
 }
 
-static void wait_data(int fd, bool write)
+
+static int wait_data(int fd, bool write)
 {
-#ifdef __ECOS
 	fd_set fds;
 	struct timeval tv = {.tv_sec = 0, .tv_usec = 10};
 	FD_ZERO(&fds);
@@ -75,14 +74,17 @@ static void wait_data(int fd, bool write)
 	}else{
 		select(fd + 1, &fds, NULL, NULL, &tv);
 	}
-	return;
-#else
-	struct pollfd pfd = { .fd = fd };
-
-	pfd.events = write ? POLLOUT : POLLIN;
-	poll(&pfd, 1, 0);
-#endif
+	if(FD_ISSET(fd, &fds)){
+		dlog("fd_isset \n");
+		return 0;
+	}else{
+		dlog("fd is not set \n");
+		return -1;
+	}
 }
+
+
+
 
 static int writev_retry(struct ubus_context * ctx, struct iovec *iov, int iov_len, int sock_fd)
 {
@@ -186,6 +188,7 @@ int __hidden ubus_send_msg(struct ubus_context *ctx, uint32_t seq,
 	return ret;
 }
 
+
 static int recv_retry(struct ubus_context * ctx, struct iovec *iov, bool wait, int *recv_fd)
 {
 	int bytes, total = 0;
@@ -206,8 +209,8 @@ static int recv_retry(struct ubus_context * ctx, struct iovec *iov, bool wait, i
 
 
 	while (iov->iov_len > 0) {
-		if (wait)
-			wait_data(ctx->sock.fd, false);
+		if (wait && wait_data(ctx->sock.fd, false))
+			return 0;
 
 		if (recv_fd) {
 			msghdr.msg_control = &fd_buf;
@@ -218,7 +221,10 @@ static int recv_retry(struct ubus_context * ctx, struct iovec *iov, bool wait, i
 		}
 
 		fd_buf.fd = -1;
+		dlog(" recvmsg ctx->sock.fd[%d] msghdr.msg_control[%d] msghdr.msg_controllen[%d]\n",
+				ctx->sock.fd, msghdr.msg_control ? msghdr.msg_control : 0, msghdr.msg_controllen);
 		bytes = recvmsg(ctx->sock.fd, &msghdr, 0);
+		dlog("recvmsg bytes %d\n", bytes);
 		if (!bytes)
 			return -1;
 
@@ -280,8 +286,10 @@ static bool get_next_msg(struct ubus_context *ctx, int *recv_fd)
 	struct iovec iov = STATIC_IOV(hdrbuf);
 	int len;
 	int r;
+	void *p;
 
 	/* receive header + start attribute */
+	dlog("recv_retry\n");
 	r = recv_retry(ctx, &iov, false, recv_fd);
 	if (r <= 0) {
 		if (r < 0)
@@ -290,8 +298,10 @@ static bool get_next_msg(struct ubus_context *ctx, int *recv_fd)
 		return false;
 	}
 
-	if (!ubus_validate_hdr(&hdrbuf.hdr))
+	if (!ubus_validate_hdr(&hdrbuf.hdr)){
 		return false;
+	}
+
 
 	len = blob_raw_len(&hdrbuf.data);
 	if (len > ctx->msgbuf_data_len) {
@@ -306,9 +316,12 @@ static bool get_next_msg(struct ubus_context *ctx, int *recv_fd)
 		len = -1;
 
 	if (len > -1) {
+		p = ctx->msgbuf.data;
 		ctx->msgbuf.data = realloc(ctx->msgbuf.data, len * sizeof(char));
 		if (ctx->msgbuf.data)
 			ctx->msgbuf_data_len = len;
+		else
+			free(p);
 	}
 	if (!ctx->msgbuf.data)
 		return false;
@@ -316,33 +329,139 @@ static bool get_next_msg(struct ubus_context *ctx, int *recv_fd)
 	memcpy(&ctx->msgbuf.hdr, &hdrbuf.hdr, sizeof(hdrbuf.hdr));
 	memcpy(ctx->msgbuf.data, &hdrbuf.data, sizeof(hdrbuf.data));
 
+
 	iov.iov_base = (char *)ctx->msgbuf.data + sizeof(hdrbuf.data);
 	iov.iov_len = blob_len(ctx->msgbuf.data);
+	dlog("recv_retry wait true iov.iov_len[%d]\n", iov.iov_len);
 	if (iov.iov_len > 0 && !recv_retry(ctx, &iov, true, NULL))
 		return false;
 
 	return true;
 }
 
+
 void __hidden ubus_handle_data(struct uloop_fd *u, unsigned int events)
 {
 	struct ubus_context *ctx = container_of(u, struct ubus_context, sock);
 	struct ubus_msghdr *hdr = &ctx->msgbuf.hdr;
-	int recv_fd = -1;
+	int left, offset, len, again;
+	ssize_t bytes;
+	char buff[MAX_PKGSIZ];
+	void *p;
+	struct iovec iov = STATIC_IOV(buff);
+	struct msghdr msghdr = {
+		.msg_iov = &iov,
+		.msg_iovlen = 1,
+		.msg_control = NULL,
+		.msg_controllen = 0,
+	};
+	struct hdrbuf{
+		struct ubus_msghdr hdr;
+		struct blob_attr data;
+	} *hdrbuf;
 
-	while (get_next_msg(ctx, &recv_fd)) {
-		ubus_process_msg(ctx, hdr, recv_fd);
-		if (uloop_cancelled)
-			break;
+again:
+	bytes = recvmsg(ctx->sock.fd, &msghdr, 0);
+
+	if(bytes < sizeof(buff))
+		again = 0;
+	else
+		again = 1;
+
+	//dlog("recvmsg[%d/%d] sizeof(*hdrbuf)[%d], sizeof(hdrbuf->data)[%d]\n", bytes, sizeof(buff), sizeof(*hdrbuf), sizeof(struct blob_attr));
+	if(bytes == 0){
+		ctx->sock.eof = true;
+	}
+	offset = 0;
+
+	while(bytes > 0){
+		//dlog("offset[%d], bytes[%d], msgbuf_data_offset[%d]\n", offset, bytes, ctx->msgbuf_data_offset);
+
+		if (uloop_cancelled){
+			goto reset;
+		}
+
+		if(ctx->msgbuf_data_offset >= sizeof(struct blob_attr)){
+			if(bytes >= ctx->msg_data_len - ctx->msgbuf_data_offset){
+				memcpy((char *)ctx->msgbuf.data + ctx->msgbuf_data_offset,
+						(char *)buff + offset, ctx->msg_data_len - ctx->msgbuf_data_offset);
+				offset += ctx->msg_data_len - ctx->msgbuf_data_offset;
+				bytes -= ctx->msg_data_len - ctx->msgbuf_data_offset;
+				ctx->msgbuf_data_offset = 0;
+				dlog("offset[%d], bytes[%d], msgbuf_data_offset[%d], ctx->msg_data_len[%d]\n",
+					offset, bytes, ctx->msgbuf_data_offset, ctx->msg_data_len);
+				ubus_process_msg(ctx, hdr, -1);
+			}else{
+				memcpy((char *)ctx->msgbuf.data + ctx->msgbuf_data_offset,
+						(char *)buff + offset, bytes);
+				offset += bytes;
+				ctx->msgbuf_data_offset += bytes;
+				bytes = 0;
+				//dlog("offset[%d], bytes[%d], msgbuf_data_offset[%d], ctx->msg_data_len[%d]\n",
+				//	offset, bytes, ctx->msgbuf_data_offset, ctx->msg_data_len);
+			}
+		}else{  /* msgbuff_data_offset == 0 */
+			hdrbuf = (struct hdrbuf *)buff;
+			if(bytes < sizeof(*hdrbuf))
+				goto reset;
+
+			if (!ubus_validate_hdr(&hdrbuf->hdr)){
+				goto reset;
+			}
+
+			len = blob_raw_len(&hdrbuf->data);
+			if (len > ctx->msgbuf_data_len) {
+				ctx->msgbuf_reduction_counter = UBUS_MSGBUF_REDUCTION_INTERVAL;
+			} else if (ctx->msgbuf_data_len > UBUS_MSG_CHUNK_SIZE) {
+				if (ctx->msgbuf_reduction_counter > 0) {
+					len = -1;
+					--ctx->msgbuf_reduction_counter;
+				} else
+					len = UBUS_MSG_CHUNK_SIZE;
+			} else
+				len = -1;
+
+			if (len > -1) {
+				p = ctx->msgbuf.data;
+				ctx->msgbuf.data = realloc(ctx->msgbuf.data, len * sizeof(char));
+				if (ctx->msgbuf.data)
+					ctx->msgbuf_data_len = len;
+				else
+					free(p);
+			}
+			if (!ctx->msgbuf.data)
+				goto reset;
+
+			memcpy(&ctx->msgbuf.hdr, &hdrbuf->hdr, sizeof(hdrbuf->hdr));
+			memcpy(ctx->msgbuf.data, &hdrbuf->data, sizeof(hdrbuf->data));
+			bytes -= sizeof(*hdrbuf);
+			offset += sizeof(*hdrbuf);
+			ctx->msgbuf_data_offset = sizeof(hdrbuf->data);
+			ctx->msg_data_len = blob_raw_len(&hdrbuf->data);
+			//dlog("offset[%d], bytes[%d], msgbuf_data_offset[%d] ctx->msg_data_len[%d]\n",
+			//	offset, bytes, ctx->msgbuf_data_offset, ctx->msg_data_len);
+		}
 	}
 
-	if (u->eof)
+	//if(again)
+	//	goto again;
+
+	if (u->eof){
 		ctx->connection_lost(ctx);
+	}
+	//dlog("leavefunction\n");
+	return;
+
+reset:
+	ctx->msgbuf_data_offset = 0;
+	if (u->eof){
+		ctx->connection_lost(ctx);
+	}
+	//dlog("leavefunction");
 }
 
 void __hidden ubus_poll_data(struct ubus_context *ctx, int timeout)
 {
-#ifdef __ECOS
 	fd_set fds;
 	struct timeval tv;
 
@@ -354,17 +473,9 @@ void __hidden ubus_poll_data(struct ubus_context *ctx, int timeout)
 	FD_ZERO(&fds);
 	FD_SET(ctx->sock.fd, &fds);
 	select(ctx->sock.fd + 1, &fds, NULL, NULL, timeout >= 0 ? &tv : NULL);
-	ubus_handle_data(&ctx->sock, ULOOP_READ);
-
-#else
-	struct pollfd pfd = {
-		.fd = ctx->sock.fd,
-		.events = POLLIN | POLLERR,
-	};
-
-	poll(&pfd, 1, timeout);
-	ubus_handle_data(&ctx->sock, ULOOP_READ);
-#endif
+	if(FD_ISSET(ctx->sock.fd, &fds)){
+		ubus_handle_data(&ctx->sock, ULOOP_READ);
+	}
 }
 
 static void
@@ -387,69 +498,11 @@ ubus_refresh_state(struct ubus_context *ctx)
 	}
 
 	for (n = i, i = 0; i < n; i++)
-		ubus_add_object(ctx, objs[i]);
+		ubus_replace_object(ctx, objs[i]);
+		//ubus_add_object(ctx, objs[i]);
 	free(objs);
+	ctx->msgbuf_data_offset = 0;
 }
-
-int ubus_reconnect(struct ubus_context *ctx, const char *path)
-{
-	struct {
-		struct ubus_msghdr hdr;
-		struct blob_attr data;
-	} hdr;
-	struct blob_attr *buf;
-	int ret = UBUS_STATUS_UNKNOWN_ERROR;
-
-	if (!path)
-		path = UBUS_UNIX_SOCKET;
-
-	if (ctx->sock.fd >= 0) {
-		if (ctx->sock.registered)
-			uloop_fd_delete(&ctx->sock);
-
-		close(ctx->sock.fd);
-	}
-
-	ctx->sock.fd = usock(USOCK_UNIX, path, NULL);
-	if (ctx->sock.fd < 0)
-		return UBUS_STATUS_CONNECTION_FAILED;
-
-	if (read(ctx->sock.fd, &hdr, sizeof(hdr)) != sizeof(hdr))
-		goto out_close;
-
-	if (!ubus_validate_hdr(&hdr.hdr))
-		goto out_close;
-
-	if (hdr.hdr.type != UBUS_MSG_HELLO)
-		goto out_close;
-
-	buf = calloc(1, blob_raw_len(&hdr.data));
-	if (!buf)
-		goto out_close;
-
-	memcpy(buf, &hdr.data, sizeof(hdr.data));
-	if (read(ctx->sock.fd, blob_data(buf), blob_len(buf)) != blob_len(buf))
-		goto out_free;
-
-	ctx->local_id = hdr.hdr.peer;
-	if (!ctx->local_id)
-		goto out_free;
-
-	ret = UBUS_STATUS_OK;
-	fcntl(ctx->sock.fd, F_SETFL, fcntl(ctx->sock.fd, F_GETFL) | O_NONBLOCK);
-
-	ubus_refresh_state(ctx);
-
-out_free:
-	free(buf);
-out_close:
-	if (ret)
-		close(ctx->sock.fd);
-
-	return ret;
-}
-
-
 
 static int
 connect_socket(struct sockaddr_in *a)
@@ -489,7 +542,6 @@ int tbus_reconnect(struct ubus_context *ctx, struct sockaddr_in *a)
 	}
 
 	ctx->sock.fd = connect_socket(a);
-	//ctx->sock.fd = usock(USOCK_UNIX, path, NULL);
 	if (ctx->sock.fd < 0)
 		return UBUS_STATUS_CONNECTION_FAILED;
 
@@ -515,8 +567,10 @@ int tbus_reconnect(struct ubus_context *ctx, struct sockaddr_in *a)
 		goto out_free;
 
 	ret = UBUS_STATUS_OK;
-	fcntl(ctx->sock.fd, F_SETFL, fcntl(ctx->sock.fd, F_GETFL) | O_NONBLOCK);
 
+#ifndef T_NONBLOCK
+	fcntl(ctx->sock.fd, F_SETFL, fcntl(ctx->sock.fd, F_GETFL) | O_NONBLOCK);
+#endif
 	ubus_refresh_state(ctx);
 
 out_free:

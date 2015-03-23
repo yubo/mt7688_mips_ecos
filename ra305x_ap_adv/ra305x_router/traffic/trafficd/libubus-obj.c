@@ -14,8 +14,8 @@
  * yubo    <yubo@xiaomi.com>
  */
 
-#include "libubus.h"
-#include "libubus-internal.h"
+#include "traffic/libubus.h"
+#include "traffic/libubus-internal.h"
 
 static void
 ubus_process_unsubscribe(struct ubus_context *ctx, struct ubus_msghdr *hdr,
@@ -191,6 +191,37 @@ int ubus_add_object(struct ubus_context *ctx, struct ubus_object *obj)
 	}
 
 	if (ubus_start_request(ctx, &req, b.head, UBUS_MSG_ADD_OBJECT, 0) < 0)
+		return UBUS_STATUS_INVALID_ARGUMENT;
+
+	req.raw_data_cb = ubus_add_object_cb;
+	req.priv = obj;
+	ret = ubus_complete_request(ctx, &req, 0);
+	if (ret)
+		return ret;
+
+	if (!obj->id)
+		return UBUS_STATUS_NO_DATA;
+
+	return 0;
+}
+
+int ubus_replace_object(struct ubus_context *ctx, struct ubus_object *obj)
+{
+	struct ubus_request req;
+	int ret;
+
+	blob_buf_init(&b, 0);
+
+	if (obj->name && obj->type) {
+		blob_put_string(&b, UBUS_ATTR_OBJPATH, obj->name);
+
+		if (obj->type->id)
+			blob_put_int32(&b, UBUS_ATTR_OBJTYPE, obj->type->id);
+		else if (!ubus_push_object_type(obj->type))
+			return UBUS_STATUS_INVALID_ARGUMENT;
+	}
+
+	if (ubus_start_request(ctx, &req, b.head, UBUS_MSG_REPLACE_OBJECT, 0) < 0)
 		return UBUS_STATUS_INVALID_ARGUMENT;
 
 	req.raw_data_cb = ubus_add_object_cb;

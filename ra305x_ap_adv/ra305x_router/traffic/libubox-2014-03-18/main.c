@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "blobmsg.h"
-#include "blobmsg_json.h"
+#include "libubox/blobmsg.h"
+#include "libubox/blobmsg_json.h"
 
 static const char *indent_str = "\t\t\t\t\t\t\t\t\t\t\t\t\t";
 

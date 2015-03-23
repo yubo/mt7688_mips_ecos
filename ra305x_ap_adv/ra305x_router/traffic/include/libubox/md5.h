@@ -15,7 +15,11 @@
 #ifndef __PROCD_MD5_H
 #define __PROCD_MD5_H
 
+#ifdef __ECOS
+#include "traffic/int.h"
+#else
 #include <stdint.h>
+#endif
 #include <stddef.h>
 
 typedef struct md5_ctx {

@@ -15,7 +15,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #else
-#include "int.h"
+#include "traffic/int.h"
 #endif
 
 #include "libubox/list.h"

@@ -13,7 +13,7 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include "vlist.h"
+#include "libubox/vlist.h"
 
 void
 vlist_init(struct vlist_tree *tree, avl_tree_comp cmp, vlist_update_cb update)

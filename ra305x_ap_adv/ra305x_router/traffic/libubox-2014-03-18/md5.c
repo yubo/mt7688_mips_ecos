@@ -12,7 +12,7 @@
  *  Licensed under the GPL v2 or later, see the file LICENSE in this tarball.
  */
 
-#include "blob.h" /* TODO: better include for bswap_32 compat */
+#include "libubox/blob.h" /* TODO: better include for bswap_32 compat */
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -20,7 +20,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#include "md5.h"
+#include "libubox/md5.h"
 
 #if __BYTE_ORDER == __LITTLE_ENDIAN
 #define SWAP_LE32(x) (x)

@@ -19,8 +19,8 @@
 #ifndef _BLOB_H__
 #define _BLOB_H__
 
-#include <stdbool.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 
 #include <errno.h>
@@ -29,10 +29,10 @@
 #include <stdint.h>
 #include <stdio.h>
 #else
-#include "int.h"
+#include "traffic/int.h"
 #endif
 
-#include "utils.h"
+#include "libubox/utils.h"
 
 #define BLOB_COOKIE		0x01234567
 

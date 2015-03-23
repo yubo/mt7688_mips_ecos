@@ -1,6 +1,6 @@
 all: main
 
-CFLAGS = -I../include -I../include/libubox 
+CFLAGS = -I../include -I../include/libubox
 LDFLAGS = -lrt -g -O0 #for clock_gettime
 
 JSON_OBJS = \
@@ -21,14 +21,10 @@ OBJS = avl.o \
 	blob.o \
 	blobmsg.o \
 	blobmsg_json.o \
-	json_script.o \
 	md5.o \
 	runqueue.o \
 	safe_list.o \
 	uloop.o \
-	usock.o \
-	ustream.o \
-	ustream-fd.o \
 	utils.o \
 	vlist.o
 
@@ -40,4 +36,4 @@ main: main.o $(OBJS)
 
 
 clean:
-	rm -f *.o main
+	rm -f *.d *.o main

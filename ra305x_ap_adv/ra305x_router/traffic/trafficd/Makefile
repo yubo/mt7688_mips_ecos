@@ -1,6 +1,6 @@
 all: main
 
-CFLAGS = -I../include -DUBUS_MAX_MSGLEN=1048576 -DDEBUG -g -O0
+CFLAGS = -I../include  -DUBUS_MAX_MSGLEN=1048576 -DDEBUG -g -O0 -D_DEBUG
 LDFLAGS = -lrt  #for clock_gettime
 
 JSON_OBJS = \
@@ -22,21 +22,15 @@ UBOX_OBJS = \
 	../libubox-2014-03-18/blob.o \
 	../libubox-2014-03-18/blobmsg.o \
 	../libubox-2014-03-18/blobmsg_json.o \
-	../libubox-2014-03-18/json_script.o \
 	../libubox-2014-03-18/md5.o \
 	../libubox-2014-03-18/runqueue.o \
 	../libubox-2014-03-18/safe_list.o \
 	../libubox-2014-03-18/uloop.o \
-	../libubox-2014-03-18/usock.o \
-	../libubox-2014-03-18/ustream.o \
-	../libubox-2014-03-18/ustream-fd.o \
 	../libubox-2014-03-18/utils.o \
 	../libubox-2014-03-18/vlist.o
 
 OBJS = \
 	config.o \
-	hw.o \
-	ip.o \
 	main.o \
 	system_ecos.o \
 	tbus.o \
@@ -45,6 +39,7 @@ OBJS = \
 	libubus-obj.o \
 	libubus-req.o \
 	libubus-sub.o \
+	msg_handle.o \
 	utils.o
 
 
@@ -56,4 +51,4 @@ main: $(OBJS)
 
 
 clean:
-	rm -f *.o main
+	rm -f *.d *.o main

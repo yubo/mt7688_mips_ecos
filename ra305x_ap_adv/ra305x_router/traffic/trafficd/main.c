@@ -17,30 +17,11 @@
 #include <syslog.h>
 #endif
 
-#include "trafficd.h"
-#include "ubus.h"
-#include "system.h"
-
-#ifdef __ECOS
-unsigned int debug_mask = 0x0;
-
-#define TRAFFIC_SIGHUP      1
-#define TRAFFIC_SHUTDOWN    2
-
-#define TRAFFIC_PRIORITY    9
-#define TRAFFIC_STACKSIZE 102400
-
-static char traffic_stack[TRAFFIC_STACKSIZE];
-
-cyg_handle_t traffic_handle;
-cyg_thread traffic_thread;
-static cyg_mbox traffic_mbox_obj;
-static cyg_handle_t traffic_mbox_id;
-
-struct uloop_timeout sig_timeout;
+#include "traffic/trafficd.h"
+#include "traffic/ubus.h"
+#include "traffic/system.h"
 
 
-static int log_level = DEFAULT_LOG_LEVEL;
 static const int log_class[] = {
 	[L_CRIT] = LOG_CRIT,
 	[L_ERR] = LOG_ERR,
@@ -49,8 +30,31 @@ static const int log_class[] = {
 	[L_INFO] = LOG_INFO,
 	[L_DEBUG] = LOG_DEBUG
 };
-
 struct trafficd_sys *sys = NULL;
+/*
+enum {
+	L_CRIT,
+	L_ERR,
+	L_WARNING,
+	L_NOTICE,
+	L_INFO,
+	L_DEBUG
+};
+
+enum {
+	DEBUG_SYSTEM	= 0,
+	DEBUG_IP	= 1,	// 2
+	DEBUG_HW	= 2,	// 4
+	DEBUG_BR	= 3,	// 8
+	DEBUG_DEV	= 4,	// 16
+	DEBUG_POINT	= 5,	// 32
+	DEBUG_EVENT	= 6,	// 64
+	DEBUG_CONF	= 7,	// 128
+	DEBUG_BUS	= 8,	// 256
+};
+*/
+uint32_t debug_mask = DEFAULT_DEBUG_MASK; //DEFAULT_DEBUG_MASK
+int log_level = DEFAULT_LOG_LEVEL; //DEFAULT_LOG_LEVEL;
 
 void trafficd_log_message(int priority, const char *format, ...)
 {
@@ -60,9 +64,26 @@ void trafficd_log_message(int priority, const char *format, ...)
 		return;
 
 	va_start(vl, format);
-	diag_printf(format, vl);
+	printf(format, vl);
 	va_end(vl);
 }
+
+
+#ifdef __ECOS
+
+
+#define TRAFFIC_SIGHUP      1
+#define TRAFFIC_SHUTDOWN    2
+
+#define TRAFFIC_PRIORITY    9
+#define TRAFFIC_STACKSIZE   (1024*64)
+static char traffic_stack[TRAFFIC_STACKSIZE];
+cyg_handle_t traffic_handle;
+cyg_thread traffic_thread;
+static cyg_mbox traffic_mbox_obj;
+static cyg_handle_t traffic_mbox_id;
+
+struct uloop_timeout sig_timeout;
 
 
 static void trafficstop()
@@ -101,7 +122,7 @@ static void sig_cb(struct uloop_timeout *timeout)
 		}
 	}
 
-	D(BUS, "send msg and wait %d(s)\n", TRAFFICD_WIFIAP_LOOP_TIME / 1000);
+	//dlog("sig_cb() for syg_mbox_tryget, sleep %d(s)\n", TRAFFICD_SIGNAL_LOOP_TIME / 1000);
 	uloop_timeout_set(timeout, TRAFFICD_SIGNAL_LOOP_TIME);
 
 }
@@ -124,18 +145,14 @@ void TRAFFIC_daemon(void)
 	sys->id = NULL;
 	sys->hd = NULL;
 
-	debug_mask = 256;
 	sys->cfg.use_syslog = false;
 
-
-	if(config_init_all()){
-		elog("failed to config_init_all\n");
-		free(sys);
-		sys = NULL;
-		return;
+	while(config_init_all()){
+		elog("config_init_all() failed\n");
+		cyg_thread_delay(500);
 	}
+	elog("config_init_all() done\n");
 
-	D(BUS, "hello\n");
 
 	uloop_init();
 
@@ -150,29 +167,18 @@ void TRAFFIC_daemon(void)
 		ret = -1;
 		goto out;
 	}
-
-	sys->id = trafficd_ip_init();
-	sys->hd = trafficd_hw_init();
-	if (!(sys->id && sys->hd &&
-			sys->bd)){
-		ret = -1;
-		goto out;
-	}
-
-	config_init_alive();
+	dlog("system_init() done\n");
 
 	memset(&sig_timeout, 0 , sizeof(sig_timeout));
 	sig_timeout.cb = sig_cb;
 	uloop_timeout_set(&sig_timeout, TRAFFICD_SIGNAL_LOOP_TIME);
 
+	dlog("uloop_run()\n");
 	uloop_run();
 	uloop_done();
 
-	trafficd_hw_done();
-	trafficd_ip_done();
 	trafficd_tbus_done();
-
-
+	config_done();
 	free(sys);
 	sys = NULL;
 
@@ -202,163 +208,67 @@ void TRAFFIC_init(void)
 
 
 #ifdef CONFIG_CLI_NET_CMD
+
 int traffic_cmd(int argc, char* argv[])
 {
 
-#if 0
-	extern TRAFFIC_PORTMAP *traffic_pmlist;
-	extern TRAFFIC_CONTEXT traffic_context;
 
-	TRAFFIC_CONTEXT *context = &traffic_context;
-	TRAFFIC_SERVICE *service = traffic_service_table;
-	TRAFFIC_SUBSCRIBER	*subscriber;
-
-	TRAFFIC_INTERFACE *ifp;
-
-	if (argc==0 || !strcmp(argv[0], "show") )
-	{
-		printf("# Interfaces\n");
-		for (ifp=context->iflist; ifp; ifp=ifp->next)
-		{
-			printf("%10s %6d\n", ifp->ifname, ifp->http_sock);
-		}
-
-		printf("\n");
-
-		if (traffic_pmlist==0)
-		{
-			printf("no port map!\n");
-		}
-		else
-		{
-			extern void upp_show_pmap(void);
-
-			upp_show_pmap();
-			printf("\n");
-#ifdef CONFIG_WPS
-			dumpDevCPNodeList();
-#endif /* CONFIG_WPS */
-		}
-
-		printf("\n");
-		printf("# Subscriber service\n");
-		cyg_mutex_lock(&traffic_service_table_mutex);
-		for (service = traffic_service_table; service->event_url; service++)
-		{
-			subscriber = service->subscribers;
-
-			while (subscriber)
-			{
-				printf("%lu.%lu.%lu.%lu:%d%s %s %u\n",
-						(subscriber->ipaddr >> 24) & 0xff,
-						(subscriber->ipaddr >> 16) & 0xff,
-						(subscriber->ipaddr >> 8) & 0xff,
-						subscriber->ipaddr & 0xff,
-						subscriber->port,
-						subscriber->uri,
-						subscriber->sid,
-						subscriber->expire_time);
-
-				subscriber = subscriber->next;
-			}
-		}
-		cyg_mutex_unlock(&traffic_service_table_mutex);
-	}
-	else if (( argc == 2 ) && (!strcmp(argv[0], "debug" )))
-	{
+	if (argc==0 || !strcmp(argv[0], "show")){
+		printf("log_level:%d debug_mask:%d\n", log_level, debug_mask);
+		printf("system_dump()\n");
+		system_dump();
+	} else if (( argc == 2 ) && (!strcmp(argv[0], "log_level" ))) {
 		int level = 0;
 
 		level = atoi(argv[1]);
 		if (level > 0)
-			traffic_debug_level = level;
+			log_level = level;
 		else
-			traffic_debug_level = RT_DBG_OFF;
+			log_level = L_CRIT;
 
-
-		DBGPRINTF(RT_DBG_OFF, "TRAFFICD debug level = %d\n", traffic_debug_level);
+		printf("TRAFFICD log_level = %d\n", log_level);
 	}
+#ifdef DEBUG
+	else if (( argc == 2 ) && (!strcmp(argv[0], "debug_mask" ))) {
+		int mask = 0;
+		mask = atoi(argv[1]);
+		if (mask > 0)
+			debug_mask = mask;
+		else
+			debug_mask = 0;
+		printf("TRAFFICD debug_mask = %d\n", debug_mask);
+	}
+#endif
 	else
 		goto err1;
 
 	return 0;
-#endif
 
-//err1:
+err1:
+
+	printf("traffic show\n");
+	printf("traffic log_level CRIT:%d, ERR:%d, WARNING:%d, NOTICE:%d, INFO:%d, DEBUG:%d\n",
+	 	L_CRIT, L_ERR, L_WARNING, L_NOTICE, L_INFO, L_DEBUG);
+#ifdef DEBUG
+	printf("traffic debug_mask SYSTEM:%d, IP:%d, HW:%d, EVENT:%d, CONF:%d, BUS:%d\n",
+	 	1<<DEBUG_SYSTEM, 1<<DEBUG_IP, 1<<DEBUG_HW, 1<<DEBUG_EVENT, 1<<DEBUG_CONF, 1<<DEBUG_BUS);
+#endif
 	printf("traffic hello world! set\n");
 	return 0;
 }
 
 #endif
 
-
 #else
-// for x86
 
 
-unsigned int debug_mask = 0x0;
 
-
+/*
+###########################################################
+### for x86                                               #
+###########################################################
+*/
 static char **global_argv;
-
-
-static int log_level = DEFAULT_LOG_LEVEL;
-static const int log_class[] = {
-	[L_CRIT] = LOG_CRIT,
-	[L_ERR] = LOG_ERR,
-	[L_WARNING] = LOG_WARNING,
-	[L_NOTICE] = LOG_NOTICE,
-	[L_INFO] = LOG_INFO,
-	[L_DEBUG] = LOG_DEBUG
-};
-
-struct trafficd_sys *sys;
-
-void trafficd_log_message(int priority, const char *format, ...)
-{
-	va_list vl;
-
-	if (priority > log_level)
-		return;
-
-	va_start(vl, format);
-	if (sys->cfg.use_syslog)
-		vsyslog(log_class[priority], format, vl);
-	else
-		vfprintf(stderr, format, vl);
-	va_end(vl);
-}
-
-void log_points(int instant, const char *format, ...)
-{
-	va_list vl;
-	char buff[POINTSMAXLEN];
-
-	va_start(vl, format);
-	vsnprintf(buff, POINTSMAXLEN, format, vl);
-	va_end(vl);
-
-	if (sys->cfg.use_syslog){
-		if (instant){
-			syslog(LOG_NOTICE, "stat_points_instant %s", buff);
-		}else{
-			syslog(LOG_NOTICE, "stat_points_none %s", buff);
-		}
-	}else{
-		if (debug_mask & (1 << (DEBUG_POINT))){
-			if (instant){
-				fprintf(stderr, "stat_points_instant %s\n", buff);
-			}else{
-				fprintf(stderr, "stat_points_none %s\n", buff);
-			}
-		}
-	}
-
-}
-
-
-static struct uloop_timeout main_timer;
-
-
 
 static int usage(const char *progname)
 {
@@ -366,6 +276,7 @@ static int usage(const char *progname)
 		"Options:\n"
 		" -d <mask>:		Mask for debug messages\n"
 		" -s <path>:		Path to the ubus socket\n"
+		" -D:				enable DEMO modle\n"
 		" -r <path>:		Path to resolv.conf\n"
 		" -l <level>:		Log output level (default: %d)\n"
 		" -S:			Use stderr instead of syslog for log messages\n"
@@ -442,8 +353,6 @@ int main(int argc, char **argv)
 
 	uloop_init();
 
-
-
 	if (trafficd_tbus_init()) {
 		elog("Failed to trafficd_tbus_init\n");
 		ret = -1;
@@ -456,21 +365,12 @@ int main(int argc, char **argv)
 		goto out;
 	}
 
-	sys->id = trafficd_ip_init();
-	sys->hd = trafficd_hw_init();
-	if (!(sys->id && sys->hd )){
-		ret = -1;
-		goto out;
-	}
-
-	config_init_alive();
 	trafficd_setup_signals();
 	uloop_run();
 	uloop_done();
 
-	trafficd_hw_done();
-	trafficd_ip_done();
 	trafficd_tbus_done();
+	config_done();
 	system_done();
 
 	if (sys->cfg.use_syslog)

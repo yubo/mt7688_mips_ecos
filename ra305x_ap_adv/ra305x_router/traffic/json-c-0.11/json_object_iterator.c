@@ -17,10 +17,10 @@
 
 #include <stddef.h>
 
-#include "json.h"
-#include "json_object_private.h"
+#include "json/json.h"
+#include "json/json_object_private.h"
 
-#include "json_object_iterator.h"
+#include "json/json_object_iterator.h"
 
 /**
  * How It Works

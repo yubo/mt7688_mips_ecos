@@ -14,8 +14,8 @@
  * yubo    <yubo@xiaomi.com>
  */
 
-#include "libubus.h"
-#include "libubus-internal.h"
+#include "traffic/libubus.h"
+#include "traffic/libubus-internal.h"
 
 static int ubus_subscriber_cb(struct ubus_context *ctx, struct ubus_object *obj,
 			 struct ubus_request_data *req,

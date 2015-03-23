@@ -16,9 +16,9 @@
 #define __warn_references(sym,msg)    /* nothing */
 #endif
 
-#endif 
+#endif
 
-#include "json_object.h"
+#include "json/json_object.h"
 
 __warn_references(json_object_get, "Warning: please link against libjson-c instead of libjson");
 

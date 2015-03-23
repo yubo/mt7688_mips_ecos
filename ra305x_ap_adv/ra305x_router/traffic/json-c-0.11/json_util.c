@@ -9,7 +9,7 @@
  *
  */
 
-#include "config.h"
+#include "json/config.h"
 #undef realloc
 
 #include <stdio.h>
@@ -53,13 +53,13 @@
 # error You do not have snprintf on your system.
 #endif /* HAVE_SNPRINTF */
 
-#include "bits.h"
-#include "debug.h"
-#include "printbuf.h"
-#include "json_inttypes.h"
-#include "json_object.h"
-#include "json_tokener.h"
-#include "json_util.h"
+#include "json/bits.h"
+#include "json/debug.h"
+#include "json/printbuf.h"
+#include "json/json_inttypes.h"
+#include "json/json_object.h"
+#include "json/json_tokener.h"
+#include "json/json_util.h"
 
 static int sscanf_is_broken = 0;
 static int sscanf_is_broken_testdone = 0;

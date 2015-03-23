@@ -5,7 +5,7 @@
 #.EXPORT_ALL_VARIABLES:
 
 CURR_DIR=$(shell pwd)
-EXTRA_CFLAGS = -I$(CURR_DIR)/include -DUBUS_MAX_MSGLEN=1048576
+EXTRA_CFLAGS = -I$(CURR_DIR)/include -I$(CURR_DIR)/../httpd/include -DUBUS_MAX_MSGLEN=1048576 -DDEBUG
 
 
 MODULE = $(shell pwd | sed "s/.*\///" ).o
@@ -20,8 +20,6 @@ LIBUBOXDIR = libubox-2014-03-18
 
 TRAFFICD_OBJS = \
 	$(TRAFFICDDIR)/config.o \
-	$(TRAFFICDDIR)/hw.o \
-	$(TRAFFICDDIR)/ip.o \
 	$(TRAFFICDDIR)/main.o \
 	$(TRAFFICDDIR)/system_ecos.o \
 	$(TRAFFICDDIR)/tbus.o \
@@ -30,6 +28,7 @@ TRAFFICD_OBJS = \
 	$(TRAFFICDDIR)/libubus-obj.o \
 	$(TRAFFICDDIR)/libubus-req.o \
 	$(TRAFFICDDIR)/libubus-sub.o \
+	$(TRAFFICDDIR)/msg_handle.o \
 	$(TRAFFICDDIR)/utils.o
 
 
@@ -51,19 +50,14 @@ LIBUBOX_OBJS = \
 	$(LIBUBOXDIR)/blob.o \
 	$(LIBUBOXDIR)/blobmsg.o \
 	$(LIBUBOXDIR)/blobmsg_json.o \
-	$(LIBUBOXDIR)/json_script.o \
 	$(LIBUBOXDIR)/md5.o \
-	$(LIBUBOXDIR)/runqueue.o \
 	$(LIBUBOXDIR)/safe_list.o \
 	$(LIBUBOXDIR)/uloop.o \
-	$(LIBUBOXDIR)/usock.o \
-	$(LIBUBOXDIR)/ustream.o \
-	$(LIBUBOXDIR)/ustream-fd.o \
 	$(LIBUBOXDIR)/utils.o \
 	$(LIBUBOXDIR)/vlist.o
 
 
-ALL_OBJS = $(TRAFFICD_OBJS) $(JSON_OBJS) $(LIBUBOX_OBJS)
+ALL_OBJS = $(JSON_OBJS) $(LIBUBOX_OBJS) $(TRAFFICD_OBJS)
 
 $(MODULE): $(ALL_OBJS:.o=.d)
 	$(XLD) -r $(ENDIAN) -o $(MODULE) $(ALL_OBJS)

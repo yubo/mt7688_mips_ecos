@@ -10,21 +10,21 @@
  *
  */
 
-#include "config.h"
+#include "json/config.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
 
-#include "debug.h"
-#include "printbuf.h"
-#include "linkhash.h"
-#include "arraylist.h"
-#include "json_inttypes.h"
-#include "json_object.h"
-#include "json_object_private.h"
-#include "json_util.h"
+#include "json/debug.h"
+#include "json/printbuf.h"
+#include "json/linkhash.h"
+#include "json/arraylist.h"
+#include "json/json_inttypes.h"
+#include "json/json_object.h"
+#include "json/json_object_private.h"
+#include "json/json_util.h"
 
 #if !defined(HAVE_STRDUP) && defined(_MSC_VER)
   /* MSC has the version as _strdup */
@@ -36,6 +36,7 @@
 #if !defined(HAVE_STRNDUP)
   char* strndup(const char* str, size_t n);
 #endif /* !HAVE_STRNDUP */
+
 
 // Don't define this.  It's not thread-safe.
 /* #define REFCOUNT_DEBUG 1 */

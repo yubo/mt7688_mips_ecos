@@ -12,7 +12,7 @@
 #ifndef _json_util_h_
 #define _json_util_h_
 
-#include "json_object.h"
+#include "json/json_object.h"
 
 #ifdef __cplusplus
 extern "C" {

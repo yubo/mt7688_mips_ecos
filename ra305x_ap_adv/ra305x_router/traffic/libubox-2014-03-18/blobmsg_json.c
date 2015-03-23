@@ -13,8 +13,8 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#include "blobmsg.h"
-#include "blobmsg_json.h"
+#include "libubox/blobmsg.h"
+#include "libubox/blobmsg_json.h"
 
 bool blobmsg_add_object(struct blob_buf *b, json_object *obj)
 {

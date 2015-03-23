@@ -15,8 +15,8 @@
  */
 
 #include <unistd.h>
-#include "libubus.h"
-#include "libubus-internal.h"
+#include "traffic/libubus.h"
+#include "traffic/libubus-internal.h"
 
 struct ubus_pending_data {
 	struct list_head list;
@@ -119,13 +119,20 @@ static void ubus_sync_req_cb(struct ubus_request *req, int ret)
 
 static int64_t get_time_msec(void)
 {
-	struct timespec ts;
 	int64_t val;
-
+#ifdef __ECOS
+	struct timeval tv;
+	microtime(&tv);
+	val = (int64_t) tv.tv_sec * 1000LL;
+	val += tv.tv_usec / 1000LL;
+	return val;
+#else
+	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	val = (int64_t) ts.tv_sec * 1000LL;
 	val += ts.tv_nsec / 1000000LL;
 	return val;
+#endif
 }
 
 int ubus_complete_request(struct ubus_context *ctx, struct ubus_request *req,
@@ -150,12 +157,19 @@ int ubus_complete_request(struct ubus_context *ctx, struct ubus_request *req,
 	ctx->stack_depth++;
 	while (!req->status_msg) {
 		bool cancelled = uloop_cancelled;
-
 		uloop_cancelled = false;
+
+		if(ctx->sock.eof){
+			ubus_set_req_status(req, UBUS_STATUS_CONNECTION_FAILED);
+			uloop_cancelled = cancelled;
+			break;
+		}
+
 		if (req_timeout) {
 			timeout = time_end - get_time_msec();
 			if (timeout <= 0) {
 				ubus_set_req_status(req, UBUS_STATUS_TIMEOUT);
+				uloop_cancelled = cancelled;
 				break;
 			}
 		}
@@ -181,6 +195,7 @@ int ubus_complete_request(struct ubus_context *ctx, struct ubus_request *req,
 			ctx->pending_timer.cb(&ctx->pending_timer);
 	}
 
+out:
 	return status;
 }
 

@@ -56,7 +56,8 @@
 
 /* Define to 1 if you have the `strdup' function. */
 #define HAVE_STRDUP 1
-
+/* Define to 1 if you have the `strndup' function. */
+#define HAVE_STRNDUP 1
 /* Define to 1 if you have the `strerror' function. */
 #define HAVE_STRERROR 1
 
@@ -68,9 +69,6 @@
 
 /* Define to 1 if you have the `strncasecmp' function. */
 #define HAVE_STRNCASECMP 1
-
-/* Define to 1 if you have the `strndup' function. */
-#define HAVE_STRNDUP 1
 
 /* Define to 1 if you have the <syslog.h> header file. */
 #define HAVE_SYSLOG_H 1

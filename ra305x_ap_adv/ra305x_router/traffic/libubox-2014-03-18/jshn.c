@@ -13,7 +13,7 @@
  * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
-#ifdef JSONC
+#ifdef JSONC || defined (__ECOS)
         #include <json.h>
 #else
         #include <json/json.h>
@@ -25,7 +25,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <getopt.h>
-#include "list.h"
+#include "libubox/list.h"
 
 #define MAX_VARLEN	256
 

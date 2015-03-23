@@ -8,7 +8,7 @@
 #ifndef __ECOS
 #include <stdint.h>
 #else
-#include <cyg/infra/diag.h>
+#include <sys/bsdtypes.h>
 #endif
 
 #include <stdlib.h>
@@ -22,14 +22,24 @@
 
 
 #include "libubox/uloop.h"
-#include "libubox/ustream.h"
 #include "libubox/blobmsg.h"
-#include "utils.h"
-#include "libubus.h"
+#include "traffic/utils.h"
+#include "traffic/libubus.h"
 
+#ifdef __ECOS
+#define gettimeofday(a, b) microtime(a)
+#endif
 
+#define T_NONBLOCK 1
 #define TRAFFICD_VERSION 1
-#define DEFAULT_LOG_LEVEL L_NOTICE
+
+#ifdef _DEBUG
+#define DEFAULT_LOG_LEVEL L_DEBUG
+#define DEFAULT_DEBUG_MASK 1
+#else
+#define DEFAULT_LOG_LEVEL 0
+#define DEFAULT_DEBUG_MASK 0
+#endif
 
 #define PROC_MAT_TABLE_FILE	"/proc/miwifi_mat_table"
 #define UBUS_UNIX_SOCKET    "/var/run/ubus.sock"
@@ -41,12 +51,14 @@
 #define POINTSMAXLEN 1024
 #define HOSTNAMSIZ 32
 #define PATHMAXLEN 256
+#define DEVIDSIZ	40
 
 #define TRAFFICD_KV_SIZELIMIT		256
-#define TRAFFICD_HW_SIZELIMIT		256
+#define TRAFFICD_HW_SIZELIMIT		64
 #define TRAFFICD_HW_LOGSIZE			10
 #define TRAFFICD_HW_RECYCLE_PERCENT	10
 
+#define TRAFFICD_IF_AP			"ra0"
 #define TRAFFICD_IF_2G			"wl1"
 #define TRAFFICD_IF_5G			"wl0"
 #define TRAFFICD_GUEST_2G		"wl1.2"
@@ -54,8 +66,11 @@
 #define TRAFFICD_HW_LOOP_TIME           2000
 #define TRAFFICD_IP_LOOP_TIME           2000
 #define TRAFFICD_WIFIAP_LOOP_TIME		10000
+#define TRAFFICD_INIT_LOOP_TIME			2000
+#define TRAFFICD_INIT_TIMEOUT			5000
 #define TRAFFICD_SIGNAL_LOOP_TIME		1000
-
+#define TRAFFICD_PUSH_CFG_RETRY			5
+#define TRAFFICD_PUSH_CFG_LOOP_TIME		10000
 
 #define TRAFFICD_CLI_TIMEOUT1			(TRAFFICD_WIFIAP_LOOP_TIME * 3 / 1000)
 #define TRAFFICD_CLI_TIMEOUT2			(TRAFFICD_WIFIAP_LOOP_TIME * 6 / 1000)
@@ -93,11 +108,12 @@ struct trafficd_cfg{
 	char if_2g[IFNAMSIZ];
 	char if_5g[IFNAMSIZ];
 	char guest_2g[IFNAMSIZ];
+	uint32_t ap_flags;
 	uint32_t hw_sizelimit;
 	uint32_t hw_looptime;
 	uint32_t br_looptime;
 	uint32_t ip_looptime;
-	uint32_t version;
+	uint32_t trafficd_version;
 	uint32_t hw_recycle_percent;
 	uint32_t hw_recycle;
 	char log_file[PATHMAXLEN];
@@ -107,6 +123,12 @@ struct trafficd_cfg{
 	char tbus_listen_event[PATHMAXLEN];
 	char lan_gw[IPAMAXLEN];
 	char wan_gw[IPAMAXLEN];
+	char wan_ip[IPAMAXLEN];
+	char router_name[HOSTNAMSIZ];
+	char device_id[DEVIDSIZ];
+	char version[HOSTNAMSIZ];
+	char *description;
+
 };
 
 
@@ -124,18 +146,39 @@ struct trafficd_sys{
 #ifdef HWNAT
 	bool hwnat_on;
 #endif
+	bool init_mode;
 };
+
+
 
 extern struct trafficd_sys *sys;
 int config_init_all(void);
-int config_init_alive(void);
+int trafficd_config_push(void);
+int config_done(void);
 
-#include "ip.h"
-#include "hw.h"
+
+struct trafficd_iwevent
+{
+	char hwa[HWAMAXLEN];
+	char ifname[IFNAMSIZ];
+	int event_type;
+};
+
+struct trafficd_ap_iwevent
+{
+	struct trafficd_iwevent *ev;
+	struct hw_node *speaker;
+};
+
 
 extern const char *resolv_conf;
 extern char *hotplug_cmd_path;
 extern unsigned int debug_mask;
+
+enum {
+	AP_LANMODE	= 0,
+	AP_WIFIMODE	= 1,
+};
 
 enum {
 	L_CRIT,
@@ -152,7 +195,7 @@ enum {
 };
 
 enum {
-	DEBUG_SYSTEM	= 0,
+	DEBUG_SYSTEM	= 0,// 1
 	DEBUG_IP	= 1,	// 2
 	DEBUG_HW	= 2,	// 4
 	DEBUG_BR	= 3,	// 8
@@ -163,30 +206,53 @@ enum {
 	DEBUG_BUS	= 8,	// 256
 };
 
+
+
+
+
 #define TR_MAX(a, b) ((a) > (b) ? (a) : (b))
 #define TR_REFRESH_TIME() do { \
 	gettimeofday(&sys->tv, NULL); \
 	sys->uptime = get_uptime(NULL, NULL); \
 }while (0)
 
+
+
 #ifdef DEBUG
+
 #ifdef __ECOS
-#define DPRINTF(format, ...) diag_printf( "%s(%d): " format, __func__, __LINE__, ## __VA_ARGS__)
+#define DPRINTF(format, ...) printf( "[traffic]%s(%d): " format, __func__, __LINE__, ## __VA_ARGS__)
 #else
 #define DPRINTF(format, ...) fprintf(stderr, "%s(%d): " format, __func__, __LINE__, ## __VA_ARGS__)
 #endif
+
 #define D(level, format, ...) do { \
 		if (debug_mask & (1 << (DEBUG_ ## level))) \
 				DPRINTF(format, ##__VA_ARGS__); \
 	} while (0)
-#else
+
+#else /* not debug */
+
 #define DPRINTF(format, ...) no_debug(0, format, ## __VA_ARGS__)
 #define D(level, format, ...) no_debug(DEBUG_ ## level, format, ## __VA_ARGS__)
+
+#endif /* end debug */
+
+
+#ifdef __ECOS
+#define _DPRINTF(format, ...) printf( "[traffic]%s(%d): " format, __func__, __LINE__, ## __VA_ARGS__)
+#else
+#define _DPRINTF(format, ...) fprintf(stderr, "%s(%d): " format, __func__, __LINE__, ## __VA_ARGS__)
 #endif
 
-#define dlog(format, ...) trafficd_log_message(L_DEBUG, format, ## __VA_ARGS__)
-#define nlog(format, ...) trafficd_log_message(L_NOTICE, format, ## __VA_ARGS__)
-#define elog(format, ...) trafficd_log_message(L_ERR, format, ## __VA_ARGS__)
+#define _LOG_LEVEL(level, format, ...) do { \
+		if (level <= log_level) \
+			_DPRINTF(format, ##__VA_ARGS__); \
+	} while (0)
+#define dlog(format, ...) _LOG_LEVEL(L_DEBUG, format, ## __VA_ARGS__)
+#define nlog(format, ...) _LOG_LEVEL(L_NOTICE, format, ## __VA_ARGS__)
+#define elog(format, ...) _LOG_LEVEL(L_ERR, format, ## __VA_ARGS__)
+
 
 static inline void no_debug(int level, const char *fmt, ...)
 {
@@ -199,17 +265,8 @@ struct device;
 struct interface;
 
 extern const char *main_path;
-void trafficd_restart(void);
-void trafficd_reload(void);
+extern int log_level;
 
-struct dev_node;
-struct hw_node;
-struct trafficd_br_data;
-struct ip_node;
-void trafficd_point_dev_update(struct dev_node *dev_node);
-void trafficd_point_hw_update_br(struct hw_node *hw_node, struct trafficd_br_data *bd);
-void trafficd_point_update_br_max_mac(int count);
-void trafficd_point_ip_update(struct ip_node *ip_node);
-
+int trafficd_router2cli_msg_handle(const char *type, struct blob_attr *msg);
 
 #endif

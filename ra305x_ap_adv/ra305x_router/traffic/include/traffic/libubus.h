@@ -14,23 +14,26 @@
 #ifndef __LIBUBUS_H
 #define __LIBUBUS_H
 
-
 #ifndef __ECOS
 #include <stdint.h>
 #else
-#include "int.h"
+#include <sys/bsdtypes.h>
+#include "traffic/int.h"
 #endif
+
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 #include "libubox/avl.h"
 #include "libubox/list.h"
 #include "libubox/blobmsg.h"
 #include "libubox/uloop.h"
 
-#include <netinet/in.h>
-#include <arpa/inet.h>
-
-#include "ubusmsg.h"
-#include "ubus_common.h"
+#include "traffic/ubusmsg.h"
+#include "traffic/ubus_common.h"
 
 #define UBUS_MAX_NOTIFY_PEERS	16
 
@@ -159,6 +162,8 @@ struct ubus_context {
 
 	struct ubus_msghdr_buf msgbuf;
 	uint32_t msgbuf_data_len;
+	uint32_t msgbuf_data_offset;
+	uint32_t msg_data_len;
 	int msgbuf_reduction_counter;
 	int retry;
 };
@@ -219,11 +224,6 @@ struct ubus_auto_conn {
 	struct sockaddr_in *a;
 	ubus_connect_handler_t cb;
 };
-
-struct ubus_context *ubus_connect(const char *path);
-void ubus_auto_connect(struct ubus_auto_conn *conn);
-int ubus_reconnect(struct ubus_context *ctx, const char *path);
-void ubus_free(struct ubus_context *ctx);
 
 struct ubus_context *tbus_connect(struct sockaddr_in *a);
 void tbus_auto_connect(struct ubus_auto_conn *conn);

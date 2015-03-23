@@ -25,9 +25,9 @@
 #ifndef __LIBUBOX_SAFE_LIST_H
 #define __LIBUBOX_SAFE_LIST_H
 
-#include <stdbool.h>
-#include "libubox/list.h"
 #include "libubox/utils.h"
+#include "libubox/list.h"
+#include <stdbool.h>
 
 struct safe_list;
 struct safe_list_iterator;

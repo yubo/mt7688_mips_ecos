@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 #include <string.h>
-#include "avl-cmp.h"
+#include "libubox/avl-cmp.h"
 
 int
 avl_strcmp(const void *k1, const void *k2, void *ptr)

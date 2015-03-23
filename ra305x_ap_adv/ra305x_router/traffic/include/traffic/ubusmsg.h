@@ -17,7 +17,7 @@
 #ifndef __ECOS
 #include <stdint.h>
 #else
-#include "int.h"
+#include "traffic/int.h"
 #endif
 
 #include "libubox/blob.h"
@@ -72,6 +72,8 @@ enum ubus_msg_type {
 	 * status change
 	 */
 	UBUS_MSG_NOTIFY,
+
+	UBUS_MSG_REPLACE_OBJECT,
 
 	/* must be last */
 	__UBUS_MSG_LAST,

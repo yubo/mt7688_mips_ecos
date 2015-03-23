@@ -13,7 +13,7 @@
  * (http://www.opensource.org/licenses/mit-license.php)
  */
 
-#include "config.h"
+#include "json/config.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,14 +22,14 @@
 #include <string.h>
 #include <limits.h>
 
-#include "bits.h"
-#include "debug.h"
-#include "printbuf.h"
-#include "arraylist.h"
-#include "json_inttypes.h"
-#include "json_object.h"
-#include "json_tokener.h"
-#include "json_util.h"
+#include "json/bits.h"
+#include "json/debug.h"
+#include "json/printbuf.h"
+#include "json/arraylist.h"
+#include "json/json_inttypes.h"
+#include "json/json_object.h"
+#include "json/json_tokener.h"
+#include "json/json_util.h"
 
 #ifdef HAVE_LOCALE_H
 #include <locale.h>

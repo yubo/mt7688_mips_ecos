@@ -22,13 +22,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <poll.h>
 #include <string.h>
 #include <fcntl.h>
 #include <stdbool.h>
 
-#include "uloop.h"
-#include "utils.h"
+#include "traffic/trafficd.h"
+#include "libubox/uloop.h"
+#include "libubox/utils.h"
+
 
 #ifdef USE_KQUEUE
 #include <sys/event.h>
@@ -38,8 +39,11 @@
 #endif
 #ifdef USE_SELECT
 #include <sys/select.h>
-#endif
+#else
+#include <poll.h>
 #include <sys/wait.h>
+#endif
+
 
 struct uloop_fd_event {
 	struct uloop_fd *fd;
@@ -547,11 +551,13 @@ int uloop_fd_add(struct uloop_fd *sock, unsigned int flags)
 	if (!(flags & (ULOOP_READ | ULOOP_WRITE)))
 		return uloop_fd_delete(sock);
 
+#ifndef T_NONBLOCK
 	if (!sock->registered && !(flags & ULOOP_BLOCKING)) {
 		fl = fcntl(sock->fd, F_GETFL, 0);
 		fl |= O_NONBLOCK;
 		fcntl(sock->fd, F_SETFL, fl);
 	}
+#endif
 
 	ret = register_poll(sock, flags);
 	if (ret < 0)
@@ -610,7 +616,9 @@ int uloop_timeout_add(struct uloop_timeout *timeout)
 
 	return 0;
 }
-
+#ifdef __ECOS
+#define uloop_gettime(a) gettimeofday(a, NULL)
+#else
 static void uloop_gettime(struct timeval *tv)
 {
 	struct timespec ts;
@@ -619,7 +627,7 @@ static void uloop_gettime(struct timeval *tv)
 	tv->tv_sec = ts.tv_sec;
 	tv->tv_usec = ts.tv_nsec / 1000;
 }
-
+#endif
 int uloop_timeout_set(struct uloop_timeout *timeout, int msecs)
 {
 	struct timeval *time = &timeout->time;
@@ -663,10 +671,14 @@ int uloop_timeout_remaining(struct uloop_timeout *timeout)
 	return tv_diff(&timeout->time, &now);
 }
 
+#ifndef __ECOS
+
 int uloop_process_add(struct uloop_process *p)
 {
 	struct uloop_process *tmp;
 	struct list_head *h = &processes;
+
+	D(BUS, "add process\n");
 
 	if (p->pending)
 		return -1;
@@ -695,6 +707,7 @@ int uloop_process_delete(struct uloop_process *p)
 	return 0;
 }
 
+
 static void uloop_handle_processes(void)
 {
 	struct uloop_process *p, *tmp;
@@ -721,6 +734,7 @@ static void uloop_handle_processes(void)
 	}
 
 }
+
 
 static void uloop_handle_sigint(int signo)
 {
@@ -758,6 +772,8 @@ static void uloop_setup_signals(bool add)
 
 	sigaction(SIGCHLD, &s, &old_sigchld);
 }
+
+#endif
 
 static int uloop_get_next_timeout(struct timeval *tv)
 {
@@ -798,7 +814,7 @@ static void uloop_clear_timeouts(void)
 	list_for_each_entry_safe(t, tmp, &timeouts, list)
 		uloop_timeout_cancel(t);
 }
-
+#ifndef __ECOS
 static void uloop_clear_processes(void)
 {
 	struct uloop_process *p, *tmp;
@@ -806,6 +822,7 @@ static void uloop_clear_processes(void)
 	list_for_each_entry_safe(p, tmp, &processes, list)
 		uloop_process_delete(p);
 }
+#endif
 
 void uloop_run(void)
 {
@@ -816,8 +833,10 @@ void uloop_run(void)
 	 * Handlers are only updated for the first call to uloop_run() (and restored
 	 * when this call is done).
 	 */
+#ifndef __ECOS
 	if (!recursive_calls++)
 		uloop_setup_signals(true);
+#endif
 
 	while(!uloop_cancelled)
 	{
@@ -826,14 +845,18 @@ void uloop_run(void)
 		if (uloop_cancelled)
 			break;
 
+#ifndef __ECOS
 		if (do_sigchld)
 			uloop_handle_processes();
+#endif
 		uloop_gettime(&tv);
 		uloop_run_events(uloop_get_next_timeout(&tv));
 	}
 
+#ifndef __ECOS
 	if (!--recursive_calls)
 		uloop_setup_signals(false);
+#endif
 }
 
 void uloop_done(void)
@@ -846,5 +869,7 @@ void uloop_done(void)
 	poll_fd = -1;
 
 	uloop_clear_timeouts();
+#ifndef __ECOS
 	uloop_clear_processes();
+#endif
 }

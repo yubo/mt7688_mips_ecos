@@ -18,7 +18,7 @@
 
 #include <string.h>
 #include <stdio.h>
-#include "runqueue.h"
+#include "libubox/runqueue.h"
 
 static void
 __runqueue_empty_cb(struct uloop_timeout *timeout)

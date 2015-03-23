@@ -17,7 +17,7 @@
 #define __BLOBMSG_JSON_H
 
 
-#include "json.h"
+#include "json/json.h"
 
 #include <stdbool.h>
 #include "libubox/blobmsg.h"

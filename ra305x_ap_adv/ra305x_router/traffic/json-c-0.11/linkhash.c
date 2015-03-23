@@ -17,7 +17,7 @@
 #include <stddef.h>
 #include <limits.h>
 
-#include "linkhash.h"
+#include "json/linkhash.h"
 
 void lh_abort(const char *msg, ...)
 {
@@ -43,7 +43,7 @@ unsigned long lh_char_hash(const void *k)
 {
 	unsigned int h = 0;
 	const char* data = (const char*)k;
- 
+
 	while( *data!=0 ) h = h*129 + (unsigned int)(*data++) + LH_PRIME;
 
 	return h;

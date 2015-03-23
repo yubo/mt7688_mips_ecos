@@ -38,14 +38,20 @@
  * the copyright holders.
  */
 
+#include <time.h>
 #include <stdbool.h>
 #include <stddef.h>
-#include <stdint.h>
-#include <time.h>
 #include <string.h>
 
-#include "avl.h"
-#include "list.h"
+#ifdef __ECOS
+#include "traffic/int.h"
+#else
+#include <stdint.h>
+#endif
+
+
+#include "libubox/avl.h"
+#include "libubox/list.h"
 
 #define list_merge(_head, _list) list_merge(_list, _head)
 #define list_is_last(_head, _list) list_is_last(_list, _head)

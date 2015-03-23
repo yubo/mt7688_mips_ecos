@@ -16,7 +16,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include "safe_list.h"
+#include "libubox/safe_list.h"
 
 struct safe_list_iterator {
 	struct safe_list_iterator **head;

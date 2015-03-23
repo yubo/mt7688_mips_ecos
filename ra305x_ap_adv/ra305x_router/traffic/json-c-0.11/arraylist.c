@@ -9,19 +9,24 @@
  *
  */
 
-#include "config.h"
+#include "json/config.h"
 
 #ifdef STDC_HEADERS
 # include <stdlib.h>
 # include <string.h>
 #endif /* STDC_HEADERS */
 
-#if defined(HAVE_STRINGS_H) && !defined(_STRING_H) && !defined(__USE_BSD)
+#ifdef __ECOS
+#include <stddef.h>
+#include <stdlib.h>
+#endif
+
+#if defined(HAVE_STRINGS_H) && !defined(_STRING_H) && !defined(__USE_BSD) && !defined(__ECOS)
 # include <strings.h>
 #endif /* HAVE_STRINGS_H */
 
-#include "bits.h"
-#include "arraylist.h"
+#include "json/bits.h"
+#include "json/arraylist.h"
 
 struct array_list*
 array_list_new(array_list_free_fn *free_fn)

@@ -21,4 +21,4 @@ main: main.o $(OBJS)
 
 
 clean:
-	rm -f *.o main
+	rm -f *.d *.o main

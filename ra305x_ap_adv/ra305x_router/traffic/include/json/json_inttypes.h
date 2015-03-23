@@ -4,13 +4,10 @@
 
 #include "json_config.h"
 
-#if defined(__ECOS)
-#define INT32_MIN    ((int32_t)_I32_MIN)
-#define INT32_MAX    ((int32_t)_I32_MAX)
-#define INT64_MIN    ((int64_t)_I64_MIN)
-#define INT64_MAX    ((int64_t)_I64_MAX)
-#define PRId64 "I64d"
-#define SCNd64 "I64d"
+
+#ifdef __ECOS
+
+#include "traffic/int.h"
 
 #elif defined(_MSC_VER) && _MSC_VER < 1700
 

@@ -20,15 +20,17 @@
 #ifndef __LIBUBOX_UTILS_H
 #define __LIBUBOX_UTILS_H
 
+#include <time.h>
 #include <sys/types.h>
 #include <sys/time.h>
+#include <stddef.h>
 #include <stdbool.h>
-#include <time.h>
 
-#ifdef __ECOS
-#include <sys/bsdtypes.h>
-#else
+
+#ifndef __ECOS
 #include <stdint.h>
+#else
+#include "traffic/int.h"
 #endif
 
 /*

@@ -11,21 +11,26 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-#include <string.h>
+
 #include <stdlib.h>
 
-
-#include <arpa/inet.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <net/if.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <locale.h>
+
+#ifndef __ECOS
+#include <string.h>
+#endif
 
 #ifdef __APPLE__
 #include <libproc.h>
 #endif
 
-#include "trafficd.h"
-#include "utils.h"
+#include "traffic/trafficd.h"
+#include "traffic/utils.h"
 
 static int uptime_fd = -1;
 
@@ -109,7 +114,7 @@ format_macaddr(uint8_t *mac)
 
 
 
-
+#ifndef __ECOS
 bool check_pid_path(int pid, const char *exe)
 {
 	int proc_exe_len;
@@ -132,6 +137,7 @@ bool check_pid_path(int pid, const char *exe)
 
 	return !memcmp(exe, proc_exe_buf, exe_len);
 }
+#endif
 
 void system_fd_set_cloexec(int fd)
 {
